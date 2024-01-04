@@ -7,7 +7,7 @@ public class EnemyHealth : MonoBehaviour
 {
     public Slider heathSlider;
     public float health;
-    public float maxHealth;
+    float maxHealth;
     public int def;
     bool dead;
     public GameObject[] theDrop;

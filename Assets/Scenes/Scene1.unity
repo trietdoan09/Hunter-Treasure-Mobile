@@ -5451,37 +5451,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 810627329}
   m_CullTransparentMesh: 1
---- !u!1 &828895866
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 828895867}
-  m_Layer: 0
-  m_Name: A*
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &828895867
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 828895866}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1204.1312, y: 205.32816, z: 13.085386}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &831014272
 GameObject:
   m_ObjectHideFlags: 0
@@ -8680,7 +8649,7 @@ GameObject:
   - component: {fileID: 1979784783}
   - component: {fileID: 1979784785}
   m_Layer: 7
-  m_Name: Minotaur
+  m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8851,10 +8820,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 1953558160}
   speed: 3
-  right: 2
-  left: 2
-  direction: 0
   distanceMovement: 2
+  idleDuration: 5
 --- !u!1 &2008340630
 GameObject:
   m_ObjectHideFlags: 0
@@ -9375,7 +9342,6 @@ RectTransform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 828895867}
   - {fileID: 1589151084}
   - {fileID: 2036343807}
   - {fileID: 2028097979}

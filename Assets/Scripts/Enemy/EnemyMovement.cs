@@ -16,7 +16,7 @@ public class EnemyMovement : MonoBehaviour
         boxCollider = GetComponent<BoxCollider2D>();
     }
 
-    public bool PlayerInSight()
+    public bool EnemyMove()
     {
         RaycastHit2D distancePlayer = Physics2D.BoxCast(boxCollider.bounds.center + colliderDistance * range * transform.localScale.x * transform.right,
             new Vector3(boxCollider.bounds.size.x * range, boxCollider.bounds.size.y, boxCollider.bounds.size.z),
