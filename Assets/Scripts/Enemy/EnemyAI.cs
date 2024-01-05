@@ -31,11 +31,13 @@ public class EnemyAI : MonoBehaviour
  
     private void Update()
     {
+        animator.SetTrigger("Idle");
         var playerPosition = target.transform.position;
         var enemyPosition = transform.position;
+
         //var movement = transform.Find("Enemy"); ;
         //animator.SetFloat("Horizontal", movement.position.x);
-        //animator.SetFloat("Run",movement.position.x);
+        //animator.SetFloat("Run", movement.position.x);
 
         /* if (playerPosition.x > left && playerPosition.x < right)
          {

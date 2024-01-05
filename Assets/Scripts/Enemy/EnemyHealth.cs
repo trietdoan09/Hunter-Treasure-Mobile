@@ -5,13 +5,14 @@ using UnityEngine.UI;
 
 public class EnemyHealth : MonoBehaviour
 {
-    public Slider heathSlider;
+    [SerializeField] Slider heathSlider;
+    [SerializeField] float maxHealth;
+    [SerializeField] int def;
+    public bool dead;
     public float health;
-    float maxHealth;
-    public int def;
-    bool dead;
-    public GameObject[] theDrop;
+   
 
+    [SerializeField] GameObject[] theDrop;
     Animator animator;
     void Start()
     {
@@ -25,7 +26,15 @@ public class EnemyHealth : MonoBehaviour
 
     public void Respawn()
     {
+        gameObject.SetActive(true);
         health = maxHealth;
+        heathSlider.value = health;
+
+        if (GetComponent<EnemyHealth>() != null)
+           GetComponent<EnemyHealth>().enabled = true;
+        if (GetComponent<EnemyAI>() != null)
+            GetComponent<EnemyAI>().enabled = true;
+
         animator.ResetTrigger("Dead");
 
         dead = false;
@@ -34,7 +43,11 @@ public class EnemyHealth : MonoBehaviour
 
     private void Update()
     {
-
+        if (Input.GetMouseButton(0))
+        {
+            health -= 20;
+            heathSlider.value = health;
+        }
 
         if (health <= 0)
         {
@@ -47,19 +60,22 @@ public class EnemyHealth : MonoBehaviour
                     GetComponent<EnemyAI>().enabled = false;
                 dead = true;
 
-                var one = Instantiate(theDrop[Random.Range(0, theDrop.Length)]);
-                one.transform.position = gameObject.transform.position;
+                //var one = Instantiate(theDrop[Random.Range(0, theDrop.Length)]);
+                //one.transform.position = gameObject.transform.position;
 
-                Destroy(gameObject, 5);
+                
             }
-
         }
+       
     }
-   /* public void TakeDamage(int damage)
-    {
+    //public void TakeDamage(int damage)
+    //{
 
-        health -= DamagePlayer.TakeDamge(damage, def);
-        heathSlider.value = health;
-    }*/
-    
+    //    health -= DamagePlayer.TakeDamge(damage, def);
+    //    heathSlider.value = health;
+    //}
+    public void Deactive()
+    {
+        gameObject.SetActive(false);
+    }
 }

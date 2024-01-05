@@ -8169,6 +8169,7 @@ GameObject:
   - component: {fileID: 1786612881}
   - component: {fileID: 1786612883}
   - component: {fileID: 1786612882}
+  - component: {fileID: 1786612884}
   m_Layer: 0
   m_Name: Minotaur
   m_TagString: Untagged
@@ -8255,6 +8256,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 2.3151188}
   m_EdgeRadius: 0
+--- !u!114 &1786612884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1786612878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52ecb6d3374801b4d88ab5f8a3b4e76b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  respawnTimer: 15
+  respawnTimeCount: 0
 --- !u!1 &1876289540
 GameObject:
   m_ObjectHideFlags: 0
@@ -8648,6 +8663,7 @@ GameObject:
   - component: {fileID: 1979784784}
   - component: {fileID: 1979784783}
   - component: {fileID: 1979784785}
+  - component: {fileID: 1979784786}
   m_Layer: 7
   m_Name: Enemy
   m_TagString: Enemy
@@ -8822,6 +8838,24 @@ MonoBehaviour:
   speed: 3
   distanceMovement: 2
   idleDuration: 5
+--- !u!114 &1979784786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1979784779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f3b82f4bf68e8d4b99c261b088a8f96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heathSlider: {fileID: 767527836}
+  maxHealth: 100
+  def: 10
+  dead: 0
+  health: 0
+  theDrop: []
 --- !u!1 &2008340630
 GameObject:
   m_ObjectHideFlags: 0
