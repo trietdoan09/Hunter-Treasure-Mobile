@@ -15,11 +15,9 @@ public class EnemyAI : MonoBehaviour
     float idleTimer;
 
     Animator animator;
-    Rigidbody2D rb;
-
+    public bool healthBar;
     private void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         enemyMovement = FindAnyObjectByType<EnemyMovement>();
 
@@ -31,13 +29,12 @@ public class EnemyAI : MonoBehaviour
  
     private void Update()
     {
+        animator.SetBool("Run", false);
+
+        
         animator.SetTrigger("Idle");
         var playerPosition = target.transform.position;
         var enemyPosition = transform.position;
-
-        //var movement = transform.Find("Enemy"); ;
-        //animator.SetFloat("Horizontal", movement.position.x);
-        //animator.SetFloat("Run", movement.position.x);
 
         /* if (playerPosition.x > left && playerPosition.x < right)
          {
@@ -49,7 +46,6 @@ public class EnemyAI : MonoBehaviour
         }
         else
         {
-            
             if (enemyPosition.x >= right )
             {
                 idleTimer += Time.deltaTime;
@@ -69,7 +65,21 @@ public class EnemyAI : MonoBehaviour
                     direction = right;
                 }
             }
+            else
+            {
+                animator.SetBool("Run", true);
+
+            }
             transform.position = Vector3.MoveTowards(enemyPosition, new Vector3(direction, enemyPosition.y, 0), speed * Time.deltaTime);
+        }
+        if(enemyPosition.x > direction)
+        {
+            transform.localScale = new Vector3(-1,1,1);
+            healthBar = true;
+        }
+        else if(enemyPosition.x < direction)
+        {
+            transform.localScale = new Vector3(1,1,1);
         }
     }
 }
