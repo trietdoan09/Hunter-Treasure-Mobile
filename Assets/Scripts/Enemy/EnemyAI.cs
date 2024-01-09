@@ -6,80 +6,96 @@ public class EnemyAI : MonoBehaviour
 {
     public GameObject target;
     public float speed;
-     float right, left, direction;
-    public float distanceMovement;
+    public Transform right;
+    float direction;
 
-    EnemyMovement enemyMovement;
+    Enemy enemy;
 
     public float idleDuration;
     float idleTimer;
 
     Animator animator;
     public bool healthBar;
+
+    Vector2 playerPosition;
+    Vector2 enemyPosition;
+    Vector2 currentPosition;
+
     private void Start()
     {
         animator = GetComponent<Animator>();
-        enemyMovement = FindAnyObjectByType<EnemyMovement>();
+        enemy = FindAnyObjectByType<Enemy>();
 
-        var currentPosition = transform.position;
-         right = currentPosition.x + distanceMovement;
-         left = currentPosition.x - distanceMovement;
-         direction = right;
+         currentPosition = transform.position;
+        
+         direction = currentPosition.x;
     }
  
     private void Update()
     {
-        animator.SetBool("Run", false);
-
-        
         animator.SetTrigger("Idle");
-        var playerPosition = target.transform.position;
-        var enemyPosition = transform.position;
+        animator.SetBool("Run", true);
 
-        /* if (playerPosition.x > left && playerPosition.x < right)
-         {
-             transform.position = Vector3.MoveTowards(enemyPosition, playerPosition, speed * Time.deltaTime);
-         }*/
-        if (enemyMovement.EnemyMove())
+        playerPosition = target.transform.position;
+        enemyPosition = transform.position;
+
+        EnemyMovement();
+
+        if (enemy.check == true)
         {
             transform.position = Vector3.MoveTowards(enemyPosition, playerPosition, speed * Time.deltaTime);
-        }
-        else
-        {
-            if (enemyPosition.x >= right )
+            animator.SetBool("Run", true);
+
+            if (transform.position.x < playerPosition.x)
             {
-                idleTimer += Time.deltaTime;
-                if ( idleTimer >= idleDuration )
-                {
-                    idleTimer = 0;
-                    direction = left;  
-                }
-            }
-           
-            else if(enemyPosition.x <= left )
-            {
-                idleTimer += Time.deltaTime;
-                if( idleTimer >= idleDuration )
-                {
-                    idleTimer = 0;
-                    direction = right;
-                }
+                transform.localScale = new Vector3(1, 1, 1);
+                healthBar = true;
             }
             else
             {
-                animator.SetBool("Run", true);
-
+                transform.localScale = new Vector3(-1, 1, 1);
             }
-            transform.position = Vector3.MoveTowards(enemyPosition, new Vector3(direction, enemyPosition.y, 0), speed * Time.deltaTime);
         }
-        if(enemyPosition.x > direction)
+        if(transform.position.x < currentPosition.x || transform.position.x > right.position.x)
         {
-            transform.localScale = new Vector3(-1,1,1);
+            animator.SetBool("Run", true);
+        }
+    }
+   void EnemyMovement()
+    {
+        animator.SetBool("Run", true);
+
+        if (enemyPosition.x >= right.position.x)
+        {
+            MoveInDierection(currentPosition.x);
+        }
+
+        else if (enemyPosition.x <= currentPosition.x)
+        {
+            MoveInDierection(right.position.x);
+        }
+
+        transform.position = Vector3.MoveTowards(enemyPosition, new Vector3(direction, enemyPosition.y, 0), speed * Time.deltaTime);
+
+        if (enemyPosition.x < direction)
+        {
+            transform.localScale = new Vector3(1, 1, 1);
             healthBar = true;
         }
-        else if(enemyPosition.x < direction)
+        else if (enemyPosition.x > direction)
         {
-            transform.localScale = new Vector3(1,1,1);
+            transform.localScale = new Vector3(-1, 1, 1);
+        }
+    }
+   void MoveInDierection(float _direction)
+    {
+        animator.SetBool("Run", false);
+
+        idleTimer += Time.deltaTime;
+        if (idleTimer >= idleDuration)
+        {
+            idleTimer = 0;
+            direction = _direction;
         }
     }
 }
