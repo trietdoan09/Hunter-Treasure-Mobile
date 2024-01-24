@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,14 +15,18 @@ public class EnemyHealth : MonoBehaviour
 
     [SerializeField] GameObject[] theDrop;
     Animator animator;
+
+    Enemy enemy;
     void Start()
     {
+        enemy = FindAnyObjectByType<Enemy>();
 
         animator = GetComponent<Animator>();
         health = maxHealth;
         heathSlider.maxValue = maxHealth;
         heathSlider.value = maxHealth;
         dead = false;
+        StartCoroutine(AddHealth());
     }
 
     public void Respawn()
@@ -49,6 +54,11 @@ public class EnemyHealth : MonoBehaviour
             heathSlider.value = health;
         }
 
+        if (health > maxHealth)
+        {
+            health = maxHealth;
+
+        }
         if (health <= 0)
         {
             if (!dead)
@@ -67,7 +77,24 @@ public class EnemyHealth : MonoBehaviour
             }
         }
        
+        
     }
+    IEnumerator AddHealth()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(1.5f);
+            if (enemy.check == false && health < maxHealth)
+            {
+                health += 10;
+                heathSlider.value = health;
+            }
+            if(health >= maxHealth)
+                StopCoroutine(AddHealth());
+            yield return null;
+        }
+    }
+  
     //public void TakeDamage(int damage)
     //{
 
