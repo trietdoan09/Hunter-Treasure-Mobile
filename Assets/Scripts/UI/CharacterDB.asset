@@ -20,19 +20,19 @@ MonoBehaviour:
     sprite: {fileID: -2109378056, guid: 331750f36bb3e9f4399f1be34a7a82de, type: 3}
     activeStatus: 1
   - id: 1
-    name: Anie
+    name: Alice
     gender: 2
     characterClass: 2
     sprite: {fileID: -403384666, guid: 8c34692fb6eecfd4db8855ec4dfb2bd4, type: 3}
     activeStatus: 0
   - id: 2
-    name: Fiora
+    name: Queen
     gender: 2
     characterClass: 4
     sprite: {fileID: -1327573102, guid: 9798de19a1492a64ca8ee743bc53ae54, type: 3}
     activeStatus: 0
   - id: 3
-    name: Noble
+    name: Jack
     gender: 1
     characterClass: 2
     sprite: {fileID: 1666057839, guid: fb4450907f132334d8b278567efb2e21, type: 3}
