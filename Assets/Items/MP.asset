@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 99b2ca41274be97418a6247dd9059886, type: 3}
-  m_Name: HP
+  m_Name: MP
   m_EditorClassIdentifier: 
-  type: 2
+  type: 3
   range: {x: 5, y: 4}
-  image: {fileID: 21300000, guid: b4cd72a5d22f1864fa066a985e602e0a, type: 3}
+  image: {fileID: 21300000, guid: 2223f345b5165de478007057287611f9, type: 3}
   stackable: 1
-  itemName: HP
+  itemName: MP
   level: 1
-  types: HP
-  description: Su dung tang 20 Hp
+  types: MP
+  description: Su dung tang 20 Mp
   useItem: 1
