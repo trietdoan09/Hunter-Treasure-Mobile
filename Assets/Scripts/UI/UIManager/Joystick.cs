@@ -17,8 +17,7 @@ public class Joystick : MonoBehaviour
     void Start()
     {
         joystickOriginalPos = joystickBackground.transform.position;
-        joystickRadius = joystickBackground.GetComponent<RectTransform>()
-            .sizeDelta.y / 4;
+        joystickRadius = joystickBackground.GetComponent<RectTransform>().sizeDelta.y / 4;
 
     }
 
@@ -30,8 +29,8 @@ public class Joystick : MonoBehaviour
     //chạm màn hình
     public void PointerDown()
     {
-        //joystickMovement.transform.position = Input.mousePosition;
-        //joystickBackground.transform.position = Input.mousePosition;
+        joystickMovement.transform.position = Input.mousePosition;
+        joystickBackground.transform.position = Input.mousePosition;
         joystickTouchPos = Input.mousePosition;
     }
     //bỏ chạm
@@ -39,7 +38,7 @@ public class Joystick : MonoBehaviour
     {
         joystickVec = Vector2.zero;
         joystickMovement.transform.position = joystickOriginalPos;
-        //joystickBackground.transform.position = joystickOriginalPos;
+        joystickBackground.transform.position = joystickOriginalPos;
 
     }
     // tele điểm chạm
@@ -49,18 +48,13 @@ public class Joystick : MonoBehaviour
         Vector2 dragPos = pointerEventData.position;
         joystickVec = (dragPos - joystickTouchPos).normalized;
         float joystickDist = Vector2.Distance(dragPos, joystickTouchPos);
-
         if (joystickDist < joystickRadius)
         {
-            joystickMovement.transform.position = joystickTouchPos
-                + joystickVec * joystickDist;
-
+            joystickMovement.transform.position = joystickTouchPos + joystickVec * joystickDist;
         }
         else
         {
-            joystickMovement.transform.position = joystickTouchPos
-                + joystickVec * joystickRadius;
+            joystickMovement.transform.position = joystickTouchPos + joystickVec * joystickRadius;
         }
-
     }
 }
