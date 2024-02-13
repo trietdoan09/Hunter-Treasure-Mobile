@@ -9,10 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcf042d36ed63204f9b3aaf75a354ffd, type: 3}
+  m_Script: {fileID: 11500000, guid: 99b2ca41274be97418a6247dd9059886, type: 3}
   m_Name: Crystal
   m_EditorClassIdentifier: 
-  id: 1
-  value: 1
+  image: {fileID: 21300000, guid: a2e809adb20110748bddd29ac828d63c, type: 3}
+  stackable: 0
   itemName: Crystal
-  icon: {fileID: 21300000, guid: d9cf19849ac5d8e4d9bc06a6aa769167, type: 3}
+  level: 1
+  types: Crystal
+  description: Crystal
+  useItem: 0

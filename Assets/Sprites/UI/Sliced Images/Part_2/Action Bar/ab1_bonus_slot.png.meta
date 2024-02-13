@@ -152,9 +152,9 @@ TextureImporter:
       name: ab1_bonus_slot_0
       rect:
         serializedVersion: 2
-        x: 3
+        x: 4
         y: 8
-        width: 114
+        width: 112
         height: 114
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
