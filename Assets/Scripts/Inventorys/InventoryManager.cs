@@ -1,13 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Unity.Collections.LowLevel.Unsafe;
-using Unity.VisualScripting;
-using UnityEngine;
-using static Cinemachine.DocumentationSortingAttribute;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
 using TMPro;
 using UnityEngine.UI;
-using System.Linq;
+using Unity.VisualScripting;
 
 public class InventoryManager : MonoBehaviour
 {
@@ -17,37 +12,17 @@ public class InventoryManager : MonoBehaviour
     public InventorySlot[] inventorySlots;
     public GameObject InventoryItemPrefab;
 
-    int selectedSlot = -1;
-
-    public InventoryItem[] InventoryItem;
+    InventorySlot inventorySlot;
 
     private void Start()
     {
+        inventorySlot = FindAnyObjectByType<InventorySlot>();
         foreach (var item in startItem)
         {
             AddItem(item);
         }
     }
 
-    private void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            //ChangSelectSlot(1);
-
-        }
-    }
-
-    void ChangSelectSlot(int newValue)
-    {
-        if (selectedSlot >= 0)
-        {
-            inventorySlots[selectedSlot].DeSelect();
-        }
-
-        inventorySlots[newValue].Select();
-        selectedSlot = newValue;
-    }
 
     public bool AddItem(Item item)
     {
@@ -70,7 +45,7 @@ public class InventoryManager : MonoBehaviour
         {
             InventorySlot slot = inventorySlots[i];
             InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
-            if(itemInSlot == null )
+            if (itemInSlot == null)
             {
                 SpawnNewItem(item, slot);
                 return true;
@@ -79,36 +54,43 @@ public class InventoryManager : MonoBehaviour
         return false;
     }
 
-    void SpawnNewItem(Item item,InventorySlot slot)
+    void SpawnNewItem(Item item, InventorySlot slot)
     {
         GameObject newItemGo = Instantiate(InventoryItemPrefab, slot.transform);
         InventoryItem inventoryItem = newItemGo.GetComponent<InventoryItem>();
         inventoryItem.InitialiseItem(item);
     }
-    
-    public Item GetSelectedItem(bool use)
+
+    public void ItemSelect()
     {
-        InventorySlot slot = inventorySlots[selectedSlot];
-        InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
-        if(itemInSlot != null )
+        for (int i = 0; i < inventorySlots.Length; i++)
         {
-            Item item = itemInSlot.item;
-            if(use == true)
+            inventorySlots[i].image.color = Color.white;
+            inventorySlots[i].thisUseItem = false;
+        }
+    }
+
+    public void UseItem()
+    {
+        for(int i = 0;i < inventorySlots.Length;i++)
+        {
+            InventorySlot slot = inventorySlots[i];
+            InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
+            
+            if(slot.thisUseItem == true)
             {
                 itemInSlot.count--;
-                if(itemInSlot.count <= 0)
+                if (itemInSlot.count <= 0)
                 {
                     Destroy(itemInSlot.gameObject);
+                    slot.descriptionObj.SetActive(false);
                 }
                 else
                 {
                     itemInSlot.ReFreshCount();
                 }
             }
-            return item;
+                
         }
-        return null;
     }
-
-   
 }

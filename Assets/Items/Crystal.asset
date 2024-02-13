@@ -12,12 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99b2ca41274be97418a6247dd9059886, type: 3}
   m_Name: Crystal
   m_EditorClassIdentifier: 
-  type: 0
-  range: {x: 5, y: 4}
   image: {fileID: 21300000, guid: a2e809adb20110748bddd29ac828d63c, type: 3}
-  images: {fileID: 21300000, guid: a2e809adb20110748bddd29ac828d63c, type: 3}
   stackable: 0
   itemName: Crystal
   level: 1
   types: Crystal
   description: Crystal
+  useItem: 0

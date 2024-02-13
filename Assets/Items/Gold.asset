@@ -12,12 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99b2ca41274be97418a6247dd9059886, type: 3}
   m_Name: Gold
   m_EditorClassIdentifier: 
-  type: 1
-  range: {x: 5, y: 4}
   image: {fileID: 21300000, guid: 2ba3315be173a4c44ab0ec44b73f9e90, type: 3}
-  images: {fileID: 21300000, guid: 2ba3315be173a4c44ab0ec44b73f9e90, type: 3}
   stackable: 0
   itemName: Gold
   level: 1
   types: Gold
   description: Gold
+  useItem: 0

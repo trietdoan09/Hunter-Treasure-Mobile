@@ -5,10 +5,10 @@ using UnityEngine;
 public class Item : ScriptableObject
 {
    
-    [Header("Only Gameplay")]
-    public ItemType type;
+    //[Header("Only Gameplay")]
+    //public ItemType type;
 
-    public Vector2Int range = new Vector2Int(5, 4);
+    //public Vector2Int range = new Vector2Int(5, 4);
 
     [Header("Both ")]
     public Sprite image;
@@ -22,9 +22,9 @@ public class Item : ScriptableObject
     public bool useItem;
 }
 
-public enum ItemType
-{
-   UseItem,
-   NotUseItem
-}
+//public enum ItemType
+//{
+//   UseItem,
+//   NotUseItem
+//}
 

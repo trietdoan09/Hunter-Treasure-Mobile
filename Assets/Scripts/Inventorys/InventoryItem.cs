@@ -23,8 +23,6 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public string description;
     public bool useItem;
 
-    public bool thisItemSelected;
-
     public void InitialiseItem(Item newItem)
     {
         item = newItem;
@@ -60,13 +58,5 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     {
         image.raycastTarget = true;
         transform.SetParent(parentAfterDrag);
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            InitialiseItem(item);
-        }
     }
 }
