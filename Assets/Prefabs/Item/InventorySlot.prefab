@@ -114,11 +114,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 8968237801163943681}
-  selectedcolor: {r: 0.7264151, g: 0.48998755, b: 0.5483991, a: 1}
-  notSelectedcolor: {r: 1, g: 1, b: 1, a: 1}
-  thisItemSelected: 0
+  descriptionObj: {fileID: 0}
+  useItemObj: {fileID: 0}
   images: {fileID: 0}
-  ItemName: {fileID: 0}
+  itemName: {fileID: 0}
   level: {fileID: 0}
   types: {fileID: 0}
   description: {fileID: 0}
+  thisUseItem: 0

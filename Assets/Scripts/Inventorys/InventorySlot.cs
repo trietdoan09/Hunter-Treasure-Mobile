@@ -30,16 +30,16 @@ public class InventorySlot : MonoBehaviour, IDropHandler, IPointerClickHandler
         inventoryManager = FindAnyObjectByType<InventoryManager>();
         itemInSlot = GetComponentInChildren<InventoryItem>();
     }
-
+  
     public void OnDrop(PointerEventData eventData)
     {
         if (transform.childCount == 0)
         {
-            InventoryItem inventoryItem = eventData.pointerDrag.GetComponent<InventoryItem>();
-            inventoryItem.parentAfterDrag = transform;
+            itemInSlot = eventData.pointerDrag.GetComponent<InventoryItem>();
+            itemInSlot.parentAfterDrag = transform;
         }
     }
-
+    
     public void OnPointerClick(PointerEventData eventData)
     {
         if (eventData.button == PointerEventData.InputButton.Left)
@@ -55,7 +55,16 @@ public class InventorySlot : MonoBehaviour, IDropHandler, IPointerClickHandler
     public void OnLeftClick()
     {
         OnSlot();
-        Description();
+        if(itemInSlot != null)
+        {
+            Description();
+        }
+       else
+        {
+            descriptionObj.SetActive(false);
+            useItemObj.SetActive(false);
+
+        }
     }
 
     public void OnSlot()
