@@ -16,11 +16,16 @@ public class InventoryManager : MonoBehaviour
     public GameObject descriptionObj;
     public GameObject useItemObj;
 
-    public string itemName;
-    public string level;
-    public string types;
-    public string description;
-    public bool useItem;
+    public int gold;
+    public TextMeshProUGUI goldText;
+
+    [Header("Description")]
+
+    [HideInInspector] public string itemName;
+    [HideInInspector] public string level;
+    [HideInInspector] public string types;
+    [HideInInspector] public string description;
+    [HideInInspector] public bool useItem;
 
     public Image images;
     public TextMeshProUGUI itemNameTxt;
@@ -37,6 +42,8 @@ public class InventoryManager : MonoBehaviour
 
         descriptionObj.SetActive(false);
         useItemObj.SetActive(false);
+
+        goldText.text = gold.ToString();
     }
 
 

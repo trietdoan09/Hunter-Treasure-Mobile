@@ -19,3 +19,4 @@ MonoBehaviour:
   types: MP
   description: Su dung tang 20 Mp
   useItem: 1
+  productprice: 1000
