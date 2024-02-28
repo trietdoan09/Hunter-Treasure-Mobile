@@ -134,7 +134,238 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Jump_7
+      rect:
+        serializedVersion: 2
+        x: 292
+        y: 5
+        width: 44
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e64e60cc6310e3f49aabd1b630de2edc
+      internalID: -306258826
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jump_12
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 8
+        width: 44
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 618bbcc7a3b4c5346995df6e3f79331a
+      internalID: -1815742295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jump_21
+      rect:
+        serializedVersion: 2
+        x: 548
+        y: 11
+        width: 44
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 461c07f65606c314f84a066e1ce167df
+      internalID: -1164954165
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jump_24
+      rect:
+        serializedVersion: 2
+        x: 676
+        y: 11
+        width: 44
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30f9a684e0bd5cb4b96bed58d6611490
+      internalID: 1237399131
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jump_28
+      rect:
+        serializedVersion: 2
+        x: 804
+        y: 11
+        width: 44
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e746d0f286f6698459b40aee359ca264
+      internalID: -648221420
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jump_42
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 0
+        width: 44
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73da3f51d5f9fdc43a5c3aaa9b8aef72
+      internalID: -58380384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jump_49
+      rect:
+        serializedVersion: 2
+        x: 933
+        y: 7
+        width: 45
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ca559ea787264d47907e4968f026825
+      internalID: 1012783416
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jump_51
+      rect:
+        serializedVersion: 2
+        x: 1061
+        y: 5
+        width: 44
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e31d064c23df9994d951b3583d4f7cba
+      internalID: -55764074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jump_54
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 0
+        width: 44
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47d19d710bb12094794ac4edf8693b05
+      internalID: 1847134904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jump_70
+      rect:
+        serializedVersion: 2
+        x: 1189
+        y: 0
+        width: 44
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9677ca501726cec449c3b3deca3a0ed4
+      internalID: 1267065196
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jump_72
+      rect:
+        serializedVersion: 2
+        x: 1318
+        y: 0
+        width: 44
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec622a6ae77e2304cb998c2dcb3d33c0
+      internalID: 1792827512
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -145,7 +376,105 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Jump_0: -465816403
+      Jump_1: -774466658
+      Jump_10: -1007306715
+      Jump_11: -1203509520
+      Jump_12: -1815742295
+      Jump_13: 1683921541
+      Jump_14: 1432133254
+      Jump_15: -596144232
+      Jump_16: -892799725
+      Jump_17: 2097339275
+      Jump_18: 1031995707
+      Jump_19: -130219663
+      Jump_2: -108523525
+      Jump_20: 1804136234
+      Jump_21: -1164954165
+      Jump_22: 1560738477
+      Jump_23: 1459437670
+      Jump_24: 1237399131
+      Jump_25: 1322020399
+      Jump_26: 1804367034
+      Jump_27: -1393933050
+      Jump_28: -648221420
+      Jump_29: 1699417789
+      Jump_3: -1701029087
+      Jump_30: -1029985131
+      Jump_31: -2122871696
+      Jump_32: 1946222230
+      Jump_33: 2051436755
+      Jump_34: 1387120799
+      Jump_35: 159546457
+      Jump_36: -687342383
+      Jump_37: -87799606
+      Jump_38: -1211348248
+      Jump_39: -275562296
+      Jump_4: 509624086
+      Jump_40: -857748884
+      Jump_41: -558814418
+      Jump_42: -58380384
+      Jump_43: -922572895
+      Jump_44: 820013193
+      Jump_45: -441757957
+      Jump_46: -76065870
+      Jump_47: -1212777342
+      Jump_48: 712335954
+      Jump_49: 1012783416
+      Jump_5: -805237017
+      Jump_50: 476127562
+      Jump_51: -55764074
+      Jump_52: 1727491990
+      Jump_53: -1299821833
+      Jump_54: 1847134904
+      Jump_55: -2136148034
+      Jump_56: -1774033901
+      Jump_57: 471965028
+      Jump_58: -1848068035
+      Jump_59: -1514112130
+      Jump_6: 439585175
+      Jump_60: 44804600
+      Jump_61: -264337171
+      Jump_62: 1897790449
+      Jump_63: -1857286720
+      Jump_64: 2065776694
+      Jump_65: 631043245
+      Jump_66: -392034822
+      Jump_67: 197940145
+      Jump_68: 1441456015
+      Jump_69: 1955453899
+      Jump_7: -306258826
+      Jump_70: 1267065196
+      Jump_71: -138211554
+      Jump_72: 1792827512
+      Jump_73: 404695980
+      Jump_74: 28851927
+      Jump_75: 1878670467
+      Jump_76: -1212141911
+      Jump_77: 444523220
+      Jump_78: -1485301394
+      Jump_79: 299231762
+      Jump_8: -2079082688
+      Jump_80: -1035873370
+      Jump_81: 1770029495
+      Jump_82: 628394316
+      Jump_83: -1284864577
+      Jump_84: -46712472
+      Jump_85: 1753743016
+      Jump_86: 869273252
+      Jump_87: 1035511615
+      Jump_88: -2086312097
+      Jump_89: 1604516778
+      Jump_9: -909165073
+      Jump_90: -458254864
+      Jump_91: -2099842634
+      Jump_92: -340893491
+      Jump_93: 539220054
+      Jump_94: -126824092
+      Jump_95: -272317286
+      Jump_96: -1047200142
+      Jump_97: 2117195146
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
