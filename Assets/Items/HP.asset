@@ -12,8 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99b2ca41274be97418a6247dd9059886, type: 3}
   m_Name: HP
   m_EditorClassIdentifier: 
-  type: 2
-  range: {x: 5, y: 4}
   image: {fileID: 21300000, guid: b4cd72a5d22f1864fa066a985e602e0a, type: 3}
   stackable: 1
   itemName: HP
@@ -21,3 +19,4 @@ MonoBehaviour:
   types: HP
   description: Su dung tang 20 Hp
   useItem: 1
+  productprice: 1000

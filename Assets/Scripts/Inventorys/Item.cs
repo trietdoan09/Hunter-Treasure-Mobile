@@ -20,6 +20,10 @@ public class Item : ScriptableObject
     public string itemName, level, types, description;
 
     public bool useItem;
+
+    [Header("Shop")]
+    public int productprice;
+
 }
 
 //public enum ItemType
