@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        moveSpeed = 5f;
         rigidbody2D = GetComponent<Rigidbody2D>();
         joystick = FindObjectOfType<Joystick>();
         animator = GetComponent<Animator>();
@@ -21,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        animator.SetFloat("speed", moveSpeed);
+        
     }
     private void FixedUpdate()
     {
@@ -32,25 +33,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if(joystick.joystickVec.x != 0)
         {
-            moveSpeed = 5f;
             rigidbody2D.velocity = new Vector2(joystick.joystickVec.x * moveSpeed, 0);
-            ScaleFace();
         }
         else
         {
             rigidbody2D.velocity = Vector2.zero;
-            moveSpeed = 0;
-        }
-    }
-    private void ScaleFace()
-    {
-        if(joystick.joystickVec.x < 0)
-        {
-            transform.localScale = new Vector3(-1, 1, 1);
-        }
-        else
-        {
-            transform.localScale = new Vector3(1, 1, 1);
         }
     }
 }

@@ -29,8 +29,8 @@ public class Joystick : MonoBehaviour
     //chạm màn hình
     public void PointerDown()
     {
-        //joystickMovement.transform.position = Input.mousePosition;
-        //joystickBackground.transform.position = Input.mousePosition;
+        joystickMovement.transform.position = Input.mousePosition;
+        joystickBackground.transform.position = Input.mousePosition;
         joystickTouchPos = Input.mousePosition;
     }
     //bỏ chạm
@@ -38,7 +38,7 @@ public class Joystick : MonoBehaviour
     {
         joystickVec = Vector2.zero;
         joystickMovement.transform.position = joystickOriginalPos;
-        //joystickBackground.transform.position = joystickOriginalPos;
+        joystickBackground.transform.position = joystickOriginalPos;
 
     }
     // tele điểm chạm

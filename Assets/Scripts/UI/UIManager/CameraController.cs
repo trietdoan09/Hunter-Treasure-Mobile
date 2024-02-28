@@ -4,13 +4,10 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    private PlayerMovement player;
-    private void Start()
-    {
-        //player = FindObjectOfType<PlayerMovement>();
-    }
+
+    public GameObject Player;
     void Update()
     {
-        //transform.position = player.transform.position + new Vector3(0, 3.5f, -10);
+        transform.position = Player.transform.position + new Vector3(0, 3.5f, -10);
     }
 }

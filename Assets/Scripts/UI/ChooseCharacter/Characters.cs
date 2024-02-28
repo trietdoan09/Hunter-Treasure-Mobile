@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Animations;
 using UnityEngine;
 
 [System.Serializable]
@@ -12,6 +11,5 @@ public class Characters
     public CharacterClass characterClass;
     public Sprite sprite;
     public bool activeStatus;
-    public AnimatorController animatorController;
 
 }
