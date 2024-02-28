@@ -53,13 +53,13 @@ MonoBehaviour:
     name: Olaf
     gender: 1
     characterClass: 4
-    sprite: {fileID: -232469191, guid: 0d45bd54217693c4ca647905a8efee24, type: 3}
+    sprite: {fileID: 21300000, guid: 0d45bd54217693c4ca647905a8efee24, type: 3}
     activeStatus: 1
   - id: 7
     name: Sasuke
     gender: 1
     characterClass: 3
-    sprite: {fileID: 39932618, guid: 3726722dee7787946a43c8a10e4ff431, type: 3}
+    sprite: {fileID: -366793392, guid: 3726722dee7787946a43c8a10e4ff431, type: 3}
     activeStatus: 0
   - id: 8
     name: Brand
