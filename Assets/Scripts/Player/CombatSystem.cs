@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class CombatSystem : MonoBehaviour
 {
+    public static CombatSystem instance;
     public Animator characterAnim;
-    public int totalCombo;
     public bool isAttack;
     private int timeEndCombo;
-    public static CombatSystem instance;
+    //normal attack
+    [SerializeField] private Transform attackPostition;
+    [SerializeField] private Vector2 attackRange;
+    [SerializeField] private LayerMask enemyLayers;
     private void Awake()
     {
         instance = this;
@@ -16,8 +19,8 @@ public class CombatSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        totalCombo = 0;
         characterAnim = GetComponent<Animator>();
+        attackRange = new Vector2(1, 0.5f);
     }
 
     // Update is called once per frame
@@ -29,7 +32,17 @@ public class CombatSystem : MonoBehaviour
         if (!isAttack)
         {
             isAttack = true;
-            totalCombo += 1;
+            Collider2D[] hitEmenys = Physics2D.OverlapBoxAll(attackPostition.position,attackRange,enemyLayers);
+            foreach(Collider2D enemy in hitEmenys)
+            {
+                Debug.Log("We hit" + enemy.name);
+            }
         }
+    }
+    private void OnDrawGizmos()
+    {
+        if (attackPostition == null)
+            return;
+        Gizmos.DrawWireCube(attackPostition.position, attackRange);
     }
 }

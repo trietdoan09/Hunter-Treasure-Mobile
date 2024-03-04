@@ -10,6 +10,8 @@ public class PlayerMovement : MonoBehaviour
     Animator animator;
     private float moveSpeed;
 
+    public bool testJump;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         Move();
+        Jump();
     }
 
     private void Move()
@@ -51,6 +54,13 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             transform.localScale = new Vector3(1, 1, 1);
+        }
+    }
+    public void Jump()
+    {
+        if(testJump)
+        {
+            rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, 25);
         }
     }
 }
