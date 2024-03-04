@@ -6,16 +6,17 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
     public int id;
-    [SerializeField] private string nameCharacter;
+    public string nameCharacter;
     [SerializeField] private CharacterGender genderCharacter;
     [SerializeField] private CharacterClass characterClass;
-
     [SerializeField] private CharacterDatabase characterDatabase;
     private Animator animator;
+    public static PlayerManager instance;
     // Start is called before the first frame update
     private void Awake()
     {
         // Get the Animator component attached to the game object
+        instance = this;
         animator = GetComponent<Animator>();
     }
     void Start()

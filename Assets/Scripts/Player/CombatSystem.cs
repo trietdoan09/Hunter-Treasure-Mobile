@@ -4,55 +4,32 @@ using UnityEngine;
 
 public class CombatSystem : MonoBehaviour
 {
-    private Animator animator;
+    public Animator characterAnim;
     public int totalCombo;
-    private bool isAttack;
+    public bool isAttack;
     private int timeEndCombo;
+    public static CombatSystem instance;
+    private void Awake()
+    {
+        instance = this;
+    }
     // Start is called before the first frame update
     void Start()
     {
-        totalCombo = -1;
-        animator = GetComponent<Animator>();
-        StartCoroutine(EndCombo());
+        totalCombo = 0;
+        characterAnim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        NormalAttackAnimation();
-        FinishComboNormalAttack();
     }
     public void NormalAttackCombo()
     {
-        isAttack = true;
-        if (totalCombo < 3)
+        if (!isAttack)
         {
-            totalCombo++;
-            timeEndCombo = 1;
-        }
-    }
-    IEnumerator EndCombo()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(1f);
-            timeEndCombo -= 1;
-            yield return null;
-        }
-    }
-    private void FinishComboNormalAttack()
-    {
-        if (timeEndCombo <= 0)
-        {
-            totalCombo = -1;
-            isAttack = false;
-        }
-    }
-    private void NormalAttackAnimation()
-    {
-        if (isAttack)
-        {
-            animator.SetTrigger("Combo" + totalCombo);
+            isAttack = true;
+            totalCombo += 1;
         }
     }
 }
