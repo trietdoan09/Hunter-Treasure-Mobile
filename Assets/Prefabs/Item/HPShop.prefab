@@ -1422,8 +1422,8 @@ MonoBehaviour:
   imageShop: {fileID: 4281255021208310729}
   notification: {fileID: 1805833523877059971}
   quantitySlider: {fileID: 7845879874391399490}
-  quantityMin: 0
-  quantityMax: 0
+  quantityMax: 99
+  quantity: 0
   quantityText: {fileID: 4019794587124947841}
   totalPriceText: {fileID: 4432970233745759491}
   description: {fileID: 4099074626989221925}

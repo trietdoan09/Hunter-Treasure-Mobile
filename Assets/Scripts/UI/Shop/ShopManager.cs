@@ -7,11 +7,12 @@ using UnityEngine.UI;
 public class ShopManager : MonoBehaviour
 {
     public Item item;
-    GameController gameController;
+    InventoryManager inventoryManager;
 
     [Header("Shop")]
-    public int gold;
-    public int productprice;
+     int gold;
+     int productprice;
+     int totalPrice;
     public TextMeshProUGUI productpriceText;
 
     public Image imageShop;
@@ -20,9 +21,10 @@ public class ShopManager : MonoBehaviour
     public GameObject notification;
     public Slider quantitySlider;
 
-    public int quantityMin;
     public int quantityMax;
-    
+     int quantity;
+
+
     public TextMeshProUGUI quantityText;
     public TextMeshProUGUI totalPriceText;
 
@@ -38,36 +40,35 @@ public class ShopManager : MonoBehaviour
 
     private void Start()
     {
-        gameController = FindAnyObjectByType<GameController>();
-        gold = gameController.gold;
-
+        inventoryManager = FindAnyObjectByType<InventoryManager>();
+        
         productprice = item.productprice;
         productpriceText.text = productprice.ToString();
-
-        quantityMax = gold / productprice;
-        quantitySlider.maxValue = quantityMax;
-
-        quantitySlider.value = quantityMin = 1;
-        quantityText.text = quantityMin.ToString();
-
-        totalPriceText.text = productprice.ToString();
-    }
-
-    private void Update()
-    {
-        quantityText.text = quantitySlider.value.ToString();
-        Debug.Log(quantitySlider.value);
-        var totalPrice = quantitySlider.value * productprice;
-        Debug.Log(totalPrice);
-
-        totalPriceText.text = totalPrice.ToString();
 
     }
 
     public void Notification()
     {
         notification.SetActive(true);
+        description.SetActive(false);
         imageShop.sprite = item.image;
+
+        gold = inventoryManager.gold;
+
+       var quantityMaxs = gold / productprice;
+        if(quantityMaxs <= quantityMax)
+        {
+            quantitySlider.maxValue = quantityMaxs;
+        }
+        else
+        {
+            quantitySlider.maxValue = quantityMax;
+        }
+
+        quantity = Mathf.FloorToInt(quantitySlider.value);
+        quantityText.text = quantity.ToString();
+
+        totalPriceText.text = productprice.ToString();
     }
 
     public void Description()
@@ -81,10 +82,24 @@ public class ShopManager : MonoBehaviour
         descriptionTxt.text = item.description.ToString();
     }
 
+    public void QuantitySlider()
+    {
+        quantityText.text = quantitySlider.value.ToString();
+        quantity = Mathf.FloorToInt(quantitySlider.value);
+
+        totalPrice = Mathf.FloorToInt(quantitySlider.value * productprice);
+        totalPriceText.text = totalPrice.ToString();
+    }
+
     public void Buy()
     {
         InventoryManager inventoryManager = FindAnyObjectByType<InventoryManager>();
-        inventoryManager.AddItem(item);
+        inventoryManager.AddItem(item, quantity);
+        inventoryManager.gold = inventoryManager.gold - totalPrice;
+
+        inventoryManager.Gold(inventoryManager.gold);
+        NPCShop nPCShop = FindAnyObjectByType<NPCShop>();
+        nPCShop.Gold(inventoryManager.gold);
         notification.SetActive(false);
     }
 }

@@ -144,3 +144,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: 7aa16143570e9844390a04f5bbe485b6, type: 2}
+  countItem: 2
