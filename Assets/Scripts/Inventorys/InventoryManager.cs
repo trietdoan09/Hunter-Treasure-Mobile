@@ -37,17 +37,21 @@ public class InventoryManager : MonoBehaviour
     {
         foreach (var item in startItem)
         {
-            AddItem(item);
+            AddItem(item, item.countItem);
         }
 
         descriptionObj.SetActive(false);
         useItemObj.SetActive(false);
 
+        Gold(gold);
+    }
+
+    public void Gold(int gold)
+    {
         goldText.text = gold.ToString();
     }
 
-
-    public bool AddItem(Item item)
+    public bool AddItem(Item item, int countItem)
     {
         for (int i = 0; i < InventoryItemTransform.childCount; i++)
         {
@@ -58,8 +62,15 @@ public class InventoryManager : MonoBehaviour
             if (itemInSlot.item == item
                 && itemInSlot.count < maxStackedItems && itemInSlot.item.stackable == true)
             {
-                itemInSlot.count++;
+                itemInSlot.count += countItem;
                 itemInSlot.ReFreshCount();
+                if(itemInSlot.count > maxStackedItems)
+                {
+                    var totalCount = itemInSlot.count - maxStackedItems;
+                    itemInSlot.count = maxStackedItems;
+                    itemInSlot.ReFreshCount();
+                    SpawnNewItem(item, totalCount);
+                }
                 return true;
             }
         }
@@ -69,20 +80,20 @@ public class InventoryManager : MonoBehaviour
             var slott = InventoryItemTransform.GetChild(i);
             InventoryItem itemInSlot = slott.GetComponent<InventoryItem>();
 
-            if (itemInSlot.item != item)
+            if (itemInSlot.item != item )
             {
-                SpawnNewItem(item);
+                SpawnNewItem(item, countItem);
                 return true;
             }
         }
         return false;
     }
 
-    void SpawnNewItem(Item item)
+    void SpawnNewItem(Item item, int countItem)
     {
         GameObject newItemGo = Instantiate(InventoryItemPrefab, InventoryItemTransform);
         InventoryItem inventoryItem = newItemGo.GetComponent<InventoryItem>();
-        inventoryItem.InitialiseItem(item);
+        inventoryItem.InitialiseItem(item, countItem);
     }
 
     public void ItemSelect()

@@ -3,6 +3,7 @@ using UnityEngine;
 public class AddItem : MonoBehaviour
 {
     public Item item;
+    public int countItem;
      InventoryManager inventoryManager;
 
     private void Start()
@@ -13,7 +14,7 @@ public class AddItem : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            inventoryManager.AddItem(item);
+            inventoryManager.AddItem(item,countItem);
             Destroy(gameObject);
         }
     }

@@ -17,6 +17,7 @@ MonoBehaviour:
   itemName: MP
   level: 1
   types: MP
-  description: Su dung tang 20 Mp
+  description: Su dung hoi phuc 20% Mp
   useItem: 1
+  countItem: 10
   productprice: 1000

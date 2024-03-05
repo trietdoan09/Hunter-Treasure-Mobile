@@ -20,6 +20,7 @@ public class Item : ScriptableObject
     public string itemName, level, types, description;
 
     public bool useItem;
+    public int countItem = 1;
 
     [Header("Shop")]
     public int productprice;

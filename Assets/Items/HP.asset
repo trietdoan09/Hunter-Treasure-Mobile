@@ -17,6 +17,7 @@ MonoBehaviour:
   itemName: HP
   level: 1
   types: HP
-  description: Su dung tang 20 Hp
+  description: Su dung hoi phuc 20% Hp
   useItem: 1
+  countItem: 10
   productprice: 1000

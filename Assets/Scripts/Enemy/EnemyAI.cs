@@ -8,6 +8,7 @@ public class EnemyAI : MonoBehaviour
     public float speed;
     public Transform right;
     float direction;
+    public float range;
 
     Enemy enemy;
 
@@ -36,25 +37,29 @@ public class EnemyAI : MonoBehaviour
         animator.SetTrigger("Idle");
         animator.SetBool("Run", true);
 
-        playerPosition = target.transform.position;
+        playerPosition =  target.transform.position ;
         enemyPosition = transform.position;
 
         EnemyMovement();
 
         if (enemy.check == true)
         {
-            transform.position = Vector3.MoveTowards(enemyPosition, playerPosition, speed * Time.deltaTime);
-            animator.SetBool("Run", true);
+            if(Vector3.Distance(playerPosition, enemyPosition) > range)
+            {
+                transform.position = Vector3.MoveTowards(enemyPosition, playerPosition, speed * Time.deltaTime);
+                animator.SetBool("Run", true);
 
-            if (transform.position.x < playerPosition.x)
-            {
-                transform.localScale = new Vector3(1, 1, 1);
-                healthBar = true;
+                if (transform.position.x < playerPosition.x)
+                {
+                    transform.localScale = new Vector3(1, 1, 1);
+                    healthBar = true;
+                }
+                else
+                {
+                    transform.localScale = new Vector3(-1, 1, 1);
+                }
             }
-            else
-            {
-                transform.localScale = new Vector3(-1, 1, 1);
-            }
+           
         }
         if(transform.position.x < currentPosition.x || transform.position.x > right.position.x)
         {

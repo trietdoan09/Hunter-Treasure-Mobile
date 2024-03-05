@@ -19,3 +19,4 @@ MonoBehaviour:
   types: Gold
   description: Gold
   useItem: 0
+  productprice: 1000
