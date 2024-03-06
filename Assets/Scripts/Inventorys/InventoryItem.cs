@@ -13,7 +13,7 @@ public class InventoryItem : MonoBehaviour
     public TextMeshProUGUI countText;
 
     [HideInInspector] public Item item;
-    [HideInInspector] public int count = 1;
+    [HideInInspector] public int count;
     [HideInInspector] public Transform parentAfterDrag;
 
 
@@ -33,7 +33,7 @@ public class InventoryItem : MonoBehaviour
         inventoryManager = FindAnyObjectByType<InventoryManager>();
     }
 
-    public void InitialiseItem(Item newItem)
+    public void InitialiseItem(Item newItem, int countItem)
     {
         item = newItem;
         image.sprite = newItem.image;
@@ -43,6 +43,9 @@ public class InventoryItem : MonoBehaviour
         types = newItem.types;
         description = newItem.description;
         useItem = newItem.useItem;
+
+        count = countItem;
+
 
         ReFreshCount();
     }

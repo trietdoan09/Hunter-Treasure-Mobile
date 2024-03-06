@@ -12,33 +12,34 @@ public class EnemyHealth : MonoBehaviour
     public bool dead;
     public float health;
    
-
     [SerializeField] GameObject[] theDrop;
-    Animator animator;
 
-    Enemy enemy;
+    Animator animator;
+    EnemyController enemyController;
     void Start()
     {
-        enemy = FindAnyObjectByType<Enemy>();
+        enemyController = FindAnyObjectByType<EnemyController>();
 
         animator = GetComponent<Animator>();
         health = maxHealth;
         heathSlider.maxValue = maxHealth;
         heathSlider.value = maxHealth;
         dead = false;
+        
         StartCoroutine(AddHealth());
     }
 
     public void Respawn()
     {
         gameObject.SetActive(true);
+
         health = maxHealth;
         heathSlider.value = health;
 
         if (GetComponent<EnemyHealth>() != null)
            GetComponent<EnemyHealth>().enabled = true;
-        if (GetComponent<EnemyAI>() != null)
-            GetComponent<EnemyAI>().enabled = true;
+        if (GetComponent<EnemyController>() != null)
+            GetComponent<EnemyController>().enabled = true;
 
         animator.ResetTrigger("Dead");
 
@@ -48,7 +49,8 @@ public class EnemyHealth : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButton(0))
+
+        if (Input.GetMouseButtonDown(0))
         {
             health -= 20;
             heathSlider.value = health;
@@ -57,39 +59,34 @@ public class EnemyHealth : MonoBehaviour
         if (health > maxHealth)
         {
             health = maxHealth;
-
         }
         if (health <= 0)
         {
             if (!dead)
             {
+                dead = true;
                 animator.SetTrigger("Dead");
+
                 if (GetComponent<EnemyHealth>() != null)
                     GetComponent<EnemyHealth>().enabled = false;
-                if (GetComponent<EnemyAI>() != null)
-                    GetComponent<EnemyAI>().enabled = false;
-                dead = true;
+                if (GetComponent<EnemyController>() != null)
+                    GetComponent<EnemyController>().enabled = false;
 
-                //var one = Instantiate(theDrop[Random.Range(0, theDrop.Length)]);
-                //one.transform.position = gameObject.transform.position;
-
-                
+               var item = Instantiate(theDrop[Random.Range(0, theDrop.Length)]);
+                item.transform .position = gameObject.transform.position;
             }
         }
-       
-        
     }
+
     IEnumerator AddHealth()
     {
         while (true)
         {
             yield return new WaitForSeconds(1.5f);
-            if (enemy.check == false && health < maxHealth)
-            {
-                health += 10;
-                heathSlider.value = health;
-            }
-            if(health >= maxHealth)
+            health += 10;
+            heathSlider.value = health;
+            
+            if(health >= maxHealth || health <= 0)
                 StopCoroutine(AddHealth());
             yield return null;
         }
