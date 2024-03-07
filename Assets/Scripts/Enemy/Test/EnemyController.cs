@@ -1,22 +1,33 @@
+using Cinemachine.Utility;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class EnemyController : MonoBehaviour
 {
     private Animator animator;
-    public Transform target;
-    public Transform PointPos;
+    public Transform pointPos;
+     Transform target;
+     Transform homePos;
 
     public float speed;
-    public float maxRange;
     public float minRange;
+    public float maxRange;
 
-    public bool checkPoint;
+    bool checkHealth;
+
+    EnemyHealth enemyHealth;
+    EnemySpawn enemySpawn;
 
     private void Start()
     {
         animator = GetComponent<Animator>();
+        target = FindAnyObjectByType<PlayerMovement>().transform;
+        homePos = GetComponentInParent<EnemySpawn>().transform;
+
+        enemyHealth = FindAnyObjectByType<EnemyHealth>();
+        enemySpawn = FindAnyObjectByType<EnemySpawn>();
     }
 
     private void Update()
@@ -25,14 +36,13 @@ public class EnemyController : MonoBehaviour
 
         if (Vector3.Distance(target.position, transform.position) <= maxRange && Vector3.Distance(target.position, transform.position) >= minRange)
         {
-
             FollowPlayer();
             if (Vector3.Distance(target.position, transform.position) <= minRange)
             {
                 animator.SetBool("Moving", false);
             }
         }
-        else if(Vector3.Distance(target.position, transform.position) >= maxRange)
+        else if (Vector3.Distance(target.position, transform.position) > maxRange)
         {
             GoPointPos();
         }
@@ -43,18 +53,25 @@ public class EnemyController : MonoBehaviour
         animator.SetBool("Moving",true);
         animator.SetFloat("MoveX", (target.transform.position.x - transform.position.x));
         transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
-        
     }
 
     public void GoPointPos()
     {
-        animator.SetFloat("MoveX", (PointPos.transform.position.x - transform.position.x));
-        transform.position = Vector3.MoveTowards(transform.position, PointPos.position, speed *Time.deltaTime);
+        animator.SetFloat("MoveX", (homePos.transform.position.x - transform.position.x));
+        transform.position = Vector3.MoveTowards(transform.position, homePos.position, speed *Time.deltaTime);
+        checkHealth = true;
 
-        checkPoint = true;
-        if(transform.position.x == PointPos.position.x)
+        if (transform.position.x == homePos.position.x)
            {
             animator.SetBool("Moving", false);
+            if(checkHealth == true && enemyHealth.health < enemyHealth.maxHealth)
+            {
+                checkHealth = false;
+                
+                enemyHealth.health = enemyHealth.maxHealth;
+                enemyHealth.heathSlider.value = enemyHealth.health;
+            }
            }
     }
+
 }

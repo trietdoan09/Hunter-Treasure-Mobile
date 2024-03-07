@@ -8,8 +8,6 @@ public class EnemyMovement : MonoBehaviour
     public float range;
     public float colliderDistance;
     public LayerMask playerLayer;
-    //public Transform playerPosition;
-
 
     void Start()
     {
@@ -21,9 +19,6 @@ public class EnemyMovement : MonoBehaviour
         RaycastHit2D distancePlayer = Physics2D.BoxCast(boxCollider.bounds.center + colliderDistance * range * transform.localScale.x * transform.right,
             new Vector3(boxCollider.bounds.size.x * range, boxCollider.bounds.size.y, boxCollider.bounds.size.z),
             0, Vector2.left, 0, playerLayer);
-
-       // if (distancePlayer.collider != null)
-           // playerPosition = distancePlayer.transform.GetComponent<PlayerHealth>();
 
         return distancePlayer.collider != null;
     }
