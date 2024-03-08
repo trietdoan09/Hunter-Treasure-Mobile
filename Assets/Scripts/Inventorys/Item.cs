@@ -25,6 +25,8 @@ public class Item : ScriptableObject
     [Header("Shop")]
     public int productprice;
 
+
+    public int value;
 }
 
 //public enum ItemType

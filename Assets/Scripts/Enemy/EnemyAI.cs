@@ -4,28 +4,29 @@ using UnityEngine.UIElements;
 
 public class EnemyAI : MonoBehaviour
 {
-    public GameObject target;
     public float speed;
-    public Transform right;
-    float direction;
     public float range;
 
-    Enemy enemy;
+    Transform target;
+    Transform rightPos;
+    float direction;
 
     public float idleDuration;
     float idleTimer;
 
     Animator animator;
-    public bool healthBar;
 
-    Vector2 playerPosition;
-    Vector2 enemyPosition;
     Vector2 currentPosition;
+    Enemy enemy;
+    EnemyMovement enemyMovement;
 
     private void Start()
     {
         animator = GetComponent<Animator>();
-        enemy = FindAnyObjectByType<Enemy>();
+        enemy = GetComponentInParent<Enemy>();
+        target = FindAnyObjectByType<PlayerMovement>().transform;
+        rightPos = GetComponentInParent<EnemySpawn>().transform;
+        enemyMovement = GetComponentInParent<EnemyMovement>();
 
          currentPosition = transform.position;
         
@@ -35,66 +36,51 @@ public class EnemyAI : MonoBehaviour
     private void Update()
     {
         animator.SetTrigger("Idle");
-        animator.SetBool("Run", true);
-
-        playerPosition =  target.transform.position ;
-        enemyPosition = transform.position;
-
-        EnemyMovement();
-
-        if (enemy.check == true)
+        if(!enemyMovement.EnemyMove())
         {
-            if(Vector3.Distance(playerPosition, enemyPosition) > range)
-            {
-                transform.position = Vector3.MoveTowards(enemyPosition, playerPosition, speed * Time.deltaTime);
-                animator.SetBool("Run", true);
-
-                if (transform.position.x < playerPosition.x)
-                {
-                    transform.localScale = new Vector3(1, 1, 1);
-                    healthBar = true;
-                }
-                else
-                {
-                    transform.localScale = new Vector3(-1, 1, 1);
-                }
-            }
-           
+            EnemyMovement();
         }
-        if(transform.position.x < currentPosition.x || transform.position.x > right.position.x)
+       
+        if(enemyMovement.EnemyMove() && Vector3.Distance(target.transform.position, transform.position) > range)
         {
-            animator.SetBool("Run", true);
+              animator.SetBool("Moving", true);
+              animator.SetFloat("MoveX", (target.transform.position.x - transform.position.x));
+
+              transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
+
+              if (Vector3.Distance(target.transform.position, transform.position) <= range)
+              {
+                  animator.SetBool("Moving", false);
+              }
+        }
+                
+        if(transform.position.x < currentPosition.x && Vector3.Distance(target.transform.position, transform.position) > range 
+            || transform.position.x > rightPos.position.x && Vector3.Distance(target.transform.position, transform.position) > range)
+        {
+            animator.SetBool("Moving", true);
         }
     }
    void EnemyMovement()
     {
-        animator.SetBool("Run", true);
+        animator.SetBool("Moving", true);
 
-        if (enemyPosition.x >= right.position.x)
+        if (transform.position.x >= rightPos.position.x)
         {
             MoveInDierection(currentPosition.x);
         }
 
-        else if (enemyPosition.x <= currentPosition.x)
+        else if (transform.position.x <= currentPosition.x)
         {
-            MoveInDierection(right.position.x);
+            MoveInDierection(rightPos.position.x);
         }
+        animator.SetFloat("MoveX", (direction - transform.position.x));
 
-        transform.position = Vector3.MoveTowards(enemyPosition, new Vector3(direction, enemyPosition.y, 0), speed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, new Vector3(direction, transform.position.y, 0), speed * Time.deltaTime);
 
-        if (enemyPosition.x < direction)
-        {
-            transform.localScale = new Vector3(1, 1, 1);
-            healthBar = true;
-        }
-        else if (enemyPosition.x > direction)
-        {
-            transform.localScale = new Vector3(-1, 1, 1);
-        }
     }
    void MoveInDierection(float _direction)
     {
-        animator.SetBool("Run", false);
+        animator.SetBool("Moving", false);
 
         idleTimer += Time.deltaTime;
         if (idleTimer >= idleDuration)

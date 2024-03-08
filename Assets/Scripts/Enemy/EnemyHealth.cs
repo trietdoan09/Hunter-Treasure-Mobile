@@ -6,46 +6,24 @@ using UnityEngine.UI;
 
 public class EnemyHealth : MonoBehaviour
 {
-    [SerializeField] Slider heathSlider;
-    [SerializeField] float maxHealth;
-    [SerializeField] int def;
+    public Slider heathSlider;
+    public float maxHealth;
+    public int def;
     public bool dead;
     public float health;
    
-    [SerializeField] GameObject[] theDrop;
+    public GameObject[] theDrop;
 
     Animator animator;
-    EnemyController enemyController;
     void Start()
     {
-        enemyController = FindAnyObjectByType<EnemyController>();
-
         animator = GetComponent<Animator>();
         health = maxHealth;
         heathSlider.maxValue = maxHealth;
         heathSlider.value = maxHealth;
         dead = false;
-        
-        StartCoroutine(AddHealth());
     }
 
-    public void Respawn()
-    {
-        gameObject.SetActive(true);
-
-        health = maxHealth;
-        heathSlider.value = health;
-
-        if (GetComponent<EnemyHealth>() != null)
-           GetComponent<EnemyHealth>().enabled = true;
-        if (GetComponent<EnemyController>() != null)
-            GetComponent<EnemyController>().enabled = true;
-
-        animator.ResetTrigger("Dead");
-
-        dead = false;
-
-    }
 
     private void Update()
     {
@@ -69,28 +47,21 @@ public class EnemyHealth : MonoBehaviour
 
                 if (GetComponent<EnemyHealth>() != null)
                     GetComponent<EnemyHealth>().enabled = false;
-                if (GetComponent<EnemyController>() != null)
-                    GetComponent<EnemyController>().enabled = false;
+                if (GetComponent<EnemyAI>() != null)
+                    GetComponent<EnemyAI>().enabled = false;
+                if (GetComponent<EnemyAttack>() != null)
+                    GetComponent<EnemyAttack>().enabled = false;
+                
 
-               var item = Instantiate(theDrop[Random.Range(0, theDrop.Length)]);
+                var item = Instantiate(theDrop[Random.Range(0, theDrop.Length)]);
                 item.transform .position = gameObject.transform.position;
+
+                Destroy(gameObject, 5);
             }
         }
     }
 
-    IEnumerator AddHealth()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(1.5f);
-            health += 10;
-            heathSlider.value = health;
-            
-            if(health >= maxHealth || health <= 0)
-                StopCoroutine(AddHealth());
-            yield return null;
-        }
-    }
+    
   
     //public void TakeDamage(int damage)
     //{
