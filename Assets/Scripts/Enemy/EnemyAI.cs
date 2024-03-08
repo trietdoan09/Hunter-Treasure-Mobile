@@ -17,13 +17,11 @@ public class EnemyAI : MonoBehaviour
     Animator animator;
 
     Vector2 currentPosition;
-    Enemy enemy;
     EnemyMovement enemyMovement;
 
     private void Start()
     {
         animator = GetComponent<Animator>();
-        enemy = GetComponentInParent<Enemy>();
         target = FindAnyObjectByType<PlayerMovement>().transform;
         rightPos = GetComponentInParent<EnemySpawn>().transform;
         enemyMovement = GetComponentInParent<EnemyMovement>();

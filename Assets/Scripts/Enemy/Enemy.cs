@@ -1,19 +1,18 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public bool check;
-
-   
-    private void OnTriggerEnter2D(Collider2D collision)
+    // Start is called before the first frame update
+    void Start()
     {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-           check = true;
-        }
+        
     }
-    private void OnTriggerExit2D(Collider2D collision)
+
+    // Update is called once per frame
+    void Update()
     {
-        check = false;
+        
     }
 }

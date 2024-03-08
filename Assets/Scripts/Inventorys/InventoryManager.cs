@@ -4,9 +4,12 @@ using TMPro;
 using UnityEngine.UI;
 using Unity.VisualScripting;
 using static Cinemachine.DocumentationSortingAttribute;
+using System.Collections.Generic;
 
 public class InventoryManager : MonoBehaviour
 {
+    public static InventoryManager instance;
+
     public Item[] startItem;
 
     public int maxStackedItems;
@@ -44,11 +47,29 @@ public class InventoryManager : MonoBehaviour
         useItemObj.SetActive(false);
 
         Gold(gold);
-    }
 
+    }
+    private void Awake()
+    {
+        instance = this;
+    }
     public void Gold(int gold)
     {
         goldText.text = gold.ToString();
+    }
+
+    private void Update()
+    {
+        if(Input.GetMouseButtonDown(0))
+        {
+            SaveSystem.SaveInventory(instance);
+            Debug.Log(gold + "gold");
+            Debug.Log(InventoryItemTransform.GetComponentInChildren<InventoryItem>());
+
+            SaveSystem.LoadInventory();
+            Debug.Log(gold);
+        }
+
     }
 
     public bool AddItem(Item item, int countItem)
@@ -89,11 +110,13 @@ public class InventoryManager : MonoBehaviour
         return false;
     }
 
-    void SpawnNewItem(Item item, int countItem)
+   public void SpawnNewItem(Item item, int countItem)
     {
+
         GameObject newItemGo = Instantiate(InventoryItemPrefab, InventoryItemTransform);
         InventoryItem inventoryItem = newItemGo.GetComponent<InventoryItem>();
         inventoryItem.InitialiseItem(item, countItem);
+
     }
 
     public void ItemSelect()

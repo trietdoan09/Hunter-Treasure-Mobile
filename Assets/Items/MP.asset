@@ -17,7 +17,8 @@ MonoBehaviour:
   itemName: MP
   level: 1
   types: MP
-  description: Su dung hoi phuc 20% Mp
+  description: "S\u1EED d\u1EE5ng h\u1ED3i ph\u1EE5c 20% Mp"
   useItem: 1
   countItem: 10
   productprice: 1000
+  value: 0

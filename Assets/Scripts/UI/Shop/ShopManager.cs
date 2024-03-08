@@ -109,8 +109,11 @@ public class ShopManager : MonoBehaviour
         InventoryManager inventoryManager = FindAnyObjectByType<InventoryManager>();
         inventoryManager.AddItem(item, quantity);
         inventoryManager.gold = inventoryManager.gold - totalPrice;
-
         inventoryManager.Gold(inventoryManager.gold);
+
+        SaveSystem.SaveInventory(inventoryManager);
+        Debug.Log(inventoryManager.gold);
+
         NPCShop nPCShop = FindAnyObjectByType<NPCShop>();
         nPCShop.Gold(inventoryManager.gold);
         notification.SetActive(false);

@@ -11,30 +11,26 @@ public class EnemySpawn : MonoBehaviour
     public float timeRespawn;
     public float timeCount;
 
-    public bool spawn;
-
-    EnemyHealth enemyHealth;
-
     void Start()
     {
-        enemyHealth = GetComponentInChildren<EnemyHealth>();
 
         timeCount = timeRespawn;
     }
 
     void Update()
     {
-        if (enemyHealth.dead == true)
+        EnemyHealth enemyHealth = GetComponentInChildren<EnemyHealth>();
+        if (enemyHealth == null)
         {
             timeCount -= Time.deltaTime;
         }
     }
 
+
     public void SpawnEnemy()
     {
-        enemyHealth.dead = false;
-        spawn = false;
         timeCount = timeRespawn;
         Instantiate(enemyPrefab, transform);
+
     }
 }
