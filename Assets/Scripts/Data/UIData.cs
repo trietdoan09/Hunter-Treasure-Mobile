@@ -15,7 +15,7 @@ public class UIData
     public UIData(InventoryManager inventoryManager)
     {
         gold = inventoryManager.gold;
-
+        //inventoryItems = inventoryManager.inventoryItems;
 
     }
 }

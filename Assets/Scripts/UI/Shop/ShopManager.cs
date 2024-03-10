@@ -10,7 +10,6 @@ public class ShopManager : MonoBehaviour
     InventoryManager inventoryManager;
 
     [Header("Shop")]
-     int gold;
      int productprice;
      int totalPrice;
     public TextMeshProUGUI productpriceText;
@@ -23,7 +22,7 @@ public class ShopManager : MonoBehaviour
     public GameObject notGoldTxt;
 
     public int quantityMax;
-     int quantity = 1;
+    int quantity;
 
 
     public TextMeshProUGUI quantityText;
@@ -42,7 +41,7 @@ public class ShopManager : MonoBehaviour
     private void Start()
     {
         inventoryManager = FindAnyObjectByType<InventoryManager>();
-        
+
         productprice = item.productprice;
         productpriceText.text = productprice.ToString();
 
@@ -50,15 +49,16 @@ public class ShopManager : MonoBehaviour
 
     public void Notification()
     {
-        if (inventoryManager.gold > productprice)
+        SetQuantity();
+
+        if (inventoryManager.gold >= productprice)
         {
+
             notification.SetActive(true);
             description.SetActive(false);
             imageShop.sprite = item.image;
 
-            gold = inventoryManager.gold;
-
-            var quantityMaxs = gold / productprice;
+            var quantityMaxs = inventoryManager.gold / productprice;
             if (quantityMaxs <= quantityMax)
             {
                 quantitySlider.maxValue = quantityMaxs;
@@ -67,18 +67,12 @@ public class ShopManager : MonoBehaviour
             {
                 quantitySlider.maxValue = quantityMax;
             }
-
-            quantity = Mathf.FloorToInt(quantitySlider.value);
-            quantityText.text = quantity.ToString();
-
-            totalPriceText.text = productprice.ToString();
         }
 
         else
         {
             //Instantiate(notGoldTxt,transform);
             notGoldTxt.SetActive(true);
-
         }
 
     }
@@ -99,7 +93,16 @@ public class ShopManager : MonoBehaviour
         quantityText.text = quantitySlider.value.ToString();
         quantity = Mathf.FloorToInt(quantitySlider.value);
 
-        totalPrice = Mathf.FloorToInt(quantitySlider.value * productprice);
+        totalPrice = quantity * productprice;
+        totalPriceText.text = totalPrice.ToString();
+    }
+    public void SetQuantity()
+    {
+        quantitySlider.value = 1;
+        quantity = Mathf.FloorToInt(quantitySlider.value);
+        totalPrice = quantity * productprice;
+
+        quantityText.text = quantitySlider.value.ToString();
         totalPriceText.text = totalPrice.ToString();
     }
 
@@ -109,15 +112,12 @@ public class ShopManager : MonoBehaviour
         InventoryManager inventoryManager = FindAnyObjectByType<InventoryManager>();
         inventoryManager.AddItem(item, quantity);
         inventoryManager.gold = inventoryManager.gold - totalPrice;
-        inventoryManager.Gold(inventoryManager.gold);
-
-        SaveSystem.SaveInventory(inventoryManager);
-        Debug.Log(inventoryManager.gold);
+        inventoryManager.GoldText(inventoryManager.gold);
 
         NPCShop nPCShop = FindAnyObjectByType<NPCShop>();
-        nPCShop.Gold(inventoryManager.gold);
+        nPCShop.GoldText(inventoryManager.gold);
+
         notification.SetActive(false);
-        
     }
 
     public void SetActive()
