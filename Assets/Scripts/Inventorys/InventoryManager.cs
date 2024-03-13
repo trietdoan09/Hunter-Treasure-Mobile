@@ -57,17 +57,23 @@ public class InventoryManager : MonoBehaviour
         goldText.text = gold.ToString();
     }
 
-    //private void Update()
-    //{
-    //    if (Input.GetMouseButtonDown(0))
-    //    {
-    //        SaveSystem.SaveInventory(instance);
-    //        Debug.Log(gold + "gold");
+    private void Update()
+    {
+       
+    }
+    public void SaveInvetory()
+    {
+        SaveSystem.SaveInventory(instance);
+        Debug.Log(gold + "gold");
+    }
+    public void LoadInventory()
+    {
+        UIData uida = SaveSystem.LoadInventory();
 
-    //        SaveSystem.LoadInventory();
-    //        Debug.Log(gold);
-    //    }
-    //}
+        gold = uida.gold;
+
+        Debug.Log(gold + "gold load");
+    }
 
     public bool AddItem(Item item, int countItem)
     {
