@@ -4,14 +4,18 @@ using TMPro;
 using UnityEngine.UI;
 using Unity.VisualScripting;
 using static Cinemachine.DocumentationSortingAttribute;
+using System.Collections.Generic;
 
 public class InventoryManager : MonoBehaviour
 {
+    public static InventoryManager instance;
+
     public Item[] startItem;
 
     public int maxStackedItems;
     public GameObject InventoryItemPrefab;
     public Transform InventoryItemTransform;
+    public List<InventoryItem> inventoryItems = new List<InventoryItem>();
 
     public GameObject descriptionObj;
     public GameObject useItemObj;
@@ -39,17 +43,31 @@ public class InventoryManager : MonoBehaviour
         {
             AddItem(item, item.countItem);
         }
-
         descriptionObj.SetActive(false);
         useItemObj.SetActive(false);
 
-        Gold(gold);
+        GoldText(gold);
     }
-
-    public void Gold(int gold)
+    private void Awake()
+    {
+        instance = this;
+    }
+    public void GoldText(int gold)
     {
         goldText.text = gold.ToString();
     }
+
+    //private void Update()
+    //{
+    //    if (Input.GetMouseButtonDown(0))
+    //    {
+    //        SaveSystem.SaveInventory(instance);
+    //        Debug.Log(gold + "gold");
+
+    //        SaveSystem.LoadInventory();
+    //        Debug.Log(gold);
+    //    }
+    //}
 
     public bool AddItem(Item item, int countItem)
     {
@@ -64,7 +82,9 @@ public class InventoryManager : MonoBehaviour
             {
                 itemInSlot.count += countItem;
                 itemInSlot.ReFreshCount();
-                if(itemInSlot.count > maxStackedItems)
+                inventoryItems.Add(itemInSlot);
+
+                if (itemInSlot.count > maxStackedItems)
                 {
                     var totalCount = itemInSlot.count - maxStackedItems;
                     itemInSlot.count = maxStackedItems;
@@ -89,8 +109,9 @@ public class InventoryManager : MonoBehaviour
         return false;
     }
 
-    void SpawnNewItem(Item item, int countItem)
+   public void SpawnNewItem(Item item, int countItem)
     {
+
         GameObject newItemGo = Instantiate(InventoryItemPrefab, InventoryItemTransform);
         InventoryItem inventoryItem = newItemGo.GetComponent<InventoryItem>();
         inventoryItem.InitialiseItem(item, countItem);

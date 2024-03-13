@@ -18,7 +18,7 @@ public class NPCShop : MonoBehaviour
         if(collision.gameObject.CompareTag("Player"))
         {
             shop.SetActive(true);
-            Gold(inventoryManager.gold);
+            GoldText(inventoryManager.gold);
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -29,7 +29,7 @@ public class NPCShop : MonoBehaviour
         }
     }
 
-    public void Gold(int gold)
+    public void GoldText(int gold)
     {
         goldText.text = gold.ToString();
     }

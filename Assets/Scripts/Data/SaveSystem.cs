@@ -1,5 +1,6 @@
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public static class SaveSystem
@@ -70,4 +71,40 @@ public static class SaveSystem
         }
     }
     #endregion
+
+    #region Save UI
+    public static void SaveInventory(InventoryManager inventoryManager)
+    {
+        BinaryFormatter formatter = new BinaryFormatter();
+
+        string path = Application.persistentDataPath + "/SaveUI.data";
+        FileStream stream = new FileStream(path, FileMode.Create);
+
+        UIData data = new UIData(inventoryManager);
+
+        formatter.Serialize(stream, data);
+        stream.Close();
+    }
+    public static UIData LoadInventory()
+    {
+        string path = Application.persistentDataPath + "/SaveUI.data";
+        if (File.Exists(path))
+        {
+            BinaryFormatter formatter = new BinaryFormatter();
+            FileStream stream = new FileStream(path, FileMode.Open);
+
+            UIData saveData = formatter.Deserialize(stream) as UIData;
+            stream.Close();
+
+            return saveData;
+        }
+        else
+        {
+            Debug.LogError("Save file not found in " + path);
+            return null;
+        }
+    }
+    #endregion
+
+   
 }
