@@ -211,6 +211,8 @@ public class CreateCharacter : MonoBehaviour
     {
         SaveSystem.SaveCharacterID(this);
         SceneManager.LoadScene("MainScene");
+
+        SceneManager.LoadScene("MapVillage", LoadSceneMode.Additive);
     }
     #endregion
 }
