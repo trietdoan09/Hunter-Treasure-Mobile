@@ -210,7 +210,7 @@ public class CreateCharacter : MonoBehaviour
     public void PlayButton()
     {
         SaveSystem.SaveCharacterID(this);
-        SceneManager.LoadScene("Scene1");
+        SceneManager.LoadScene("MainScene");
     }
     #endregion
 }
