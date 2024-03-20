@@ -111924,6 +111924,7 @@ MonoBehaviour:
   maxStackedItems: 99
   InventoryItemPrefab: {fileID: 885772230131015881, guid: aca0300e6256e6146859d8886fc304b8, type: 3}
   InventoryItemTransform: {fileID: 463423745}
+  inventoryItems: []
   descriptionObj: {fileID: 743472738}
   useItemObj: {fileID: 1268885679}
   gold: 20000
