@@ -20,8 +20,8 @@ public class PlayerData
     public int playerSkillPoint; // điểm kĩ năng
     public int playerStatusPoint; // điểm chỉ số
     public int levelPlayer; // cấp độ nhân vật
-    public int currentExp; // exp hiện tại
-    public int maxExp; //exp tối đa
+    public float currentExp; // exp hiện tại
+    public float maxExp; //exp tối đa
     public PlayerData(PlayerManager playerManager)
     {
         playerId = playerManager.id;

@@ -9,9 +9,11 @@ public class CombatSystem : MonoBehaviour
     public bool isAttack;
     private int timeEndCombo;
     //normal attack
+    [Header("Normal attack")]
     [SerializeField] private Transform attackPostition;
     [SerializeField] private Vector2 attackRange;
     [SerializeField] private LayerMask enemyLayers;
+    private PlayerManager playerManager;
     private void Awake()
     {
         instance = this;
@@ -19,6 +21,7 @@ public class CombatSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        playerManager = GetComponent<PlayerManager>();
         characterAnim = GetComponent<Animator>();
         attackRange = new Vector2(1, 0.5f);
     }
@@ -35,7 +38,11 @@ public class CombatSystem : MonoBehaviour
             Collider2D[] hitEmenys = Physics2D.OverlapBoxAll(attackPostition.position,attackRange,enemyLayers);
             foreach(Collider2D enemy in hitEmenys)
             {
-                Debug.Log("We hit" + enemy.name);
+                if(enemy.name == "Enemy")
+                {
+                    Debug.Log("We hit" + enemy.name);
+                    enemy.GetComponent<EnemyHealth>().EnemyTakeDamage(playerManager.playerAttackPoint);
+                }
             }
         }
     }

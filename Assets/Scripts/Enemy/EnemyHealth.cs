@@ -15,25 +15,28 @@ public class EnemyHealth : MonoBehaviour
     public GameObject[] theDrop;
 
     Animator animator;
+    Collider2D collider2D;
+    Rigidbody2D rigidbody2D;
+    private GameObject playerManager;
+    [SerializeField] private int level;
+    [SerializeField] private int giveExp;
     void Start()
     {
         animator = GetComponent<Animator>();
+        collider2D = GetComponent<Collider2D>();
+        rigidbody2D = GetComponent<Rigidbody2D>();
+        playerManager = GameObject.FindGameObjectWithTag("Player");
         health = maxHealth;
         heathSlider.maxValue = maxHealth;
         heathSlider.value = maxHealth;
         dead = false;
+        level = Random.Range(1, 11);
+        giveExp = 20 * level;
     }
 
 
     private void Update()
     {
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            health -= 20;
-            heathSlider.value = health;
-        }
-
         if (health > maxHealth)
         {
             health = maxHealth;
@@ -51,7 +54,9 @@ public class EnemyHealth : MonoBehaviour
                     GetComponent<EnemyAI>().enabled = false;
                 if (GetComponent<EnemyAttack>() != null)
                     GetComponent<EnemyAttack>().enabled = false;
-                
+                rigidbody2D.gravityScale = 0;
+                collider2D.enabled = false;
+                playerManager.GetComponent<PlayerManager>().PlayerTakeExp(giveExp);
 
                 var item = Instantiate(theDrop[Random.Range(0, theDrop.Length)]);
                 item.transform .position = gameObject.transform.position;
@@ -61,14 +66,12 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
-    
-  
-    //public void TakeDamage(int damage)
-    //{
-
-    //    health -= DamagePlayer.TakeDamge(damage, def);
-    //    heathSlider.value = health;
-    //}
+    public void EnemyTakeDamage(int damage)
+    {
+        int dameTaken = damage - def;
+        health -= damage > 0 ? damage : 0;
+        heathSlider.value = health;
+    }
     public void Deactive()
     {
         gameObject.SetActive(false);

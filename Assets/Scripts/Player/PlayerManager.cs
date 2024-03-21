@@ -14,6 +14,7 @@ public class PlayerManager : MonoBehaviour
     private Animator animator;
     Characters characters;
     //Player index
+    [Header("Player infomation")]
     public int playerMaxHealPoint; // máu tối đa
     public int playerCurrentHealPoint; // máu hiện tại
     public int playerMaxManaPoint; // mana tối đa
@@ -23,8 +24,8 @@ public class PlayerManager : MonoBehaviour
     public int playerSkillPoint; // điểm kĩ năng
     public int playerStatusPoint; // điểm chỉ số
     public int levelPlayer; // cấp độ nhân vật
-    public int currentExp; // kinh nghiệm hiện tại của nhân vật
-    public int maxExp; //kinh nghiệm tối đa cần để tăng cấp
+    public float currentExp; // kinh nghiệm hiện tại của nhân vật
+    public float maxExp; //kinh nghiệm tối đa cần để tăng cấp
 
 
     // Start is called before the first frame update
@@ -46,6 +47,7 @@ public class PlayerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        LevelUp();
         if (Input.GetKeyDown(KeyCode.F8))
         {
             LoadSaveSlot();
@@ -135,15 +137,34 @@ public class PlayerManager : MonoBehaviour
         playerCurrentManaPoint = playerMaxManaPoint;
         playerSkillPoint = 0;
         playerStatusPoint = 0;
+        currentExp = 0;
+        maxExp = 500;
     }
 
     public void PlayerTakeDame(int damage)
     {
         int damagaTaken = damage - playerDefendPoint;
-        playerCurrentHealPoint = damagaTaken > 0 ? damagaTaken : 0;
+        playerCurrentHealPoint -= damagaTaken > 0 ? damagaTaken : 0;
         if(playerCurrentHealPoint < 0)
         {
             //player died
+        }
+    }
+
+    public void PlayerTakeExp(int expReceive)
+    {
+        currentExp += expReceive;
+        
+    }
+    private void LevelUp()
+    {
+        if (currentExp >= maxExp)
+        {
+            levelPlayer++;
+            playerSkillPoint++;
+            playerStatusPoint += 2;
+            currentExp = currentExp - maxExp;
+            maxExp = maxExp + (maxExp / 2);
         }
     }
 }
