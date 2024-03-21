@@ -14,13 +14,17 @@ public class PlayerManager : MonoBehaviour
     private Animator animator;
     Characters characters;
     //Player index
-    public int playerHealPoint; // máu
-    public int playerManaPoint; // mana
+    public int playerMaxHealPoint; // máu tối đa
+    public int playerCurrentHealPoint; // máu hiện tại
+    public int playerMaxManaPoint; // mana tối đa
+    public int playerCurrentManaPoint;
     public int playerAttackPoint; // tấn công
     public int playerDefendPoint; // giáp
     public int playerSkillPoint; // điểm kĩ năng
     public int playerStatusPoint; // điểm chỉ số
     public int levelPlayer; // cấp độ nhân vật
+    public int currentExp; // kinh nghiệm hiện tại của nhân vật
+    public int maxExp; //kinh nghiệm tối đa cần để tăng cấp
 
 
     // Start is called before the first frame update
@@ -33,8 +37,8 @@ public class PlayerManager : MonoBehaviour
     void Start()
     {
         id = 7;
-        characters = characterDatabase.GetCharacters(id);
         //LoadCharacterId();
+        characters = characterDatabase.GetCharacters(id);
         SpawnPlayer();
         InitPlayerStatus();
     }
@@ -60,13 +64,17 @@ public class PlayerManager : MonoBehaviour
     {
         PlayerData data = SaveSystem.LoadGame();
         id = data.playerId;
-        playerHealPoint = data.playerHealPoint;
-        playerManaPoint = data.playerManaPoint;
+        playerMaxHealPoint = data.playerMaxHealPoint;
+        playerCurrentHealPoint = data.playerCurrentHealPoint;
+        playerMaxManaPoint = data.playerMaxManaPoint;
+        playerCurrentManaPoint = data.playerCurrentManaPoint;
         playerAttackPoint = data.playerAttackPoint;
         playerDefendPoint = data.playerDefendPoint;
         playerSkillPoint = data.playerSkillPoint;
         playerStatusPoint = data.playerStatusPoint;
         levelPlayer = data.levelPlayer;
+        currentExp = data.currentExp;
+        maxExp = data.maxExp;
         Debug.Log("Load save complete");
     }
     public void SaveSlot()
@@ -91,39 +99,51 @@ public class PlayerManager : MonoBehaviour
         {
             case CharacterClass.Archer:
                 {
-                    playerHealPoint = 80;
-                    playerManaPoint = 100;
+                    playerMaxHealPoint = 80;
+                    playerMaxManaPoint = 100;
                     playerAttackPoint = 170;
                     playerDefendPoint = 50;
                     break;
                 }
             case CharacterClass.Swordman:
                 {
-                    playerHealPoint = 100;
-                    playerManaPoint = 100;
+                    playerMaxHealPoint = 100;
+                    playerMaxManaPoint = 100;
                     playerAttackPoint = 100;
                     playerDefendPoint = 100;
                     break;
                 }
             case CharacterClass.Wizard:
                 {
-                    playerHealPoint = 80;
-                    playerManaPoint = 170;
+                    playerMaxHealPoint = 80;
+                    playerMaxManaPoint = 170;
                     playerAttackPoint = 100;
                     playerDefendPoint = 50;
                     break;
                 }
             case CharacterClass.Knight:
                 {
-                    playerHealPoint = 150;
-                    playerManaPoint = 110;
+                    playerMaxHealPoint = 150;
+                    playerMaxManaPoint = 110;
                     playerAttackPoint = 40;
                     playerDefendPoint = 100;
                     break;
                 }
             default:break;
         }
+        playerCurrentHealPoint = playerMaxHealPoint;
+        playerCurrentManaPoint = playerMaxManaPoint;
         playerSkillPoint = 0;
         playerStatusPoint = 0;
+    }
+
+    public void PlayerTakeDame(int damage)
+    {
+        int damagaTaken = damage - playerDefendPoint;
+        playerCurrentHealPoint = damagaTaken > 0 ? damagaTaken : 0;
+        if(playerCurrentHealPoint < 0)
+        {
+            //player died
+        }
     }
 }
