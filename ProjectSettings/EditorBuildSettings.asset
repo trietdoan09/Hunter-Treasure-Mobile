@@ -12,15 +12,18 @@ EditorBuildSettings:
     path: Assets/Scenes/ChooseCharacter.unity
     guid: 267a81a64cf6a3847b1c318179b5b917
   - enabled: 1
-    path: Assets/Scenes/MapVillage.unity
-    guid: 3e47989c69e03bb4da45f80d859c9ecb
-  - enabled: 1
     path: Assets/Scenes/MainScene.unity
     guid: 43c22987292aec44f86b0a2403779975
   - enabled: 1
-    path: Assets/Scenes/TestScene.unity
-    guid: 392601d8f6a8dd04489790b81bf0ed8d
+    path: Assets/Scenes/MapVillage.unity
+    guid: 3e47989c69e03bb4da45f80d859c9ecb
+  - enabled: 1
+    path: Assets/Scenes/MapJungle.unity
+    guid: 47dafa2480859344a9aa98f4ba0214f9
   - enabled: 1
     path: Assets/Scenes/MapDesert.unity
     guid: fd6f0b0a107cd6c46aa1f833b802b7d1
+  - enabled: 1
+    path: Assets/Scenes/MapDungeon.unity
+    guid: 08ff7cd855e661c45af6643be8c2b40b
   m_configObjects: {}
