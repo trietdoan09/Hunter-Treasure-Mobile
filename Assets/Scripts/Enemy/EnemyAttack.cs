@@ -21,13 +21,14 @@ public class EnemyAttack : MonoBehaviour
     //[Header("Attack Sound")]
     //[SerializeField] private AudioClip attackSound;
 
-    PlayerHealth playerhealth;
+    PlayerManager playerManager;
 
 
 
     private void Awake()
     {
-        anim = GetComponent<Animator>();
+        anim = GetComponentInChildren<Animator>();
+        playerManager = FindAnyObjectByType<PlayerManager>();
     }
 
     private void Update()
@@ -36,7 +37,7 @@ public class EnemyAttack : MonoBehaviour
 
         if (PlayerInSight())
         {
-            if (cooldownTimer >= attackCooldown && playerhealth.health > 0)
+            if (cooldownTimer >= attackCooldown && playerManager.playerHealPoint > 0)
             {
                 cooldownTimer = 0;
                 anim.SetTrigger("Attack");
@@ -51,7 +52,7 @@ public class EnemyAttack : MonoBehaviour
             0, Vector2.left, 0, playerLayer);
 
         if (hit.collider != null)
-            playerhealth = hit.transform.GetComponent<PlayerHealth>();
+            playerManager = hit.transform.GetComponent<PlayerManager>();
         return hit.collider != null;
     }
     private void OnDrawGizmos()
@@ -65,7 +66,7 @@ public class EnemyAttack : MonoBehaviour
     {
         if (PlayerInSight())
 
-            playerhealth.TakeDamage(damage);
+            playerManager.playerHealPoint -= damage - playerManager.playerDefendPoint;
 
     }
 
