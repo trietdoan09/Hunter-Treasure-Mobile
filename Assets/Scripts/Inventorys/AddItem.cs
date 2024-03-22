@@ -15,6 +15,8 @@ public class AddItem : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             inventoryManager.AddItem(item,countItem);
+            inventoryManager.SpawnItem();
+
             Destroy(gameObject);
         }
     }

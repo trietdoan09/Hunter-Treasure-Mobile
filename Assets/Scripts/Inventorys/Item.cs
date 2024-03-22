@@ -12,19 +12,18 @@ public class Item : ScriptableObject
 
     [Header("Both ")]
     public Sprite image;
-
+    public int id;
 
     [Header("Only UI")]
-    public bool stackable = true;
 
     public string itemName, level, types, description;
+    public int quantity;
 
     public bool useItem;
-    public int countItem = 1;
+    public bool stackable;
 
     [Header("Shop")]
     public int productprice;
-
 
     public int value;
 }

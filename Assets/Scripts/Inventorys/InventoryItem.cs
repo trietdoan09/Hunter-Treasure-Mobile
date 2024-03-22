@@ -33,7 +33,7 @@ public class InventoryItem : MonoBehaviour
         inventoryManager = FindAnyObjectByType<InventoryManager>();
     }
 
-    public void InitialiseItem(Item newItem, int countItem)
+    public void InitialiseItem(Item newItem )
     {
         item = newItem;
         image.sprite = newItem.image;
@@ -44,7 +44,7 @@ public class InventoryItem : MonoBehaviour
         description = newItem.description;
         useItem = newItem.useItem;
 
-        count = countItem;
+        count = newItem.quantity;
 
 
         ReFreshCount();

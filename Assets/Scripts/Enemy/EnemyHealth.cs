@@ -17,7 +17,7 @@ public class EnemyHealth : MonoBehaviour
     Animator animator;
     void Start()
     {
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
         health = maxHealth;
         heathSlider.maxValue = maxHealth;
         heathSlider.value = maxHealth;
@@ -28,11 +28,11 @@ public class EnemyHealth : MonoBehaviour
     private void Update()
     {
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            health -= 20;
-            heathSlider.value = health;
-        }
+        //if (Input.GetMouseButtonDown(0))
+        //{
+        //    health -= 20;
+        //    heathSlider.value = health;
+        //}
 
         if (health > maxHealth)
         {

@@ -23,6 +23,10 @@ public class EnemySpawn : MonoBehaviour
         if (enemyHealth == null)
         {
             timeCount -= Time.deltaTime;
+            if (timeCount <= 0)
+            {
+                SpawnEnemy();
+            }
         }
     }
 

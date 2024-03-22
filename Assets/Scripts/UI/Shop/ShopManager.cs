@@ -111,6 +111,8 @@ public class ShopManager : MonoBehaviour
         
         InventoryManager inventoryManager = FindAnyObjectByType<InventoryManager>();
         inventoryManager.AddItem(item, quantity);
+        inventoryManager.SpawnItem();
+
         inventoryManager.gold = inventoryManager.gold - totalPrice;
         inventoryManager.GoldText(inventoryManager.gold);
 

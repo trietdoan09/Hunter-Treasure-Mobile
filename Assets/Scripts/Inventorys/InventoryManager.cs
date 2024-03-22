@@ -5,6 +5,8 @@ using UnityEngine.UI;
 using Unity.VisualScripting;
 using static Cinemachine.DocumentationSortingAttribute;
 using System.Collections.Generic;
+using System.Linq;
+using static UnityEditor.Progress;
 
 public class InventoryManager : MonoBehaviour
 {
@@ -15,7 +17,7 @@ public class InventoryManager : MonoBehaviour
     public int maxStackedItems;
     public GameObject InventoryItemPrefab;
     public Transform InventoryItemTransform;
-    public List<InventoryItem> inventoryItems = new List<InventoryItem>();
+    public List<Item> inventoryItems = new List<Item>();
 
     public GameObject descriptionObj;
     public GameObject useItemObj;
@@ -39,10 +41,10 @@ public class InventoryManager : MonoBehaviour
 
     private void Start()
     {
-        foreach (var item in startItem)
-        {
-            AddItem(item, item.countItem);
-        }
+        //foreach (var item in startItem)
+        //{
+        //    AddItem(item, item.countItem);
+        //}
         descriptionObj.SetActive(false);
         useItemObj.SetActive(false);
 
@@ -73,54 +75,101 @@ public class InventoryManager : MonoBehaviour
         Debug.Log(gold + "gold load");
     }
 
-    public bool AddItem(Item item, int countItem)
+    //public bool AddItem(Item item, int countItem)
+    //{
+    //    for (int i = 0; i < InventoryItemTransform.childCount; i++)
+    //    {
+
+    //        var slott = InventoryItemTransform.GetChild(i);
+    //        InventoryItem itemInSlot = slott.GetComponent<InventoryItem>();
+
+    //        if (itemInSlot.item == item
+    //            && itemInSlot.count < maxStackedItems && itemInSlot.item.stackable == true)
+    //        {
+    //            itemInSlot.count += countItem;
+    //            itemInSlot.ReFreshCount();
+
+    //            if (itemInSlot.count > maxStackedItems)
+    //            {
+    //                var totalCount = itemInSlot.count - maxStackedItems;
+    //                itemInSlot.count = maxStackedItems;
+    //                itemInSlot.ReFreshCount();
+    //                SpawnNewItem(item, totalCount);
+    //            }
+    //            return true;
+    //        }
+    //    }
+
+    //    for (int i = 0; i < InventoryItemTransform.childCount; i++)
+    //    {
+    //        var slott = InventoryItemTransform.GetChild(i);
+    //        InventoryItem itemInSlot = slott.GetComponent<InventoryItem>();
+
+    //        if (itemInSlot.item != item )
+    //        {
+    //            SpawnNewItem(item, countItem);
+    //            return true;
+    //        }
+    //    }
+    //    return false;
+    //}
+
+    //public void SpawnNewItem(Item item, int countItem)
+    // {
+
+    //     GameObject newItemGo = Instantiate(InventoryItemPrefab, InventoryItemTransform);
+    //     InventoryItem inventoryItem = newItemGo.GetComponent<InventoryItem>();
+    //     //inventoryItem.InitialiseItem(item, countItem);
+    // }
+
+    public void AddItem(Item item, int count)
     {
-        for (int i = 0; i < InventoryItemTransform.childCount; i++)
+        var check = inventoryItems.Any(i => i.itemName == item.itemName
+        && i.stackable == true && i.quantity < maxStackedItems);
+
+        if (check)
         {
+            item.quantity += count;
+            Debug.Log(item.quantity + " da co");
 
-            var slott = InventoryItemTransform.GetChild(i);
-            InventoryItem itemInSlot = slott.GetComponent<InventoryItem>();
-
-            if (itemInSlot.item == item
-                && itemInSlot.count < maxStackedItems && itemInSlot.item.stackable == true)
+            if (item.quantity > maxStackedItems)
             {
-                itemInSlot.count += countItem;
-                itemInSlot.ReFreshCount();
-                inventoryItems.Add(itemInSlot);
+                var totalCount = item.quantity - maxStackedItems;
+                item.quantity = maxStackedItems;
 
-                if (itemInSlot.count > maxStackedItems)
-                {
-                    var totalCount = itemInSlot.count - maxStackedItems;
-                    itemInSlot.count = maxStackedItems;
-                    itemInSlot.ReFreshCount();
-                    SpawnNewItem(item, totalCount);
-                }
-                return true;
+                inventoryItems.Add(item);
+                item.quantity = totalCount;
+
+                Debug.Log(item.quantity + " count nhieu");
+
             }
+
+        }
+        else
+        {
+            inventoryItems.Add(item);
+            item.quantity = count;
+            Debug.Log(item.quantity + " k co");
+
         }
 
-        for (int i = 0; i < InventoryItemTransform.childCount; i++)
-        {
-            var slott = InventoryItemTransform.GetChild(i);
-            InventoryItem itemInSlot = slott.GetComponent<InventoryItem>();
-
-            if (itemInSlot.item != item )
-            {
-                SpawnNewItem(item, countItem);
-                return true;
-            }
-        }
-        return false;
     }
 
-   public void SpawnNewItem(Item item, int countItem)
+    public void SpawnItem()
     {
+        foreach(Transform item in InventoryItemTransform)
+        {
+            Destroy(item.gameObject);
+        }
 
-        GameObject newItemGo = Instantiate(InventoryItemPrefab, InventoryItemTransform);
-        InventoryItem inventoryItem = newItemGo.GetComponent<InventoryItem>();
-        inventoryItem.InitialiseItem(item, countItem);
+        foreach(var item in inventoryItems)
+        {
+            GameObject newItem = Instantiate(InventoryItemPrefab, InventoryItemTransform);
+            InventoryItem inventoryItem = newItem.GetComponent<InventoryItem>();
+            inventoryItem.InitialiseItem(item);
+
+        }
     }
-
     public void ItemSelect()
     {
         for (int i = 0; i < InventoryItemTransform.childCount; i++)
@@ -148,7 +197,7 @@ public class InventoryManager : MonoBehaviour
                 {
                     Destroy(itemInSlot.gameObject);
                     descriptionObj.SetActive(false);
-                    useItemObj.SetActive(false);
+                    //useItemObj.SetActive(false);
                 }
                 else
                 {
@@ -186,4 +235,6 @@ public class InventoryManager : MonoBehaviour
             }
         }
     }
+
+   
 }
