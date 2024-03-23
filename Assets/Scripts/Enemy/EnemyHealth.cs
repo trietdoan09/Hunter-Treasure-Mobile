@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 public class EnemyHealth : MonoBehaviour
 {
+    Animator animator;
+    Collider2D collider2D;
+    Rigidbody2D rigidbody2D;
     public Slider heathSlider;
     public float maxHealth;
     public int def;
@@ -14,9 +17,6 @@ public class EnemyHealth : MonoBehaviour
    
     public GameObject[] theDrop;
 
-    Animator animator;
-    Collider2D collider2D;
-    Rigidbody2D rigidbody2D;
     private GameObject playerManager;
     [SerializeField] private int level;
     [SerializeField] private int giveExp;

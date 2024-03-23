@@ -14,7 +14,7 @@ public class OpenSkillAndInfomationPlayer : MonoBehaviour
     [SerializeField] private GameObject chosenSkill;
     private bool isShowCanvas;
 
-    [Header("Hien trang thai len ui")]
+    [Header("Hien trang thai len tab info ui")]
     [SerializeField] private TextMeshProUGUI textHP;
     [SerializeField] private TextMeshProUGUI textMP;
     [SerializeField] private TextMeshProUGUI textATK;
@@ -24,6 +24,13 @@ public class OpenSkillAndInfomationPlayer : MonoBehaviour
     [SerializeField] private Slider sliderHP;
     [SerializeField] private Slider sliderMP;
     [SerializeField] private Slider sliderExp;
+    
+    [Header("Hien trang thai len ui")]
+    [SerializeField] private Slider sliderUiHP;
+    [SerializeField] private Slider sliderUiMP;
+    [SerializeField] private TextMeshProUGUI textUiHp;
+    [SerializeField] private TextMeshProUGUI textUiMp;
+
     private GameObject playerManager;
 
     // Start is called before the first frame update
@@ -38,6 +45,9 @@ public class OpenSkillAndInfomationPlayer : MonoBehaviour
         sliderHP.maxValue = playerManager.GetComponent<PlayerManager>().playerMaxHealPoint;
         sliderMP.maxValue = playerManager.GetComponent<PlayerManager>().playerMaxManaPoint;
         sliderExp.maxValue = playerManager.GetComponent<PlayerManager>().maxExp;
+
+        sliderUiHP.maxValue = playerManager.GetComponent<PlayerManager>().playerMaxHealPoint;
+        sliderUiMP.maxValue = playerManager.GetComponent<PlayerManager>().playerMaxManaPoint;
         StartCoroutine(showHpBar());
         StartCoroutine(showMpBar());
         StartCoroutine(showExpBar());
@@ -58,6 +68,7 @@ public class OpenSkillAndInfomationPlayer : MonoBehaviour
             if(sliderHP.value != playerManager.GetComponent<PlayerManager>().playerCurrentHealPoint)
             {
                 sliderHP.value += (sliderHP.value - playerManager.GetComponent<PlayerManager>().playerCurrentHealPoint) < 0 ? 1 : -1;
+                sliderUiHP.value += (sliderHP.value - playerManager.GetComponent<PlayerManager>().playerCurrentHealPoint) < 0 ? 1 : -1;
             }
             yield return null;
         }
@@ -71,6 +82,7 @@ public class OpenSkillAndInfomationPlayer : MonoBehaviour
             if(sliderMP.value != playerManager.GetComponent<PlayerManager>().playerCurrentManaPoint)
             {
                 sliderMP.value += (sliderMP.value - playerManager.GetComponent<PlayerManager>().playerCurrentManaPoint) < 0 ? 1 : -1;
+                sliderUiMP.value += (sliderMP.value - playerManager.GetComponent<PlayerManager>().playerCurrentManaPoint) < 0 ? 1 : -1;
             }
             yield return null;
         }
@@ -93,6 +105,8 @@ public class OpenSkillAndInfomationPlayer : MonoBehaviour
     {
         textHP.text = $"HP: " + playerManager.GetComponent<PlayerManager>().playerCurrentHealPoint.ToString() + " / " + playerManager.GetComponent<PlayerManager>().playerMaxHealPoint.ToString();
         textMP.text = $"MP: " + playerManager.GetComponent<PlayerManager>().playerCurrentManaPoint.ToString() + " / " + playerManager.GetComponent<PlayerManager>().playerMaxManaPoint.ToString();
+        textUiHp.text = $"" + playerManager.GetComponent<PlayerManager>().playerCurrentHealPoint.ToString();
+        textUiMp.text = $"" + playerManager.GetComponent<PlayerManager>().playerCurrentManaPoint.ToString();
         textATK.text = $"ATK: " + playerManager.GetComponent<PlayerManager>().playerAttackPoint.ToString();
         textDEF.text = $"DEF: " + playerManager.GetComponent<PlayerManager>().playerDefendPoint.ToString();
         textLevel.text = $"Level: " + playerManager.GetComponent<PlayerManager>().levelPlayer.ToString();
