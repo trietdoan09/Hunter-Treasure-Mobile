@@ -37,7 +37,7 @@ public class EnemyAttack : MonoBehaviour
 
         if (PlayerInSight())
         {
-            if (cooldownTimer >= attackCooldown && playerManager.playerHealPoint > 0)
+            if (cooldownTimer >= attackCooldown && playerManager.playerCurrentHealPoint > 0)
             {
                 cooldownTimer = 0;
                 anim.SetTrigger("Attack");
@@ -66,7 +66,7 @@ public class EnemyAttack : MonoBehaviour
     {
         if (PlayerInSight())
 
-            playerManager.playerHealPoint -= damage - playerManager.playerDefendPoint;
+            playerManager.PlayerTakeDame(damage);
 
     }
 
