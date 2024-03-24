@@ -41,10 +41,18 @@ public class CombatSystem : MonoBehaviour
                 if(enemy.name == "Enemy")
                 {
                     Debug.Log("We hit" + enemy.name);
-                    enemy.GetComponent<EnemyHealth>().EnemyTakeDamage(playerManager.playerAttackPoint);
+                    StartCoroutine(DelayAnimAttack(enemy));
+                    //enemy.GetComponent<EnemyHealth>().EnemyTakeDamage(playerManager.playerAttackPoint);
                 }
             }
         }
+    }
+    private IEnumerator DelayAnimAttack(Collider2D enemy)
+    {
+        yield return new WaitForSeconds(0.5f);
+        enemy.GetComponent<EnemyHealth>().EnemyTakeDamage(playerManager.playerAttackPoint);
+        yield return null;
+
     }
     private void OnDrawGizmos()
     {
