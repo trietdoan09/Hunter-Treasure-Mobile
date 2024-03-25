@@ -11,13 +11,17 @@ public class SkillTree : MonoBehaviour
     public int[] skillCaps; // max level mỗi skill
     public string[] skillNames; //tên skill
     public string[] skillDescriptions; // mô tả skill
+    public int[] skillCooldown; // thoi gian hoi chieu
+    public bool[] isActiveSkill; // skill active hay passive
     [Header("Skill manager")]
     public List<Skill> skillList;
     public GameObject skillHolder;
+    public int[] skillDamage;
+    public int[] manaDecrease;
+    public int[] tempDameInscrease;
     [Header("Connection manager")]
     public List<GameObject> connectionList;
     public GameObject connectionHolder;
-
     PlayerManager playerManager;
     public Sprite[] sprites;
     public int skillPoint;
@@ -25,7 +29,7 @@ public class SkillTree : MonoBehaviour
     {
         playerManager = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerManager>();
         skillLevels = new int[10];
-        skillCaps = new[] { 1, 1, 1, 1, 3, 5, 9, 3, 3, 3 };
+        skillCaps = new[] { 1, 1, 1, 1, 3, 5, 9, 3, 2, 1 };
         skillNames = new[] { "Skill 1", "Skill 2", "Skill 2 Evolved", "Skill 2 Evolved Upgrade", 
             "Skill 3", "Skill 3 Evolved", "Skill 3 Evolved Upgrade", "Skill 4", "Skill 4 Evolved", "Skill 4 Evolved Upgrade" };
         skillDescriptions = new[]
@@ -41,7 +45,12 @@ public class SkillTree : MonoBehaviour
             "Tiêu hao lượng vừa mana tăng lượng vừa tấn công",
             "Tiêu hao một ít mana tăng lượng lớn tấn công tấn công",
         };
-        foreach(var skill in skillHolder.GetComponentsInChildren<Skill>())
+        isActiveSkill = new[] { false, false, false, false, true, true, true, true, true, true };
+        skillCooldown = new[] { 0, 0, 0, 0, 10, 20, 40, 10, 20, 30 };
+        skillDamage = new int[3] { 0, 0, 0 };
+        manaDecrease = new int[3] { 500, 250, 100 };
+        tempDameInscrease = new int[3] { 0, 0, 0 };
+        foreach (var skill in skillHolder.GetComponentsInChildren<Skill>())
         {
             skillList.Add(skill);
         }

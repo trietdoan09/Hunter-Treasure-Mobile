@@ -43,12 +43,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 60
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -147,7 +147,175 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Special_Attack_1_20
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 45
+        height: 73
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7da364aa7a43f674cacc6a9a1012748c
+      internalID: 2116546097
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Special_Attack_1_23
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 44
+        height: 73
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c3977e0c2f108941b2b7c419b7aaed1
+      internalID: 2007292854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Special_Attack_1_24
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 0
+        width: 44
+        height: 73
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3eb120c1a3c7fa04da3f45da0616f93f
+      internalID: -985665596
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Special_Attack_1_25
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 0
+        width: 44
+        height: 73
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 743504b9fc7e1a943acba0b9b9c119d2
+      internalID: -2135377632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Special_Attack_1_35
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 0
+        width: 44
+        height: 72
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a1accd34e03a0948a566fa3bd9b2ea7
+      internalID: -1429121417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Special_Attack_1_36
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 0
+        width: 53
+        height: 70
+      alignment: 9
+      pivot: {x: 0.4306491, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: acbbe12bc982044438f62a06214ecca9
+      internalID: 1653909651
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Special_Attack_1_38
+      rect:
+        serializedVersion: 2
+        x: 801
+        y: 0
+        width: 59
+        height: 70
+      alignment: 9
+      pivot: {x: 0.38, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55dc47ecdd7273c4e92bff8e168f584c
+      internalID: -327368069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Special_Attack_1_39
+      rect:
+        serializedVersion: 2
+        x: 929
+        y: 0
+        width: 64
+        height: 69
+      alignment: 9
+      pivot: {x: 0.35, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63bdcee81213f854aa7ed19ed852dc2f
+      internalID: 229109736
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -158,7 +326,80 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Special_Attack_1_0: 1314512716
+      Special_Attack_1_1: 97389040
+      Special_Attack_1_10: 483331765
+      Special_Attack_1_11: 219750198
+      Special_Attack_1_12: 896129491
+      Special_Attack_1_13: 1393084036
+      Special_Attack_1_14: -42341439
+      Special_Attack_1_15: -37179665
+      Special_Attack_1_16: 14499694
+      Special_Attack_1_17: -2056755858
+      Special_Attack_1_18: -338939882
+      Special_Attack_1_19: -417257353
+      Special_Attack_1_2: -976432092
+      Special_Attack_1_20: 2116546097
+      Special_Attack_1_21: -1198380663
+      Special_Attack_1_22: -551177156
+      Special_Attack_1_23: 2007292854
+      Special_Attack_1_24: -985665596
+      Special_Attack_1_25: -2135377632
+      Special_Attack_1_26: -106297182
+      Special_Attack_1_27: -1720468871
+      Special_Attack_1_28: 1299850526
+      Special_Attack_1_29: -1384232105
+      Special_Attack_1_3: 928475018
+      Special_Attack_1_30: 303032869
+      Special_Attack_1_31: 479492956
+      Special_Attack_1_32: 1724683786
+      Special_Attack_1_33: 538846760
+      Special_Attack_1_34: 331800929
+      Special_Attack_1_35: -1429121417
+      Special_Attack_1_36: 1653909651
+      Special_Attack_1_37: -322717060
+      Special_Attack_1_38: -327368069
+      Special_Attack_1_39: 229109736
+      Special_Attack_1_4: 696959702
+      Special_Attack_1_40: 869804174
+      Special_Attack_1_41: -1900626154
+      Special_Attack_1_42: 1245272902
+      Special_Attack_1_43: -475927664
+      Special_Attack_1_44: 631441799
+      Special_Attack_1_45: -208779907
+      Special_Attack_1_46: -1695622915
+      Special_Attack_1_47: 243523050
+      Special_Attack_1_48: -1515432760
+      Special_Attack_1_49: -854298617
+      Special_Attack_1_5: -1026792649
+      Special_Attack_1_50: -992687105
+      Special_Attack_1_51: -1946475899
+      Special_Attack_1_52: -1394167645
+      Special_Attack_1_53: 472858875
+      Special_Attack_1_54: 373213297
+      Special_Attack_1_55: -175777475
+      Special_Attack_1_56: 2050737794
+      Special_Attack_1_57: -1116411487
+      Special_Attack_1_58: 53797683
+      Special_Attack_1_59: 355368521
+      Special_Attack_1_6: -560573517
+      Special_Attack_1_60: -1324110308
+      Special_Attack_1_61: -1493180972
+      Special_Attack_1_62: 1391879336
+      Special_Attack_1_63: -1224995563
+      Special_Attack_1_64: 722469582
+      Special_Attack_1_65: 106920516
+      Special_Attack_1_66: -1372571675
+      Special_Attack_1_67: 1729934679
+      Special_Attack_1_68: -363325339
+      Special_Attack_1_69: -589216590
+      Special_Attack_1_7: 174015592
+      Special_Attack_1_70: -1263121544
+      Special_Attack_1_71: 324284728
+      Special_Attack_1_72: 1924972838
+      Special_Attack_1_8: 268518011
+      Special_Attack_1_9: 857195563
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
