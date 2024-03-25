@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -8,8 +9,9 @@ using UnityEngine.UI;
 public class MapManager : MonoBehaviour
 {
     public static MapManager Instance;
-    public GameObject loadScene;
+    public GameObject loader;
     public Image progressBar;
+    public TextMeshProUGUI progressText;
     public float target;
 
     private void Awake()
@@ -25,8 +27,12 @@ public class MapManager : MonoBehaviour
         }
 
     }
+    private void Start()
+    {
+        progressText.text = progressBar.fillAmount.ToString();
+    }
 
-    public async void LoadScene(string sceneName)
+    public async void Loader(string sceneName)
     {
         target = 0;
         progressBar.fillAmount = 0;
@@ -34,23 +40,32 @@ public class MapManager : MonoBehaviour
         var scene = SceneManager.LoadSceneAsync(sceneName);
         scene.allowSceneActivation = false;
 
-        loadScene.SetActive(true);
+        loader.SetActive(true);
 
         do
         {
-            await Task.Delay(100);
+            await Task.Delay(1000);
            target = scene.progress;
 
-        } while (scene.progress <0.9f);
+        } while (scene.progress < 0.9f);
 
-        await Task.Delay(1000);
+        await Task.Delay(500);
 
         scene.allowSceneActivation = true;
-        loadScene.SetActive(false);
+        Invoke(nameof(DeplayLoader), 0.5f);
     }
 
     private void Update()
     {
         progressBar.fillAmount = Mathf.MoveTowards(progressBar.fillAmount, target, 3 * Time.deltaTime);
+        var total = progressBar.fillAmount * 100;
+        progressText.text = total.ToString("0") + "%";
+
+    }
+
+    public void DeplayLoader()
+    {
+        loader.SetActive(false);
+
     }
 }
