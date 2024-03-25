@@ -109341,7 +109341,19 @@ PrefabInstance:
       objectReference: {fileID: 3373379263192407004}
     - target: {fileID: 1791163817540707411, guid: 97649065a95bc7d49b431ec45b1c415e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadMapJungle
+      value: LoadScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 1809423304669662893, guid: 97649065a95bc7d49b431ec45b1c415e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.765
+      objectReference: {fileID: 0}
+    - target: {fileID: 1809423304669662893, guid: 97649065a95bc7d49b431ec45b1c415e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.185
+      objectReference: {fileID: 0}
+    - target: {fileID: 2070216075115532100, guid: 97649065a95bc7d49b431ec45b1c415e, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2070216075115532100, guid: 97649065a95bc7d49b431ec45b1c415e, type: 3}
       propertyPath: transformPlayer
@@ -109357,11 +109369,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7828997417123966887, guid: 97649065a95bc7d49b431ec45b1c415e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -71.63
+      value: -68.21
       objectReference: {fileID: 0}
     - target: {fileID: 7828997417123966887, guid: 97649065a95bc7d49b431ec45b1c415e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.46
+      value: -1.44
       objectReference: {fileID: 0}
     - target: {fileID: 7828997417123966887, guid: 97649065a95bc7d49b431ec45b1c415e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -109399,20 +109411,36 @@ PrefabInstance:
       propertyPath: m_text
       value: "D\u1ECBch chuy\u1EC3n \u0111\u1EBFn Jungle"
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 9176954046987417109, guid: 97649065a95bc7d49b431ec45b1c415e, type: 3}
+      propertyPath: exitName
+      value: Village
+      objectReference: {fileID: 0}
+    - target: {fileID: 9176954046987417109, guid: 97649065a95bc7d49b431ec45b1c415e, type: 3}
+      propertyPath: sceneToLoad
+      value: MapJungle
+      objectReference: {fileID: 0}
+    - target: {fileID: 9186776568206409572, guid: 97649065a95bc7d49b431ec45b1c415e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 2070216075115532100, guid: 97649065a95bc7d49b431ec45b1c415e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 9186776568206409572, guid: 97649065a95bc7d49b431ec45b1c415e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3373379263192407007}
   m_SourcePrefab: {fileID: 100100000, guid: 97649065a95bc7d49b431ec45b1c415e, type: 3}
 --- !u!114 &3373379263192407004 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2070216075115532100, guid: 97649065a95bc7d49b431ec45b1c415e, type: 3}
+  m_CorrespondingSourceObject: {fileID: 9176954046987417109, guid: 97649065a95bc7d49b431ec45b1c415e, type: 3}
   m_PrefabInstance: {fileID: 3373379263192407003}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b602ded3f7a877b4fb7d884a2c88339c, type: 3}
+  m_Script: {fileID: 11500000, guid: 56ea085c6343f0f408d14a2d03ed9d02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &3373379263192407005 stripped
@@ -109420,6 +109448,25 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1809423304669662893, guid: 97649065a95bc7d49b431ec45b1c415e, type: 3}
   m_PrefabInstance: {fileID: 3373379263192407003}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &3373379263192407006 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9186776568206409572, guid: 97649065a95bc7d49b431ec45b1c415e, type: 3}
+  m_PrefabInstance: {fileID: 3373379263192407003}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3373379263192407007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3373379263192407006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93a0ecd87a2434542968bd959a9a5cbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lastExitName: Jungle
+  playerTransform: {fileID: 3373379263192407005}
 --- !u!224 &6271104068132178216 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3469702154743436305, guid: 284bb23ca19f9854181e6721ac4528ea, type: 3}

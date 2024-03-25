@@ -7,6 +7,6 @@ public class ChangeScene : MonoBehaviour
 {
     public void ChangeScenes(string sceneName)
     {
-        MapManager.Instance.LoadScene(sceneName);
+        MapManager.Instance.Loader(sceneName);
     }
 }

@@ -929,6 +929,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: TelePortDungeon
       objectReference: {fileID: 0}
+    - target: {fileID: 1692896341570524156, guid: 6efc1d0434082d74e9d9c3e8e6ed0fd0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.895
+      objectReference: {fileID: 0}
+    - target: {fileID: 5955891255052817780, guid: 6efc1d0434082d74e9d9c3e8e6ed0fd0, type: 3}
+      propertyPath: lastExitName
+      value: Dungeon
+      objectReference: {fileID: 0}
+    - target: {fileID: 7438760851623972229, guid: 6efc1d0434082d74e9d9c3e8e6ed0fd0, type: 3}
+      propertyPath: exitName
+      value: Desert2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7438760851623972229, guid: 6efc1d0434082d74e9d9c3e8e6ed0fd0, type: 3}
+      propertyPath: sceneToLoad
+      value: MapDungeon
+      objectReference: {fileID: 0}
+    - target: {fileID: 7712040625352736270, guid: 6efc1d0434082d74e9d9c3e8e6ed0fd0, type: 3}
+      propertyPath: m_text
+      value: "D\u1ECBch chuy\u1EC3n \u0111\u1EBFn Dungeon"
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -80293,10 +80313,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 254706644125391448, guid: 6efc1d0434082d74e9d9c3e8e6ed0fd0, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadMapJungle
-      objectReference: {fileID: 0}
     - target: {fileID: 1375590784695770655, guid: 6efc1d0434082d74e9d9c3e8e6ed0fd0, type: 3}
       propertyPath: m_LocalPosition.x
       value: -28.165668
@@ -80341,13 +80357,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: TelePortJungle
       objectReference: {fileID: 0}
-    - target: {fileID: 2672079038147787579, guid: 6efc1d0434082d74e9d9c3e8e6ed0fd0, type: 3}
-      propertyPath: m_IsActive
-      value: 0
+    - target: {fileID: 5955891255052817780, guid: 6efc1d0434082d74e9d9c3e8e6ed0fd0, type: 3}
+      propertyPath: lastExitName
+      value: Jungle2
       objectReference: {fileID: 0}
-    - target: {fileID: 7712040625352736270, guid: 6efc1d0434082d74e9d9c3e8e6ed0fd0, type: 3}
-      propertyPath: m_text
-      value: "D\u1ECBch chuy\u1EC3n \u0111\u1EBFn Jungle"
+    - target: {fileID: 7438760851623972229, guid: 6efc1d0434082d74e9d9c3e8e6ed0fd0, type: 3}
+      propertyPath: exitName
+      value: Desert
+      objectReference: {fileID: 0}
+    - target: {fileID: 7438760851623972229, guid: 6efc1d0434082d74e9d9c3e8e6ed0fd0, type: 3}
+      propertyPath: sceneToLoad
+      value: MapJungle
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

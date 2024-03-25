@@ -9,13 +9,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1692896341570524156}
+  - component: {fileID: 5955891255052817780}
   m_Layer: 0
   m_Name: Transform
   m_TagString: Untagged
   m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1692896341570524156
 Transform:
   m_ObjectHideFlags: 0
@@ -25,12 +26,26 @@ Transform:
   m_GameObject: {fileID: 737122385294060294}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 3.33, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1375590784695770655}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5955891255052817780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 737122385294060294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93a0ecd87a2434542968bd959a9a5cbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lastExitName: Desert
+  playerTransform: {fileID: 1692896341570524156}
 --- !u!1 &1388940306203355095
 GameObject:
   m_ObjectHideFlags: 0
@@ -43,7 +58,7 @@ GameObject:
   - component: {fileID: 7599972038027723562}
   - component: {fileID: 8508380722267314315}
   - component: {fileID: 5329231969306461386}
-  - component: {fileID: 1123063110186818497}
+  - component: {fileID: 7438760851623972229}
   m_Layer: 0
   m_Name: TelePortYellow
   m_TagString: TelePort
@@ -186,7 +201,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.8, y: 2.681717}
   m_EdgeRadius: 0
---- !u!114 &1123063110186818497
+--- !u!114 &7438760851623972229
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -195,11 +210,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1388940306203355095}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b602ded3f7a877b4fb7d884a2c88339c, type: 3}
+  m_Script: {fileID: 11500000, guid: 56ea085c6343f0f408d14a2d03ed9d02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   notificationLoadscene: {fileID: 2672079038147787579}
-  transformPlayer: {fileID: 0}
+  sceneToLoad: MapDesert
+  exitName: Jungle
 --- !u!1001 &868627180769158712
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -215,10 +231,14 @@ PrefabInstance:
     - target: {fileID: 1118332545763130464, guid: 564a8ba7da716de4fa31329da5e9dfe0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1123063110186818497}
+      objectReference: {fileID: 7438760851623972229}
     - target: {fileID: 1118332545763130464, guid: 564a8ba7da716de4fa31329da5e9dfe0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadMapDungeon
+      value: LoadScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 1118332545763130464, guid: 564a8ba7da716de4fa31329da5e9dfe0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: LoadScenManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1269089368025317378, guid: 564a8ba7da716de4fa31329da5e9dfe0, type: 3}
       propertyPath: m_fontAsset
@@ -346,7 +366,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7425124923807979574, guid: 564a8ba7da716de4fa31329da5e9dfe0, type: 3}
       propertyPath: m_text
-      value: "D\u1ECBch chuy\u1EC3n \u0111\u1EBFn Dungeon"
+      value: "D\u1ECBch chuy\u1EC3n \u0111\u1EBFn Jungle"
       objectReference: {fileID: 0}
     - target: {fileID: 7425124923807979574, guid: 564a8ba7da716de4fa31329da5e9dfe0, type: 3}
       propertyPath: m_fontAsset
