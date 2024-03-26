@@ -9,7 +9,7 @@ public class PlayerManager : MonoBehaviour
     public int id;
     public string nameCharacter;
     [SerializeField] private CharacterGender genderCharacter;
-    [SerializeField] private CharacterClass characterClass;
+    public CharacterClass characterClass;
     [SerializeField] private CharacterDatabase characterDatabase;
     private Animator animator;
     Characters characters;

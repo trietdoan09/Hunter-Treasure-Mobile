@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     private float moveSpeed;
 
     public bool testJump;
+    public int playerDirection;
 
     // Start is called before the first frame update
     void Start()
@@ -49,11 +50,13 @@ public class PlayerMovement : MonoBehaviour
     {
         if(joystick.joystickVec.x < 0)
         {
-            transform.localScale = new Vector3(-1, 1, 1);
+            playerDirection = -1;
+            transform.localScale = new Vector3(playerDirection, 1, 1);
         }
         else
         {
-            transform.localScale = new Vector3(1, 1, 1);
+            playerDirection = 1;
+            transform.localScale = new Vector3(playerDirection, 1, 1);
         }
     }
     public void Jump()
