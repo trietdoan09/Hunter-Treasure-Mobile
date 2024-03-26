@@ -17,6 +17,7 @@ public class Skill : MonoBehaviour
     private void Start()
     {
         playerManager = GameObject.FindGameObjectWithTag("Player");
+        
     }
     public void UpdateUI()
     {
@@ -38,6 +39,72 @@ public class Skill : MonoBehaviour
         }
         playerManager.GetComponent<PlayerManager>().playerSkillPoint -= 1;
         skillTree.skillLevels[id]++;
+        ActiveSkill();
         skillTree.UpdateAllSkillUI();
+    }
+    private void ActiveSkill() 
+    {
+        switch (id)
+        {
+            case 0:
+                {
+                    playerManager.GetComponent<PlayerManager>().playerMaxManaPoint += 100;
+                    playerManager.GetComponent<PlayerManager>().playerMaxHealPoint += 50;
+                    playerManager.GetComponent<PlayerManager>().playerDefendPoint += 10;
+                    playerManager.GetComponent<PlayerManager>().playerAttackPoint += 15;
+                    break;
+                }
+            case 1:
+                {
+                    playerManager.GetComponent<PlayerManager>().playerMaxManaPoint += 20;
+                    break;
+                }
+            case 2:
+                {
+                    playerManager.GetComponent<PlayerManager>().playerMaxManaPoint += 50;
+                    playerManager.GetComponent<PlayerManager>().playerAttackPoint += 10;
+                    break;
+                }
+            case 3:
+                {
+                    playerManager.GetComponent<PlayerManager>().playerMaxManaPoint += 100;
+                    playerManager.GetComponent<PlayerManager>().playerAttackPoint += 30;
+                    break;
+                }
+            case 4:
+                {
+                    skillTree.skillDamage[0] += 80;
+                    break;
+                }
+            case 5:
+                {
+                    skillTree.skillDamage[1] += 75;
+                    break;
+                }
+            case 6:
+                {
+                    skillTree.skillDamage[2] += 70;
+                    break;
+                }
+            case 7:
+                {
+                    skillTree.manaDecrease[0] -= 35;
+                    skillTree.tempDameInscrease[0] += 10;
+                    break;
+                }
+            case 8:
+                {
+                    skillTree.manaDecrease[1] -= 25;
+                    skillTree.tempDameInscrease[1] += 50;
+                    break;
+                }
+            case 9:
+                {
+                    skillTree.tempDameInscrease[2] += 200;
+                    break;
+                }
+
+            default: break;
+        }
     }
 }
