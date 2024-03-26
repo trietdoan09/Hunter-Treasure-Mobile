@@ -3,16 +3,14 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static SkillTree;
 
 public class OpenSkillAndInfomationPlayer : MonoBehaviour
 {
     [SerializeField] private GameObject uiCanvas;
-    [SerializeField] private GameObject uiSkill;
-    [SerializeField] private GameObject uiInfomation;
+    [SerializeField] private List<GameObject> uiPlayerInfo;
+    [SerializeField] private List<GameObject> uiChosenButton;
     [SerializeField] private GameObject uiCloseButton;
-    [SerializeField] private GameObject chosenInfo;
-    [SerializeField] private GameObject chosenSkill;
-    private bool isShowCanvas;
 
     [Header("Hien trang thai len tab info ui")]
     [SerializeField] private TextMeshProUGUI textHP;
@@ -31,6 +29,17 @@ public class OpenSkillAndInfomationPlayer : MonoBehaviour
     [SerializeField] private TextMeshProUGUI textUiHp;
     [SerializeField] private TextMeshProUGUI textUiMp;
 
+    [Header("Chon ky nang")]
+    public int id;
+    public GameObject skillHolder;
+    public GameObject buttonHolder;
+    public List<TextMeshProUGUI> titleText;
+    public List<SetSkill> skillActive;
+    public List<SkillButton> skillButtons;
+    public List<Image> images;
+    [SerializeField] private List<Image> border;
+    public int[] buttonHoldSkillId;
+
     private GameObject playerManager;
 
     // Start is called before the first frame update
@@ -38,10 +47,14 @@ public class OpenSkillAndInfomationPlayer : MonoBehaviour
     {
         playerManager = GameObject.FindGameObjectWithTag("Player");
         uiCanvas.SetActive(false);
-        uiSkill.SetActive(false);
-        chosenSkill.SetActive(false);
-        uiInfomation.SetActive(false);
-        chosenInfo.SetActive(false);
+        foreach(var uilayer in uiPlayerInfo)
+        {
+            uilayer.SetActive(false);
+        }
+        foreach(var uiChosen in uiChosenButton)
+        {
+            uiChosen.SetActive(false);
+        }
         sliderHP.maxValue = playerManager.GetComponent<PlayerManager>().playerMaxHealPoint;
         sliderMP.maxValue = playerManager.GetComponent<PlayerManager>().playerMaxManaPoint;
         sliderExp.maxValue = playerManager.GetComponent<PlayerManager>().maxExp;
@@ -51,12 +64,30 @@ public class OpenSkillAndInfomationPlayer : MonoBehaviour
         StartCoroutine(showHpBar());
         StartCoroutine(showMpBar());
         StartCoroutine(showExpBar());
-    }
+        foreach(var setSkill in skillHolder.GetComponentsInChildren<SetSkill>())
+        {
+            skillActive.Add(setSkill);
+        }
+        for (var i = 0; i < skillActive.Count; i++)
+        {
+            skillActive[i].setSkillId = i + 4;
+        }
+        foreach(var button in buttonHolder.GetComponentsInChildren<SkillButton>())
+        {
+            skillButtons.Add(button);
+        }
+        for (var i = 0; i < skillButtons.Count; i++)
+        {
+            skillButtons[i].buttonId = i;
+        }
+        buttonHoldSkillId = new int[skillButtons.Count];
+;    }
 
     // Update is called once per frame
     void Update()
     {
         ShowUiStatus();
+        showSkillHaveLearned();
     }
     
     private IEnumerator showHpBar()
@@ -114,51 +145,67 @@ public class OpenSkillAndInfomationPlayer : MonoBehaviour
     }
     public void PlayerSkillClick()
     {
-        if (!isShowCanvas)
+        uiCanvas.SetActive(true);
+        foreach (var uilayer in uiPlayerInfo)
         {
-            isShowCanvas = true;
-            uiCanvas.SetActive(isShowCanvas);
-            uiSkill.SetActive(true);
-            chosenSkill.SetActive(true);
-            uiInfomation.SetActive(false);
-            chosenInfo.SetActive(false);
+            uilayer.SetActive(false);
         }
-        else
+        uiPlayerInfo[1].SetActive(true);
+        foreach (var uiChosen in uiChosenButton)
         {
-            uiSkill.SetActive(true);
-            chosenSkill.SetActive(true);
-            uiInfomation.SetActive(false);
-            chosenInfo.SetActive(false);
+            uiChosen.SetActive(false);
         }
+        uiChosenButton[1].SetActive(true);
     }
 
     public void PlayerInfoClick()
     {
-        if (!isShowCanvas)
+        uiCanvas.SetActive(true);
+        foreach (var uilayer in uiPlayerInfo)
         {
-            isShowCanvas = true;
-            uiCanvas.SetActive(isShowCanvas);
-            uiSkill.SetActive(false);
-            chosenSkill.SetActive(false);
-            uiInfomation.SetActive(true);
-            chosenInfo.SetActive(true);
+            uilayer.SetActive(false);
         }
-        else
+        uiPlayerInfo[0].SetActive(true);
+        foreach (var uiChosen in uiChosenButton)
         {
-            uiSkill.SetActive(false);
-            chosenSkill.SetActive(false);
-            uiInfomation.SetActive(true);
-            chosenInfo.SetActive(true);
+            uiChosen.SetActive(false);
         }
+        uiChosenButton[0].SetActive(true);
+    }
+    public void SetSkillClick()
+    {
+        uiCanvas.SetActive(true);
+        foreach (var uilayer in uiPlayerInfo)
+        {
+            uilayer.SetActive(false);
+        }
+        uiPlayerInfo[2].SetActive(true);
+        foreach (var uiChosen in uiChosenButton)
+        {
+            uiChosen.SetActive(false);
+        }
+        uiChosenButton[2].SetActive(true);
     }
 
     public void CloseButtonClick()
     {
-        isShowCanvas = false;
-        uiCanvas.SetActive(isShowCanvas);
-        uiSkill.SetActive(false);
-        chosenSkill.SetActive(false);
-        uiInfomation.SetActive(false);
-        chosenInfo.SetActive(false);
+        uiCanvas.SetActive(false);
+        foreach (var uilayer in uiPlayerInfo)
+        {
+            uilayer.SetActive(false);
+        }
+        foreach (var uiChosen in uiChosenButton)
+        {
+            uiChosen.SetActive(false);
+        }
+    }
+    private void showSkillHaveLearned()
+    {
+        for (var i = 0; i < skillActive.Count; i++)
+        {
+            skillActive[i].gameObject.SetActive(skillTree.skillLevels[i + 4] > 0);
+            titleText[i].text = $"{skillTree.skillNames[i + 4]} \n {skillTree.skillLevels[i + 4]} / {skillTree.skillCaps[i + 4]} ";
+            images[i].sprite = skillTree.sprites[i + 4];
+        }
     }
 }
