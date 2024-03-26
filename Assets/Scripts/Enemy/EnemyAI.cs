@@ -21,7 +21,7 @@ public class EnemyAI : MonoBehaviour
 
     private void Start()
     {
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
         target = FindAnyObjectByType<PlayerMovement>().transform;
         rightPos = GetComponentInParent<EnemySpawn>().transform;
         enemyMovement = GetComponentInParent<EnemyMovement>();
