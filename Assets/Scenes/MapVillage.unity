@@ -109466,7 +109466,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lastExitName: Jungle
-  playerTransform: {fileID: 3373379263192407005}
 --- !u!224 &6271104068132178216 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3469702154743436305, guid: 284bb23ca19f9854181e6721ac4528ea, type: 3}

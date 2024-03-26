@@ -22,7 +22,7 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] private int giveExp;
     void Start()
     {
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
         collider2D = GetComponent<Collider2D>();
         rigidbody2D = GetComponent<Rigidbody2D>();
         playerManager = GameObject.FindGameObjectWithTag("Player");
