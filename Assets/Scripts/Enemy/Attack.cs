@@ -17,7 +17,7 @@ public class Attack : MonoBehaviour
             if(Input.GetMouseButtonDown(0))
         {
             EnemyHealth enemyHealth = GetComponentInParent<EnemyHealth>();
-            enemyHealth.health -= 50;
+            //enemyHealth.health -= 50;
 
         }
     }
