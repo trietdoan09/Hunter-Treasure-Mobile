@@ -49,7 +49,7 @@ public class EnemyHealth : MonoBehaviour
                 animator.SetTrigger("Dead");
 
                 if (GetComponent<EnemyHealth>() != null)
-                    GetComponent<EnemyHealth>().enabled = false;
+                    //GetComponent<EnemyHealth>().enabled = false;
                 if (GetComponent<EnemyAI>() != null)
                     GetComponent<EnemyAI>().enabled = false;
                 if (GetComponent<EnemyAttack>() != null)

@@ -15,9 +15,16 @@ public class CombatSystem : MonoBehaviour
     [SerializeField] private Vector2 attackRange;
     [SerializeField] private LayerMask enemyLayers;
     private PlayerManager playerManager;
+    private PlayerMovement playerMovement;
     [Header("Skill info")]
-    [SerializeField] private int idSkill;
-    public int skillCoolDown;
+    public GameObject buttonSkillHolder;
+    public List<PlayerUseSkill> useSkills;
+    public int idSkill;
+    public int[] skillCoolDown;
+    public int buttonCallUseSkill;
+    private int[] manaUse;
+    [Header("Spawn Skill")]
+    [SerializeField] private List<GameObject> spawnSkills;
     private void Awake()
     {
         instance = this;
@@ -27,8 +34,18 @@ public class CombatSystem : MonoBehaviour
     {
         playerManager = GetComponent<PlayerManager>();
         characterAnim = GetComponent<Animator>();
+        playerMovement = GetComponent<PlayerMovement>();
         attackRange = new Vector2(1, 0.5f);
-        skillCoolDown = 0;
+        skillCoolDown = new int[3] { 0, 0, 0 };
+        foreach (var skill in buttonSkillHolder.GetComponentsInChildren<PlayerUseSkill>())
+        {
+            useSkills.Add(skill);
+        }
+        for (var i = 0; i < useSkills.Count; i++)
+        {
+            useSkills[i].buttonId = i;
+        }
+        StartCoroutine(StartskillCoolDownnSkill());
     }
 
     // Update is called once per frame
@@ -43,11 +60,15 @@ public class CombatSystem : MonoBehaviour
             Collider2D[] hitEmenys = Physics2D.OverlapBoxAll(attackPostition.position,attackRange,enemyLayers);
             foreach(Collider2D enemy in hitEmenys)
             {
-                if(enemy.name == "Enemy")
+                if(enemy.gameObject.layer == 7)
                 {
                     Debug.Log("We hit" + enemy.name);
                     StartCoroutine(DelayAnimAttack(enemy));
                     //enemy.GetComponent<EnemyHealth>().EnemyTakeDamage(playerManager.playerAttackPoint);
+                }
+                else
+                {
+                    Debug.Log("We hit" + enemy.gameObject.layer);
                 }
             }
         }
@@ -69,29 +90,57 @@ public class CombatSystem : MonoBehaviour
     {
         if (skillTree.isActiveSkill[idSkill])
         {
-            if (skillCoolDown <= 0)
+            if (skillCoolDown[buttonCallUseSkill] <= 0)
             {
-                skillCoolDown = skillTree.skillCooldown[idSkill];
-                if(idSkill> 3 && idSkill < 7)
+                if(idSkill == 4 && playerManager.playerCurrentManaPoint >= 50 || idSkill == 5 && playerManager.playerCurrentManaPoint >= 100 
+                    || idSkill == 6 && playerManager.playerCurrentManaPoint >= 200)
                 {
+                    skillCoolDown[buttonCallUseSkill] = skillTree.skillCooldown[idSkill];
                     StartCoroutine(UseSkillAnim());
                 }
-                StartCoroutine(StartskillCoolDownnSkill());
             }
+        }
+    }
+    public void SpawnSkillWizard()
+    {
+        for(int i=0; i < spawnSkills.Count; i++)
+        {
+            if (i == idSkill - 4)
+            {
+                var spawnSkill = Instantiate(spawnSkills[i]);
+                spawnSkill.transform.position = transform.position + new Vector3(1 * playerMovement.playerDirection, 0, 0);
+                spawnSkill.transform.localScale = new Vector3(1 * playerMovement.playerDirection, 1, 1);
+            }
+        }
+    }
+    public void SetSkillSpawn()
+    {
+        switch (playerManager.characterClass)
+        {
+            case CharacterClass.Wizard:
+                {
+                    SpawnSkillWizard();
+                    break;
+                }
         }
     }
     IEnumerator UseSkillAnim()
     {
         characterAnim.SetBool("UseSkill" + (idSkill - 3), true);
         yield return new WaitForSeconds(0.8f);
+        SetSkillSpawn();
         characterAnim.SetBool("UseSkill" + (idSkill - 3), false);
         yield return null;
     }
     private IEnumerator StartskillCoolDownnSkill()
     {
-        while (skillCoolDown > 0)
+        while (true)
         {
-            skillCoolDown--;
+            for(int i = 0; i < skillCoolDown.Length; i++)
+            {
+                if (skillCoolDown[i] > 0)
+                    skillCoolDown[i]--;
+            }
             yield return new WaitForSeconds(1f);
         }
     }
