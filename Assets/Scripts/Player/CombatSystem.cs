@@ -22,6 +22,7 @@ public class CombatSystem : MonoBehaviour
     public int idSkill;
     public int[] skillCoolDown;
     public int buttonCallUseSkill;
+    private int[] manaUse;
     [Header("Spawn Skill")]
     [SerializeField] private List<GameObject> spawnSkills;
     private void Awake()
@@ -59,11 +60,15 @@ public class CombatSystem : MonoBehaviour
             Collider2D[] hitEmenys = Physics2D.OverlapBoxAll(attackPostition.position,attackRange,enemyLayers);
             foreach(Collider2D enemy in hitEmenys)
             {
-                if(enemy.name == "Enemy")
+                if(enemy.gameObject.layer == 7)
                 {
                     Debug.Log("We hit" + enemy.name);
                     StartCoroutine(DelayAnimAttack(enemy));
                     //enemy.GetComponent<EnemyHealth>().EnemyTakeDamage(playerManager.playerAttackPoint);
+                }
+                else
+                {
+                    Debug.Log("We hit" + enemy.gameObject.layer);
                 }
             }
         }
