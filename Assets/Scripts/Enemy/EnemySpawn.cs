@@ -1,26 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemySpawn : MonoBehaviour
 {
-    public GameObject enemyPrefab;
-    public Transform enemyTransform;
+   
+    public Transform enemySpawns;
 
     public float timeRespawn;
     public float timeCount;
 
     void Start()
     {
-
         timeCount = timeRespawn;
     }
 
     void Update()
     {
-        EnemyHealth enemyHealth = GetComponentInChildren<EnemyHealth>();
-        if (enemyHealth == null)
+
+        Animator animator = GetComponentInChildren<Animator>();
+
+        if (animator == null)
         {
             timeCount -= Time.deltaTime;
             if (timeCount <= 0)
@@ -34,7 +36,8 @@ public class EnemySpawn : MonoBehaviour
     public void SpawnEnemy()
     {
         timeCount = timeRespawn;
-        Instantiate(enemyPrefab, transform);
 
+        EnemyHealth enemyHealth = GetComponentInChildren<EnemyHealth>();
+        enemyHealth.SpawnEnemy();
     }
 }

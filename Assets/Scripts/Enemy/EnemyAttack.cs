@@ -9,6 +9,10 @@ public class EnemyAttack : MonoBehaviour
     [SerializeField] float range;
     [SerializeField] int damage;
 
+    [Header("Enemy Range")]
+    public GameObject skill;
+    public Transform targetPosition;
+
     [Header("Collider Parameters")]
     [SerializeField] float colliderDistance;
     [SerializeField] BoxCollider2D boxCollider;
@@ -67,7 +71,10 @@ public class EnemyAttack : MonoBehaviour
         if (PlayerInSight())
 
             playerManager.PlayerTakeDame(damage);
-
     }
 
+    public void DamageRange()
+    {
+        Instantiate(skill, targetPosition);
+    }
 }

@@ -2,8 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Attack : MonoBehaviour
+public class AttackRange : MonoBehaviour
 {
+    public GameObject skill;
+    public Transform targetPosition;
+
+    public void DamageRange()
+    {
+        Instantiate(skill, targetPosition);
+    }
+
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -13,22 +21,6 @@ public class Attack : MonoBehaviour
 
         }
     }
-
-    public void DamagePlayer()
-    {
-        EnemyAttack enemyAttack = GetComponentInParent<EnemyAttack>();
-
-        enemyAttack.DamagePlayer();
-
-    }
-
-    public void DamageRange()
-    {
-        EnemyAttack enemyAttack = GetComponentInParent<EnemyAttack>();
-        enemyAttack.DamageRange();
-    }
-
-
     public void Deactive()
     {
         gameObject.SetActive(false);

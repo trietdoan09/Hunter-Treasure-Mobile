@@ -34,7 +34,9 @@ public class EnemyAI : MonoBehaviour
     private void Update()
     {
         animator.SetTrigger("Idle");
-        if(!enemyMovement.EnemyMove())
+        var direction = target.transform.position.x - transform.position.x;
+
+        if (!enemyMovement.EnemyMove())
         {
             EnemyMovement();
         }
@@ -42,7 +44,7 @@ public class EnemyAI : MonoBehaviour
         if(enemyMovement.EnemyMove() && Vector3.Distance(target.transform.position, transform.position) > range)
         {
               animator.SetBool("Moving", true);
-              animator.SetFloat("MoveX", (target.transform.position.x - transform.position.x));
+              animator.SetFloat("MoveX", direction);
 
               transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
 
