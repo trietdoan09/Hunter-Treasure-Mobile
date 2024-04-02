@@ -7,8 +7,6 @@ using UnityEngine;
 public class EnemySpawn : MonoBehaviour
 {
    
-    public Transform enemySpawns;
-
     public float timeRespawn;
     public float timeCount;
 

@@ -59,7 +59,7 @@ public class EnemyHealth : MonoBehaviour
                 var item = Instantiate(theDrop[Random.Range(0, theDrop.Length)]);
                 item.transform .position = gameObject.transform.position;
 
-                //Destroy(gameObject, 5);
+                Invoke(nameof(Deactivate), 5);
             }
         }
     }
@@ -90,5 +90,9 @@ public class EnemyHealth : MonoBehaviour
         health -= damage > 0 ? damage : 0;
         heathSlider.value = health;
     }
-    
+
+    private void Deactivate()
+    {
+        enemySpawn.SetActive(false);
+    }
 }

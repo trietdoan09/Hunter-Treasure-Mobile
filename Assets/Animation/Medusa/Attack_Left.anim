@@ -21,17 +21,17 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: 21300000, guid: 6de543da4204a6a4d9f43d93bbb5309d, type: 3}
+      value: {fileID: 561456387, guid: 6de543da4204a6a4d9f43d93bbb5309d, type: 3}
     - time: 0.2
-      value: {fileID: 21300000, guid: 9043c62a6c9a11e4e9f4d7db370d8412, type: 3}
+      value: {fileID: -257591559, guid: 9043c62a6c9a11e4e9f4d7db370d8412, type: 3}
     - time: 0.4
-      value: {fileID: 21300000, guid: 6a9e277c9c264484fab09e7d35774c93, type: 3}
+      value: {fileID: -188739309, guid: 6a9e277c9c264484fab09e7d35774c93, type: 3}
     - time: 0.6
-      value: {fileID: 21300000, guid: c6c37bc267e36ce4996309bb55740d63, type: 3}
+      value: {fileID: -1486683615, guid: c6c37bc267e36ce4996309bb55740d63, type: 3}
     - time: 0.8
-      value: {fileID: 21300000, guid: a3c54078b83c9da45a4b62b20402bbd2, type: 3}
+      value: {fileID: -1844658626, guid: a3c54078b83c9da45a4b62b20402bbd2, type: 3}
     - time: 1
-      value: {fileID: 21300000, guid: d576c8658c30c6e4cace39690d3c2976, type: 3}
+      value: {fileID: -1457171065, guid: d576c8658c30c6e4cace39690d3c2976, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -54,12 +54,12 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: 21300000, guid: 6de543da4204a6a4d9f43d93bbb5309d, type: 3}
-    - {fileID: 21300000, guid: 9043c62a6c9a11e4e9f4d7db370d8412, type: 3}
-    - {fileID: 21300000, guid: 6a9e277c9c264484fab09e7d35774c93, type: 3}
-    - {fileID: 21300000, guid: c6c37bc267e36ce4996309bb55740d63, type: 3}
-    - {fileID: 21300000, guid: a3c54078b83c9da45a4b62b20402bbd2, type: 3}
-    - {fileID: 21300000, guid: d576c8658c30c6e4cace39690d3c2976, type: 3}
+    - {fileID: 561456387, guid: 6de543da4204a6a4d9f43d93bbb5309d, type: 3}
+    - {fileID: -257591559, guid: 9043c62a6c9a11e4e9f4d7db370d8412, type: 3}
+    - {fileID: -188739309, guid: 6a9e277c9c264484fab09e7d35774c93, type: 3}
+    - {fileID: -1486683615, guid: c6c37bc267e36ce4996309bb55740d63, type: 3}
+    - {fileID: -1844658626, guid: a3c54078b83c9da45a4b62b20402bbd2, type: 3}
+    - {fileID: -1457171065, guid: d576c8658c30c6e4cace39690d3c2976, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
@@ -84,4 +84,11 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 0.8
+    functionName: DamageRange
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0

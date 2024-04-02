@@ -17,8 +17,6 @@ public class SkillEnemyRange : MonoBehaviour
         animator = GetComponent<Animator>();
         boxCollider = GetComponent<BoxCollider2D>();
 
-        //transform.position = Vector3.MoveTowards(transform.position, playerMovement.transform.position, speed * Time.deltaTime);
-
     }
 
     private void Update()
