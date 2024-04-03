@@ -7,8 +7,8 @@ using UnityEngine.UI;
 public class EnemyHealth : MonoBehaviour
 {
     Animator animator;
-    Collider2D collider2D;
-    Rigidbody2D rigidbody2D;
+
+    public GameObject enemySpawn;
     public Slider heathSlider;
     public float maxHealth;
     public int def;
@@ -23,8 +23,7 @@ public class EnemyHealth : MonoBehaviour
     void Start()
     {
         animator = GetComponentInChildren<Animator>();
-        collider2D = GetComponent<Collider2D>();
-        rigidbody2D = GetComponent<Rigidbody2D>();
+ 
         playerManager = GameObject.FindGameObjectWithTag("Player");
         health = maxHealth;
         heathSlider.maxValue = maxHealth;
@@ -48,32 +47,52 @@ public class EnemyHealth : MonoBehaviour
                 dead = true;
                 animator.SetTrigger("Dead");
 
-                if (GetComponent<EnemyHealth>() != null)
-                    //GetComponent<EnemyHealth>().enabled = false;
-                if (GetComponent<EnemyAI>() != null)
-                    GetComponent<EnemyAI>().enabled = false;
-                if (GetComponent<EnemyAttack>() != null)
-                    GetComponent<EnemyAttack>().enabled = false;
-                rigidbody2D.gravityScale = 0;
-                collider2D.enabled = false;
+                GetComponent<EnemyHealth>().enabled = false;
+                GetComponent<EnemyAI>().enabled = false;
+                GetComponent<EnemyAttack>().enabled = false;
+
+                GetComponent<Rigidbody2D>().gravityScale = 0;
+                GetComponent<Collider2D>().enabled = false;
+
                 playerManager.GetComponent<PlayerManager>().PlayerTakeExp(giveExp);
 
                 var item = Instantiate(theDrop[Random.Range(0, theDrop.Length)]);
                 item.transform .position = gameObject.transform.position;
 
-                Destroy(gameObject, 5);
+                Invoke(nameof(Deactivate), 5);
             }
         }
     }
 
+    public void SpawnEnemy()
+    {
+        dead = false;
+        health = maxHealth;
+
+        animator.SetTrigger("Dead");
+        enemySpawn.SetActive(true);
+        
+        GetComponent<Rigidbody2D>().gravityScale = 1;
+        GetComponent<Collider2D>().enabled = true;
+
+        Invoke(nameof(DeplaySpawn), 2);
+    }
+
+    void DeplaySpawn()
+    {
+        GetComponent<EnemyAI>().enabled = true;
+        GetComponent<EnemyHealth>().enabled = true;
+        GetComponent<EnemyAttack>().enabled = true;
+    }
     public void EnemyTakeDamage(int damage)
     {
         int dameTaken = damage - def;
         health -= damage > 0 ? damage : 0;
         heathSlider.value = health;
     }
-    public void Deactive()
+
+    private void Deactivate()
     {
-        gameObject.SetActive(false);
+        enemySpawn.SetActive(false);
     }
 }

@@ -4,6 +4,16 @@ using UnityEngine;
 
 public class Attack : MonoBehaviour
 {
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            EnemyHealth enemyHealth = GetComponentInParent<EnemyHealth>();
+            enemyHealth.health -= 50;
+
+        }
+    }
+
     public void DamagePlayer()
     {
         EnemyAttack enemyAttack = GetComponentInParent<EnemyAttack>();
@@ -11,14 +21,16 @@ public class Attack : MonoBehaviour
         enemyAttack.DamagePlayer();
 
     }
-  
-    private void Update()
-    {
-            if(Input.GetMouseButtonDown(0))
-        {
-            EnemyHealth enemyHealth = GetComponentInParent<EnemyHealth>();
-            //enemyHealth.health -= 50;
 
-        }
+    public void DamageRange()
+    {
+        EnemyAttack enemyAttack = GetComponentInParent<EnemyAttack>();
+        enemyAttack.DamageRange();
+    }
+
+
+    public void Deactive()
+    {
+        gameObject.SetActive(false);
     }
 }
