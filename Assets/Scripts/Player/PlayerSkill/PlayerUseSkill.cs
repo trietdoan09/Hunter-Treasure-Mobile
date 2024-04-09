@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class PlayerUseSkill : MonoBehaviour, IPointerClickHandler
 {
@@ -9,6 +10,7 @@ public class PlayerUseSkill : MonoBehaviour, IPointerClickHandler
     public int skillid;
     OpenSkillAndInfomationPlayer openSkill;
     CombatSystem combatSystem;
+    [SerializeField] private Image image;
 
     public void OnPointerClick(PointerEventData eventData)
     {
@@ -29,6 +31,10 @@ public class PlayerUseSkill : MonoBehaviour, IPointerClickHandler
     void Update()
     {
         skillid = openSkill.buttonHoldSkillId[buttonId];
+        if (skillid >= 4)
+        {
+            image.sprite = openSkill.images[skillid - 4].sprite;
+        }
     }
     
 }

@@ -62,7 +62,7 @@ public class CombatSystem : MonoBehaviour
             {
                 if(enemy.gameObject.layer == 7)
                 {
-                    Debug.Log("We hit" + enemy.name);
+                    Debug.Log("We hit" + enemy.gameObject.layer);
                     StartCoroutine(DelayAnimAttack(enemy));
                     //enemy.GetComponent<EnemyHealth>().EnemyTakeDamage(playerManager.playerAttackPoint);
                 }
@@ -76,7 +76,14 @@ public class CombatSystem : MonoBehaviour
     private IEnumerator DelayAnimAttack(Collider2D enemy)
     {
         yield return new WaitForSeconds(0.5f);
-        enemy.GetComponent<EnemyHealth>().EnemyTakeDamage(playerManager.playerAttackPoint);
+        if(enemy.gameObject.layer == 7)
+        {
+            enemy.GetComponent<EnemyHealth>().EnemyTakeDamage(playerManager.playerAttackPoint);
+        }
+        if(enemy.gameObject.tag == "Boss")
+        {
+            enemy.GetComponent<BossController>().BossTakeDame(playerManager.playerAttackPoint);
+        }
         yield return null;
 
     }
