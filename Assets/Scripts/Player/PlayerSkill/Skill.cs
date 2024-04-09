@@ -73,17 +73,17 @@ public class Skill : MonoBehaviour
                 }
             case 4:
                 {
-                    skillTree.skillDamage[0] += 80;
+                    skillTree.skillDamage[0] += 1;
                     break;
                 }
             case 5:
                 {
-                    skillTree.skillDamage[1] += 75;
+                    skillTree.skillDamage[1] += 1;
                     break;
                 }
             case 6:
                 {
-                    skillTree.skillDamage[2] += 70;
+                    skillTree.skillDamage[2] += 1;
                     break;
                 }
             case 7:

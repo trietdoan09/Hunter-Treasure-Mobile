@@ -8,6 +8,7 @@ TagManager:
   - Wall
   - TelePort
   - EnemyRange
+  - Boss
   layers:
   - Default
   - TransparentFX

@@ -98,6 +98,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1beeb765d9fc4a41bb8946dac6e229c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  explore: {fileID: 8457665829453177095, guid: 5412e5182c914944fa16c98e2a9b854e, type: 3}
+  attackPostition: {fileID: 3484001600209134126}
+  attackRange: {x: 4, y: 3}
+  enemyLayers:
+    serializedVersion: 2
+    m_Bits: 128
+  idSkill: 1
 --- !u!61 &1174773191512740303
 BoxCollider2D:
   m_ObjectHideFlags: 0
