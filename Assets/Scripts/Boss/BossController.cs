@@ -4,19 +4,27 @@ using UnityEngine;
 
 public class BossController : MonoBehaviour
 {
+    public enum BossState
+    {
+        Waiting,
+        NormalAttack,
+        SkillAttack
+    } 
     Transform playerPos;
     Rigidbody2D rigidbody2D;
+    BoxCollider2D boxCollider2D;
     Animator animator;
+    private bool isFlipped;
+    [Header("Boss infomation")]
+    public BossState bossBehaviour;
     [SerializeField] private float speed;
     [SerializeField] private float tempSpeed;
-    private bool isFlipped;
-    public bool isAction;
-    public bool isMove;
-    [Header("Boss infomation")]
     [SerializeField] private int bossId;
     [SerializeField] private float atkRange;
     [SerializeField] private bool phase2;
+    [SerializeField] private bool immortalTime;
     [SerializeField] private bool enraged;
+    [SerializeField] private bool isDead;
     [SerializeField] private float enragedTime;
     [SerializeField] private int bossMaxHealthPoint;
     [SerializeField] private int bossCurrentHealthPoint;
@@ -28,10 +36,11 @@ public class BossController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        isAction = true; 
-        isMove = true;
+        bossBehaviour = BossState.Waiting;
+        SetupBossStatus();
         playerPos = GameObject.FindGameObjectWithTag("Player").transform;
         rigidbody2D = GetComponent<Rigidbody2D>();
+        boxCollider2D = GetComponent<BoxCollider2D>();
         animator = GetComponent<Animator>();
         StartCoroutine(BossBehaviour());
     }
@@ -39,21 +48,21 @@ public class BossController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isMove)
+        if (!isDead)
         {
             MoveToPlayer();
-        }
-        else
-        {
-            speed = 0f;
         }
     }
     private void SetupBossStatus()
     {
+        bossMaxHealthPoint = 200;
+        bossCurrentHealthPoint = bossMaxHealthPoint;
+        bossDefend = 50;
+        bossAttackDame = 100;
         speed = 3f;
         tempSpeed = speed;
         atkRange = 2f;
-        phase2 = true;
+        phase2 = false;
         enraged = false;
         tempBossAttackDame = bossAttackDame;
         tempBossDefend = bossDefend;
@@ -67,7 +76,6 @@ public class BossController : MonoBehaviour
         Vector2 newPos = Vector2.MoveTowards(rigidbody2D.position, target, speed * Time.fixedDeltaTime);
         rigidbody2D.MovePosition(newPos);
         animator.SetFloat("speed", speed);
-        Attack();
     }
     private void LookAtPlayer()
     {
@@ -86,29 +94,52 @@ public class BossController : MonoBehaviour
     }
     public void BossTakeDame(int damage)
     {
-        var dameTaken = damage - bossDefend > 0 ? damage - bossDefend : 0;
-        if (bossCurrentHealthPoint - dameTaken <= 0)
+        if (!immortalTime)
         {
-            if (phase2)
+            var dameTaken = damage - bossDefend > 0 ? damage - bossDefend : 0;
+            if (bossCurrentHealthPoint - dameTaken <= 0)
             {
-                //load anim angry
-
-                //set current hp return full
-                bossCurrentHealthPoint = bossMaxHealthPoint;
-                // increase status
-                BossEnraged();
+                bossCurrentHealthPoint = 0;
+                immortalTime = true;
+                StopAllCoroutines();
+                speed = 0;
+                if (!phase2)
+                {
+                    //enter phase 2
+                    phase2 = true;
+                    //load anim angry
+                    StartCoroutine(LoadAnimPhase2());
+                    //set current hp return full
+                    bossCurrentHealthPoint = bossMaxHealthPoint;
+                    // increase status
+                    BossEnraged();
+                }
+                else
+                {
+                    //dead
+                    isDead = true;
+                    StopAllCoroutines();
+                    boxCollider2D.enabled = false;
+                    rigidbody2D.gravityScale = 0;
+                    animator.SetTrigger("isDead");
+                }
             }
             else
             {
-                //dead
+                Debug.Log("Boss take dame");
+                bossCurrentHealthPoint -= dameTaken;
             }
         }
-        else
-        {
-            bossCurrentHealthPoint -= dameTaken;
-        }
     }
-
+    IEnumerator LoadAnimPhase2()
+    {
+        animator.SetBool("enraged",true);
+        yield return new WaitForSeconds(5f);
+        animator.SetBool("enraged",false);
+        StartCoroutine(BossBehaviour());
+        immortalTime = false;
+        yield return null;
+    }
     IEnumerator BossEnraged()
     {
         while (true)
@@ -142,43 +173,54 @@ public class BossController : MonoBehaviour
             //attack
             Debug.Log("Boss normal attack");
             animator.SetTrigger("isAttack");
-            speed = tempSpeed;
+            bossBehaviour = BossState.Waiting;
         }
     }
     private void UseSkill()
     {
         Debug.Log("Boss use skill");
-        isAction = true;
+        if (!phase2)
+        {
+            //skill 2 & 3
+        }
+        else
+        {
+            //skill 1
+        }
+        bossBehaviour = BossState.Waiting;
     }
     IEnumerator BossBehaviour()
     {
         while (true)
         {
             // chi thuc hien hanh dong tiep theo khi hanh dong truoc do hoan thanh
-            if (isAction)
+            switch (bossBehaviour)
             {
-                isAction = false;
-                // neu khoang cach qua xa
-                if (Vector2.Distance(playerPos.position, rigidbody2D.position) > 10f)
-                {
-                    var random = Random.RandomRange(0, 2);
-                    if(random % 2 == 0)
+                case BossState.Waiting:
                     {
-                        speed = 6f;
-                        isMove = true;
+                        speed = tempSpeed;
+                        bossBehaviour = Vector2.Distance(playerPos.position, rigidbody2D.position) > 5f ? BossState.SkillAttack : BossState.NormalAttack;
+                        break;
                     }
-                    else
+                case BossState.NormalAttack:
                     {
-                        isMove = false;
+                        speed = tempSpeed;
+                        if (Vector2.Distance(playerPos.position, rigidbody2D.position) > 5f)
+                        {
+                            bossBehaviour = BossState.SkillAttack;
+                        }
+                        else
+                        {
+                            Attack();
+                        }
+                        break;
+                    }
+                case BossState.SkillAttack:
+                    {
+                        speed = 0;
                         UseSkill();
+                        break;
                     }
-                }
-                // neu khoang cach gan
-                else
-                {
-                    speed = tempSpeed;
-                    isMove = true;
-                }
             }
             yield return new WaitForSeconds(1f);
         }

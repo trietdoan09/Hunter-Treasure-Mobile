@@ -60,15 +60,15 @@ public class CombatSystem : MonoBehaviour
             Collider2D[] hitEmenys = Physics2D.OverlapBoxAll(attackPostition.position,attackRange,enemyLayers);
             foreach(Collider2D enemy in hitEmenys)
             {
-                if(enemy.gameObject.layer == 7)
+                if(enemy.gameObject.tag == "Enemy")
                 {
-                    Debug.Log("We hit" + enemy.gameObject.layer);
+                    Debug.Log("We hit" + enemy.gameObject.tag);
                     StartCoroutine(DelayAnimAttack(enemy));
-                    //enemy.GetComponent<EnemyHealth>().EnemyTakeDamage(playerManager.playerAttackPoint);
                 }
-                else
+                else if(enemy.gameObject.tag == "Boss")
                 {
-                    Debug.Log("We hit" + enemy.gameObject.layer);
+                    Debug.Log("We hit " + enemy.gameObject.tag);
+                    StartCoroutine(DelayAnimAttack(enemy)); 
                 }
             }
         }
@@ -76,12 +76,13 @@ public class CombatSystem : MonoBehaviour
     private IEnumerator DelayAnimAttack(Collider2D enemy)
     {
         yield return new WaitForSeconds(0.5f);
-        if(enemy.gameObject.layer == 7)
+        if(enemy.gameObject.tag == "Enemy")
         {
             enemy.GetComponent<EnemyHealth>().EnemyTakeDamage(playerManager.playerAttackPoint);
         }
         if(enemy.gameObject.tag == "Boss")
         {
+            Debug.Log("Give dame boss");
             enemy.GetComponent<BossController>().BossTakeDame(playerManager.playerAttackPoint);
         }
         yield return null;
