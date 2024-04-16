@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99b2ca41274be97418a6247dd9059886, type: 3}
+  m_Name: TelePort
+  m_EditorClassIdentifier: 
+  image: {fileID: -263416403, guid: ee7dc2518a788814f887006d0fef51c5, type: 3}
+  id: 0
+  itemName: TelePort
+  level: 1
+  types: TelePort
+  description: "C\u1ED5ng d\u1ECBch chuy\u1EC3n Mini. S\u1EED d\u1EE5ng d\u1EC3 d\u1ECBch
+    chuy\u1EC3n \u0111\u1EBFn Village"
+  quantity: 0
+  useItem: 1
+  stackable: 1
+  productprice: 1000
+  value: 0

@@ -7,13 +7,14 @@ using UnityEngine.UI;
 public class EnemyHealth : MonoBehaviour
 {
     Animator animator;
+    EnemyController enemyController;
 
     public GameObject enemySpawn;
     public Slider heathSlider;
-    public float maxHealth;
+    public int maxHealth;
     public int def;
     public bool dead;
-    public float health;
+    public int health;
    
     public GameObject[] theDrop;
 
@@ -25,6 +26,11 @@ public class EnemyHealth : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
  
         playerManager = GameObject.FindGameObjectWithTag("Player");
+        enemyController = GetComponent<EnemyController>();
+
+        maxHealth = enemyController.enemyMaxHealth;
+        def = enemyController.enemyDef;
+
         health = maxHealth;
         heathSlider.maxValue = maxHealth;
         heathSlider.value = maxHealth;
