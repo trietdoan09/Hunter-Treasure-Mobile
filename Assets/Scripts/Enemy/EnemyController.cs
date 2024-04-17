@@ -21,28 +21,36 @@ public class EnemyController : MonoBehaviour
 
     public void Awake()
     {
-        worldLevel = GetComponent<WorldLevel>();
+        worldLevel = FindAnyObjectByType<WorldLevel>();
 
-        enemyName = enemy.name;
-
-        enemySpeed = enemy.enemySpeed;
-        enemyLevel = enemy.enemyLevel;
-
-        enemyMaxHealth = enemy.enemyMaxHealth;
-        enemyDamage = enemy.enemyDamage;
-        enemyDef = enemy.enemyDef;
+        ResetEnemy();
     }
-    private void InitialiseEnemy()
+    public void InitialiseEnemy()
     {
+        ResetEnemy();
+
         var worldLevels = worldLevel.worldLevel;
 
-        enemyLevel = Random.Range((1 * worldLevels),(10 * worldLevels));
-        enemyLevelTxt.text = enemyLevel + " ".ToString();
+        var level = worldLevels == 1 ? 1 : (worldLevels- 1) * 10;
+
+        enemyLevel = Random.Range((level),(10 * worldLevels));
+        enemyLevelTxt.text = "Lv." + enemyLevel + " " + enemyName.ToString();
 
         enemyMaxHealth = enemyMaxHealth * enemyLevel;
 
         enemyDamage = enemyDamage * enemyLevel;
 
         enemyDef = enemyDef * enemyLevel;
+    }
+
+    public void ResetEnemy()
+    {
+        enemyName = enemy.name;
+        enemySpeed = enemy.enemySpeed;
+        enemyLevel = enemy.enemyLevel;
+
+        enemyMaxHealth = enemy.enemyMaxHealth;
+        enemyDamage = enemy.enemyDamage;
+        enemyDef = enemy.enemyDef;
     }
 }

@@ -26,15 +26,11 @@ public class EnemyHealth : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
  
         playerManager = GameObject.FindGameObjectWithTag("Player");
-        enemyController = GetComponent<EnemyController>();
+        enemyController = FindAnyObjectByType<EnemyController>();
 
-        maxHealth = enemyController.enemyMaxHealth;
-        def = enemyController.enemyDef;
+        
+        SetEnemy();
 
-        health = maxHealth;
-        heathSlider.maxValue = maxHealth;
-        heathSlider.value = maxHealth;
-        dead = false;
         level = Random.Range(1, 11);
         giveExp = 20 * level;
     }
@@ -72,9 +68,9 @@ public class EnemyHealth : MonoBehaviour
 
     public void SpawnEnemy()
     {
-        dead = false;
-        health = maxHealth;
-
+        //dead = false;
+        //health = maxHealth;
+        SetEnemy();
         animator.SetTrigger("Dead");
         enemySpawn.SetActive(true);
         
@@ -95,6 +91,17 @@ public class EnemyHealth : MonoBehaviour
         int dameTaken = damage - def;
         health -= damage > 0 ? damage : 0;
         heathSlider.value = health;
+    }
+
+    public void SetEnemy()
+    {
+        dead = false;
+        maxHealth = enemyController.enemyMaxHealth;
+        def = enemyController.enemyDef;
+
+        health = maxHealth;
+        heathSlider.maxValue = maxHealth;
+        heathSlider.value = maxHealth;
     }
 
     private void Deactivate()

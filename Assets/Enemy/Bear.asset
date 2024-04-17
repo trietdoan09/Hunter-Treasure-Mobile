@@ -15,6 +15,6 @@ MonoBehaviour:
   enemyName: Bear
   enemyLevel: 1
   enemySpeed: 1.5
-  enemyHealth: 10
+  enemyMaxHealth: 100
   enemyDamage: 5
   enemyDef: 2
