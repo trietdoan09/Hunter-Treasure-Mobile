@@ -35,6 +35,9 @@ public class EnemySpawn : MonoBehaviour
     {
         timeCount = timeRespawn;
 
+        EnemyController enemyController = GetComponentInChildren<EnemyController>();
+        enemyController.InitialiseEnemy();
+
         EnemyHealth enemyHealth = GetComponentInChildren<EnemyHealth>();
         enemyHealth.SpawnEnemy();
     }

@@ -585,6 +585,95 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3157168119734846292, guid: 038c2521920c8d64a9e71811b1db7c23, type: 3}
   m_PrefabInstance: {fileID: 195861882}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &224806112
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1663042186504771917, guid: 97649065a95bc7d49b431ec45b1c415e, type: 3}
+      propertyPath: m_Size.y
+      value: 1.5005538
+      objectReference: {fileID: 0}
+    - target: {fileID: 1663042186504771917, guid: 97649065a95bc7d49b431ec45b1c415e, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.0032409132
+      objectReference: {fileID: 0}
+    - target: {fileID: 1809423304669662893, guid: 97649065a95bc7d49b431ec45b1c415e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.504
+      objectReference: {fileID: 0}
+    - target: {fileID: 7780132657167986153, guid: 97649065a95bc7d49b431ec45b1c415e, type: 3}
+      propertyPath: m_Name
+      value: TelePortBossJungle
+      objectReference: {fileID: 0}
+    - target: {fileID: 7828997417123966887, guid: 97649065a95bc7d49b431ec45b1c415e, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.025
+      objectReference: {fileID: 0}
+    - target: {fileID: 7828997417123966887, guid: 97649065a95bc7d49b431ec45b1c415e, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7828997417123966887, guid: 97649065a95bc7d49b431ec45b1c415e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 137.488
+      objectReference: {fileID: 0}
+    - target: {fileID: 7828997417123966887, guid: 97649065a95bc7d49b431ec45b1c415e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.37327
+      objectReference: {fileID: 0}
+    - target: {fileID: 7828997417123966887, guid: 97649065a95bc7d49b431ec45b1c415e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7828997417123966887, guid: 97649065a95bc7d49b431ec45b1c415e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7828997417123966887, guid: 97649065a95bc7d49b431ec45b1c415e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7828997417123966887, guid: 97649065a95bc7d49b431ec45b1c415e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7828997417123966887, guid: 97649065a95bc7d49b431ec45b1c415e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7828997417123966887, guid: 97649065a95bc7d49b431ec45b1c415e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7828997417123966887, guid: 97649065a95bc7d49b431ec45b1c415e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7828997417123966887, guid: 97649065a95bc7d49b431ec45b1c415e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9176954046987417109, guid: 97649065a95bc7d49b431ec45b1c415e, type: 3}
+      propertyPath: exitName
+      value: ExitBossJungle
+      objectReference: {fileID: 0}
+    - target: {fileID: 9176954046987417109, guid: 97649065a95bc7d49b431ec45b1c415e, type: 3}
+      propertyPath: sceneToLoad
+      value: BossJungle
+      objectReference: {fileID: 0}
+    - target: {fileID: 9186776568206409572, guid: 97649065a95bc7d49b431ec45b1c415e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 97649065a95bc7d49b431ec45b1c415e, type: 3}
 --- !u!1001 &272017531
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -760,7 +849,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4168857690436978750, guid: d374906246285714d972a33294cc023f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.5200043
+      value: -24.36
       objectReference: {fileID: 0}
     - target: {fileID: 4168857690436978750, guid: d374906246285714d972a33294cc023f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1710,7 +1799,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4168857690436978750, guid: d374906246285714d972a33294cc023f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -13.320007
+      value: -29.68
       objectReference: {fileID: 0}
     - target: {fileID: 4168857690436978750, guid: d374906246285714d972a33294cc023f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -44374,7 +44463,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4168857690436978750, guid: d374906246285714d972a33294cc023f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -20.26001
+      value: 4.94
       objectReference: {fileID: 0}
     - target: {fileID: 4168857690436978750, guid: d374906246285714d972a33294cc023f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -44448,7 +44537,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4168857690436978750, guid: d374906246285714d972a33294cc023f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -9.36235
+      value: -26.88
       objectReference: {fileID: 0}
     - target: {fileID: 4168857690436978750, guid: d374906246285714d972a33294cc023f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -44745,3 +44834,4 @@ SceneRoots:
   - {fileID: 685804008}
   - {fileID: 379995033}
   - {fileID: 68472275}
+  - {fileID: 224806112}

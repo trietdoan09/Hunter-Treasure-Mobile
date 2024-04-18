@@ -26,13 +26,15 @@ public class EnemyAttack : MonoBehaviour
     //[SerializeField] private AudioClip attackSound;
 
     PlayerManager playerManager;
-
+    EnemyController enemyController;
 
 
     private void Awake()
     {
         anim = GetComponentInChildren<Animator>();
         playerManager = FindAnyObjectByType<PlayerManager>();
+        enemyController = FindAnyObjectByType<EnemyController>();
+        damage = enemyController.enemyDamage;
     }
 
     private void Update()
