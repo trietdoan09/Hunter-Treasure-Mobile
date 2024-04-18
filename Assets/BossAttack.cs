@@ -9,7 +9,6 @@ public class BossAttack : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         bossController = animator.GetComponent<BossController>();
-        bossController.isMove = false;
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -22,7 +21,6 @@ public class BossAttack : StateMachineBehaviour
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         animator.ResetTrigger("isAttack");
-        bossController.isAction = true;
     }
 
 }
