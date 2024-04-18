@@ -7,13 +7,14 @@ using UnityEngine.UI;
 public class EnemyHealth : MonoBehaviour
 {
     Animator animator;
+    EnemyController enemyController;
 
     public GameObject enemySpawn;
     public Slider heathSlider;
-    public float maxHealth;
+    public int maxHealth;
     public int def;
     public bool dead;
-    public float health;
+    public int health;
    
     public GameObject[] theDrop;
 
@@ -25,10 +26,11 @@ public class EnemyHealth : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
  
         playerManager = GameObject.FindGameObjectWithTag("Player");
-        health = maxHealth;
-        heathSlider.maxValue = maxHealth;
-        heathSlider.value = maxHealth;
-        dead = false;
+        enemyController = FindAnyObjectByType<EnemyController>();
+
+        
+        SetEnemy();
+
         level = Random.Range(1, 11);
         giveExp = 20 * level;
     }
@@ -66,9 +68,9 @@ public class EnemyHealth : MonoBehaviour
 
     public void SpawnEnemy()
     {
-        dead = false;
-        health = maxHealth;
-
+        //dead = false;
+        //health = maxHealth;
+        SetEnemy();
         animator.SetTrigger("Dead");
         enemySpawn.SetActive(true);
         
@@ -89,6 +91,17 @@ public class EnemyHealth : MonoBehaviour
         int dameTaken = damage - def;
         health -= dameTaken > 0 ? damage : 0;
         heathSlider.value = health;
+    }
+
+    public void SetEnemy()
+    {
+        dead = false;
+        maxHealth = enemyController.enemyMaxHealth;
+        def = enemyController.enemyDef;
+
+        health = maxHealth;
+        heathSlider.maxValue = maxHealth;
+        heathSlider.value = maxHealth;
     }
 
     private void Deactivate()
