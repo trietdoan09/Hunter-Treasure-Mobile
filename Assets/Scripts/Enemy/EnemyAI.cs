@@ -59,6 +59,15 @@ public class EnemyAI : MonoBehaviour
         {
             animator.SetBool("Moving", true);
         }
+
+        //if (direction >= 0.01)
+        //{
+        //    scaleskill.localScale = new Vector3(1, 1, 0);
+        //}
+        //else if (direction <= -0.01)
+        //{
+        //    scaleskill.localScale = new Vector3(-1, 1, 0);
+        //}
     }
    void EnemyMovement()
     {
@@ -88,5 +97,10 @@ public class EnemyAI : MonoBehaviour
             idleTimer = 0;
             direction = _direction;
         }
+    }
+
+    void ScaleSkill()
+    {
+        
     }
 }
