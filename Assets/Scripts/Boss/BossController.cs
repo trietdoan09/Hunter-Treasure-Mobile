@@ -120,7 +120,7 @@ public class BossController : MonoBehaviour
                     //set current hp return full
                     bossCurrentHealthPoint = bossMaxHealthPoint;
                     // increase status
-                    BossEnraged();
+                    StartCoroutine(BossEnraged());
                 }
                 else
                 {
@@ -155,14 +155,14 @@ public class BossController : MonoBehaviour
             if(enragedTime > 0)
             {
                 bossAttackDame = tempBossAttackDame * 3;
-                bossDefend = tempBossDefend * 3;
+                bossDefend = tempBossDefend / 3;
                 enragedTime -= 1;
             }
             else if(enragedTime <= 0 && !isCoolDown)
             {
                 isCoolDown = true;
-                bossAttackDame = tempBossAttackDame * 5;
-                bossDefend = tempBossDefend * 5;
+                bossAttackDame = tempBossAttackDame;
+                bossDefend = tempBossDefend / 5;
                 StartCoroutine(CoolDownEnragedTime());
             }
             yield return new WaitForSeconds(1f);
