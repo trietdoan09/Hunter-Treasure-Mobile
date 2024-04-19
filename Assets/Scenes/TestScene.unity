@@ -6722,7 +6722,7 @@ GameObject:
   - component: {fileID: 566958384}
   m_Layer: 8
   m_Name: Ground
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -113457,7 +113457,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 845818213}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1953558168}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: Jump
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &845818213
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125933,7 +125945,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 7
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -126127,7 +126139,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5486cad24a118b94791e0b301288f57c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testJump: 0
+  isGround: 0
+  clickJump: 0
+  countJump: 0
   playerDirection: 0
 --- !u!95 &1953558169
 Animator:
@@ -127925,6 +127939,63 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1001 &114603586344686416
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6980289586402445431, guid: be195fdb62511244490807f142437148, type: 3}
+      propertyPath: m_Name
+      value: Boss2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8247528558299878283, guid: be195fdb62511244490807f142437148, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -22.378292
+      objectReference: {fileID: 0}
+    - target: {fileID: 8247528558299878283, guid: be195fdb62511244490807f142437148, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.36
+      objectReference: {fileID: 0}
+    - target: {fileID: 8247528558299878283, guid: be195fdb62511244490807f142437148, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8247528558299878283, guid: be195fdb62511244490807f142437148, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8247528558299878283, guid: be195fdb62511244490807f142437148, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8247528558299878283, guid: be195fdb62511244490807f142437148, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8247528558299878283, guid: be195fdb62511244490807f142437148, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8247528558299878283, guid: be195fdb62511244490807f142437148, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8247528558299878283, guid: be195fdb62511244490807f142437148, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8247528558299878283, guid: be195fdb62511244490807f142437148, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: be195fdb62511244490807f142437148, type: 3}
 --- !u!1 &177704135685259121
 GameObject:
   m_ObjectHideFlags: 0
@@ -131035,9 +131106,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boss1
       objectReference: {fileID: 0}
+    - target: {fileID: 5622003924653881628, guid: d9e9f0ab0743d0a4e8565fe69b912764, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5698173497835218785, guid: d9e9f0ab0743d0a4e8565fe69b912764, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -30.19
+      value: -30.04
       objectReference: {fileID: 0}
     - target: {fileID: 5698173497835218785, guid: d9e9f0ab0743d0a4e8565fe69b912764, type: 3}
       propertyPath: m_LocalPosition.y
@@ -131075,22 +131150,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7919461353731627267, guid: d9e9f0ab0743d0a4e8565fe69b912764, type: 3}
-      propertyPath: skills.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7919461353731627267, guid: d9e9f0ab0743d0a4e8565fe69b912764, type: 3}
-      propertyPath: skills.Array.data[0]
-      value: 
-      objectReference: {fileID: 8729470674471856432, guid: 6c1e410c6d7e76c4ba91715b0f41bacf, type: 3}
-    - target: {fileID: 7919461353731627267, guid: d9e9f0ab0743d0a4e8565fe69b912764, type: 3}
-      propertyPath: skills.Array.data[1]
-      value: 
-      objectReference: {fileID: 3182152323999250096, guid: 5559a71c6f8a25e44b3ac66ea18219d2, type: 3}
-    - target: {fileID: 7919461353731627267, guid: d9e9f0ab0743d0a4e8565fe69b912764, type: 3}
-      propertyPath: skills.Array.data[2]
-      value: 
-      objectReference: {fileID: 8672390030129324837, guid: 5a99c464528458743b7cd264419fce6a, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -132083,3 +132142,4 @@ SceneRoots:
   - {fileID: 299481630}
   - {fileID: 959751443}
   - {fileID: 7226488982683212900}
+  - {fileID: 114603586344686416}
