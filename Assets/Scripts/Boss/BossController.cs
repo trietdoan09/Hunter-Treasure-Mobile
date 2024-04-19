@@ -10,6 +10,7 @@ public class BossController : MonoBehaviour
         NormalAttack,
         SkillAttack
     }
+    PlayerManager playerManager;
     PlayerMovement playerMovement;
     Transform playerPos;
     Rigidbody2D rigidbody2D;
@@ -30,10 +31,13 @@ public class BossController : MonoBehaviour
     [SerializeField] private int bossMaxHealthPoint;
     [SerializeField] private int bossCurrentHealthPoint;
     [SerializeField] private int bossDefend;
-    [SerializeField] private int bossAttackDame;
+    public int bossAttackDame;
     [SerializeField] private int tempBossDefend;
     [SerializeField] private int tempBossAttackDame;
     [SerializeField] private GameObject[] skills;
+    [SerializeField] private Transform attackPostition;
+    [SerializeField] private Vector2 attackRange;
+    [SerializeField] private LayerMask enemyLayers;
     bool isCoolDown;
     // Start is called before the first frame update
     void Start()
@@ -42,6 +46,7 @@ public class BossController : MonoBehaviour
         SetupBossStatus();
         playerPos = GameObject.FindGameObjectWithTag("Player").transform;
         playerMovement = GameObject.FindObjectOfType<PlayerMovement>();
+        playerManager = GameObject.FindObjectOfType<PlayerManager>();
         rigidbody2D = GetComponent<Rigidbody2D>();
         boxCollider2D = GetComponent<BoxCollider2D>();
         animator = GetComponent<Animator>();
@@ -175,59 +180,102 @@ public class BossController : MonoBehaviour
         {
             //attack
             Debug.Log("Boss normal attack");
-            animator.SetTrigger("isAttack");
+            animator.SetTrigger("isAttack"); 
+            Collider2D[] hitEmenys = Physics2D.OverlapBoxAll(attackPostition.position, attackRange, enemyLayers);
+            foreach (Collider2D enemy in hitEmenys)
+            {
+                if (enemy.gameObject.tag == "Player")
+                {
+                    Debug.Log("We hit" + enemy.gameObject.tag);
+                    playerManager.PlayerTakeDame(bossAttackDame);
+                }
+            }
             bossBehaviour = BossState.Waiting;
         }
     }
+    private void OnDrawGizmos()
+    {
+        if (attackPostition == null)
+            return;
+        Gizmos.DrawWireCube(attackPostition.position, attackRange);
+    }
     private void UseSkill()
     {
-        bool isRight = transform.position.x < playerPos.position.x ? true : false;
         Debug.Log("Boss use skill");
+        StartCoroutine(RandomSkill());
+        bossBehaviour = BossState.Waiting;
+    }
+    IEnumerator LoadAnimUseSkill(int skillId)
+    {
+        animator.SetBool("useSkill" + skillId, true);
+        yield return new WaitForSeconds(0.5f);
+        animator.SetBool("useSkill" + skillId, false);
+        yield return null;
+    }
+    IEnumerator RandomSkill()
+    {
+        bool isRight = transform.position.x < playerPos.position.x ? true : false;
         if (phase2)
         {
-            //skill 1, 2 & 3
-            StartCoroutine(RandomSkill());
+            if (bossCurrentHealthPoint < bossCurrentHealthPoint / 2)
+            {
+                var randomAmount = Random.Range(1, 6);
+                for (int i = 0; i < randomAmount; i++)
+                {
+                    var randomSkill = Random.Range(0, 3);
+                    StartCoroutine(LoadAnimUseSkill(randomSkill));
+                    yield return new WaitForSeconds(0.2f);
+                    var _skillSpawn = Instantiate(skills[randomSkill]);
+                    if (randomSkill < 2)
+                    {
+                        _skillSpawn.transform.localScale = isRight ? new Vector3(1, 1, 1) : new Vector3(-1, 1, 1);
+                        _skillSpawn.transform.position = isRight ? gameObject.transform.position + new Vector3(1, -0.5f, 0) : gameObject.transform.position + new Vector3(-1, -0.5f, 0);
+                        _skillSpawn.GetComponent<BossSkillController>().direction = isRight ? 1 : -1;
+                        _skillSpawn.GetComponent<BossSkillController>().idSkill = randomSkill;
+                    }
+                    else // skill 3
+                    {
+                        _skillSpawn.transform.position = playerPos.position + new Vector3(0.5f * i * playerMovement.playerDirection, 3.5f, 0);
+                        _skillSpawn.GetComponent<BossSkillController>().idSkill = randomSkill;
+                    }
+                    yield return new WaitForSeconds(0.5f);
+                }
+            }
+            else
+            {
+                var randomSkill = Random.Range(0, 3);
+                StartCoroutine(LoadAnimUseSkill(randomSkill));
+                yield return new WaitForSeconds(0.2f);
+                var randomAmount = Random.Range(1, 6);
+                for (int i = 0; i < randomAmount; i++)
+                {
+                    var _skillSpawn = Instantiate(skills[randomSkill]);
+                    //skill 1, 2
+                    if (randomSkill < 2)
+                    {
+                        _skillSpawn.transform.localScale = isRight ? new Vector3(1, 1, 1) : new Vector3(-1, 1, 1);
+                        _skillSpawn.transform.position = isRight ? gameObject.transform.position + new Vector3(1, -0.5f, 0) : gameObject.transform.position + new Vector3(-1, -0.5f, 0);
+                        _skillSpawn.GetComponent<BossSkillController>().direction = isRight ? 1 : -1;
+                        _skillSpawn.GetComponent<BossSkillController>().idSkill = randomSkill;
+                    }
+                    else // skill 3
+                    {
+                        _skillSpawn.transform.position = playerPos.position + new Vector3(0.5f * i * playerMovement.playerDirection, 3.5f, 0);
+                        _skillSpawn.GetComponent<BossSkillController>().idSkill = randomSkill;
+                    }
+                    yield return new WaitForSeconds(0.5f);
+                }
+            }
         }
         else
         {
-            //skill 1
+            StartCoroutine(LoadAnimUseSkill(0));
+            yield return new WaitForSeconds(0.2f);
             var _skillSpawn = Instantiate(skills[0]);
             _skillSpawn.transform.localScale = isRight ? new Vector3(1, 1, 1) : new Vector3(-1, 1, 1);
             _skillSpawn.transform.position = isRight ? gameObject.transform.position + new Vector3(1, -0.5f, 0) : gameObject.transform.position + new Vector3(-1, -0.5f, 0);
             _skillSpawn.GetComponent<BossSkillController>().direction = isRight ? 1 : -1;
             _skillSpawn.GetComponent<BossSkillController>().idSkill = 0;
-        }
-        bossBehaviour = BossState.Waiting;
-    }
-    IEnumerator RandomSkill()
-    {
-        bool isRight = transform.position.x < playerPos.position.x ? true : false;
-        if (bossCurrentHealthPoint < bossCurrentHealthPoint / 2)
-        {
-
-        }
-        else
-        {
-            var randomSkill = Random.Range(0, 3);
-            var randomAmount = Random.Range(1, 6);
-            for (int i = 0; i < randomAmount; i++)
-            {
-                var _skillSpawn = Instantiate(skills[randomSkill]);
-                //skill 1, 2
-                if (randomSkill < 2)
-                {
-                    _skillSpawn.transform.localScale = isRight ? new Vector3(1, 1, 1) : new Vector3(-1, 1, 1);
-                    _skillSpawn.transform.position = isRight ? gameObject.transform.position + new Vector3(1, -0.5f, 0) : gameObject.transform.position + new Vector3(-1, -0.5f, 0);
-                    _skillSpawn.GetComponent<BossSkillController>().direction = isRight ? 1 : -1;
-                    _skillSpawn.GetComponent<BossSkillController>().idSkill = randomSkill;
-                }
-                else // skill 3
-                {
-                    _skillSpawn.transform.position = playerPos.position + new Vector3(0.5f * i * playerMovement.playerDirection, 3.5f, 0);
-                    _skillSpawn.GetComponent<BossSkillController>().idSkill = randomSkill;
-                }
-                yield return new WaitForSeconds(0.5f);
-            }
         }
         yield return null;
     }
