@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1848139298453266407}
   - component: {fileID: 1810914748168316091}
   - component: {fileID: 6756125014813179807}
+  - component: {fileID: 8789096854281240244}
   m_Layer: 7
   m_Name: Medusa_Manager
   m_TagString: Untagged
@@ -112,6 +113,26 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
+--- !u!114 &8789096854281240244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 63186133412861097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d2008b6b71d3954a99ff0b830c40ba0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 11400000, guid: 46b80257898236f48b5ac2fb1f396486, type: 2}
+  enemyName: 
+  enemyLevel: 0
+  enemySpeed: 0
+  enemyMaxHealth: 0
+  enemyDamage: 0
+  enemyDef: 0
+  enemyLevelTxt: {fileID: 8101479135207703533}
 --- !u!1 &1856851517442953477
 GameObject:
   m_ObjectHideFlags: 0
@@ -430,7 +451,7 @@ GameObject:
   - component: {fileID: 3025817276969726907}
   - component: {fileID: 8101479135207703533}
   m_Layer: 7
-  m_Name: Text (TMP)
+  m_Name: EnemyName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
