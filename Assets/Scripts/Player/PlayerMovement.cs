@@ -10,12 +10,16 @@ public class PlayerMovement : MonoBehaviour
     Animator animator;
     private float moveSpeed;
 
-    public bool testJump;
+    public bool isGround;
+    public bool clickJump;
+    [SerializeField] private float countJump;
     public int playerDirection;
 
     // Start is called before the first frame update
     void Start()
     {
+        countJump = 0;
+        clickJump = false;
         rigidbody2D = GetComponent<Rigidbody2D>();
         joystick = FindObjectOfType<Joystick>();
         animator = GetComponent<Animator>();
@@ -28,8 +32,13 @@ public class PlayerMovement : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        Move();
-        Jump();
+        Move(); 
+        if (isGround && clickJump || !isGround && clickJump && countJump == 1)
+        {
+            animator.SetBool("isJump", clickJump);
+            rigidbody2D.AddForce(new Vector2(0, 7000));
+            clickJump = false;
+        }
     }
 
     private void Move()
@@ -61,9 +70,31 @@ public class PlayerMovement : MonoBehaviour
     }
     public void Jump()
     {
-        if(testJump)
+        if(isGround)
         {
-            rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, 25);
+            clickJump = true;
+            countJump++;
+        }
+        else if(!isGround && countJump < 1)
+        {
+            clickJump = true;
+            countJump++;
+        }
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "Ground")
+        {
+            animator.SetBool("isJump", false);
+            isGround = true; 
+        }
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Ground")
+        {
+            isGround = false;
+            countJump = 0;
         }
     }
 }

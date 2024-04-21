@@ -89,7 +89,7 @@ public class EnemyHealth : MonoBehaviour
     public void EnemyTakeDamage(int damage)
     {
         int dameTaken = damage - def;
-        health -= damage > 0 ? damage : 0;
+        health -= dameTaken > 0 ? damage : 0;
         heathSlider.value = health;
     }
 
