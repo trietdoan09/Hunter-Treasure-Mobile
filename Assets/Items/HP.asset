@@ -18,8 +18,8 @@ MonoBehaviour:
   level: 1
   types: HP
   description: "S\u1EED d\u1EE5ng h\u1ED3i ph\u1EE5c 20% Hp"
-  quantity: 0
+  quantity: 16
   useItem: 1
   stackable: 1
   productprice: 1000
-  value: 0
+  value: 10

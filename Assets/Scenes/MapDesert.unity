@@ -1288,13 +1288,21 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: -0.004796535
       objectReference: {fileID: 0}
+    - target: {fileID: 5955891255052817780, guid: 6efc1d0434082d74e9d9c3e8e6ed0fd0, type: 3}
+      propertyPath: lastExitName
+      value: ExitBossDesert
+      objectReference: {fileID: 0}
     - target: {fileID: 7438760851623972229, guid: 6efc1d0434082d74e9d9c3e8e6ed0fd0, type: 3}
       propertyPath: exitName
-      value: ExitBossDesert
+      value: BossDesert
       objectReference: {fileID: 0}
     - target: {fileID: 7438760851623972229, guid: 6efc1d0434082d74e9d9c3e8e6ed0fd0, type: 3}
       propertyPath: sceneToLoad
       value: BossDesert
+      objectReference: {fileID: 0}
+    - target: {fileID: 7712040625352736270, guid: 6efc1d0434082d74e9d9c3e8e6ed0fd0, type: 3}
+      propertyPath: m_text
+      value: "V\xE0o hang BOSS ?"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

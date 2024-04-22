@@ -21,5 +21,6 @@ MonoBehaviour:
   quantity: 0
   useItem: 1
   stackable: 1
+  timer: 10
   productprice: 1000
-  value: 0
+  value: 10
