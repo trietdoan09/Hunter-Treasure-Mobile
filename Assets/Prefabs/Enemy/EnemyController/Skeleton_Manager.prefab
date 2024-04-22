@@ -259,6 +259,7 @@ GameObject:
   - component: {fileID: 6580169389911149948}
   - component: {fileID: 4859042952051953548}
   - component: {fileID: 4738930808137028447}
+  - component: {fileID: 8551721906568080268}
   m_Layer: 7
   m_Name: Skeleton_Manager
   m_TagString: Untagged
@@ -359,6 +360,26 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
+--- !u!114 &8551721906568080268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2136807103702875047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d2008b6b71d3954a99ff0b830c40ba0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 11400000, guid: 2bfc3e9dc2fae7943a6991cff643abe1, type: 2}
+  enemyName: 
+  enemyLevel: 0
+  enemySpeed: 0
+  enemyMaxHealth: 0
+  enemyDamage: 0
+  enemyDef: 0
+  enemyLevelTxt: {fileID: 6317561437419130815}
 --- !u!1 &2801873751074825914
 GameObject:
   m_ObjectHideFlags: 0
@@ -595,7 +616,7 @@ GameObject:
   - component: {fileID: 9201441073080181506}
   - component: {fileID: 6317561437419130815}
   m_Layer: 7
-  m_Name: Text (TMP)
+  m_Name: EnemyName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

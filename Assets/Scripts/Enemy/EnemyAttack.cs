@@ -72,7 +72,10 @@ public class EnemyAttack : MonoBehaviour
     {
         if (PlayerInSight())
 
+        {
             playerManager.PlayerTakeDame(damage);
+            AudioManager.instance.PlaySFX("EnemyAttack");
+        }
     }
 
     public void DamageRange()
