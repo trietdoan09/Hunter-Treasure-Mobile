@@ -61,6 +61,8 @@ public class WorldLevel : MonoBehaviour
     {
         if(levelPlayer >= levelUp)
         {
+            //AudioManager.instance.PlaySFX("Click");
+
             worldLevel += 1;
             levelUp += 10;
 

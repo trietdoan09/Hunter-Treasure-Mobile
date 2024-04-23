@@ -37,6 +37,8 @@ public class SkillEnemyRange : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            AudioManager.instance.PlaySFX("EnemyAttack");
+
             boxCollider.enabled = false;
             animator.SetTrigger("Explosion");
         }

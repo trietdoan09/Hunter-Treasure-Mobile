@@ -562,6 +562,7 @@ GameObject:
   - component: {fileID: 5133322310607639205}
   - component: {fileID: 6975259919258383294}
   - component: {fileID: 698656712089781562}
+  - component: {fileID: 4827161509789031322}
   m_Layer: 7
   m_Name: EnemyController
   m_TagString: Untagged
@@ -718,6 +719,26 @@ MonoBehaviour:
   speed: 1.5
   range: 1.2
   idleDuration: 5
+--- !u!114 &4827161509789031322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5189857924927941323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d2008b6b71d3954a99ff0b830c40ba0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 11400000, guid: 1809e5c4ada256d4b962a409f69f81f0, type: 2}
+  enemyName: 
+  enemyLevel: 0
+  enemySpeed: 0
+  enemyMaxHealth: 0
+  enemyDamage: 0
+  enemyDef: 0
+  enemyLevelTxt: {fileID: 5178846310678308752}
 --- !u!1 &6490595883804285480
 GameObject:
   m_ObjectHideFlags: 0
@@ -730,7 +751,7 @@ GameObject:
   - component: {fileID: 9212074978197032362}
   - component: {fileID: 5178846310678308752}
   m_Layer: 7
-  m_Name: Text (TMP)
+  m_Name: EnemyName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
