@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BossController : MonoBehaviour
@@ -74,7 +73,7 @@ public class BossController : MonoBehaviour
         enraged = false;
         tempBossAttackDame = bossAttackDame;
         tempBossDefend = bossDefend;
-        enragedTime = 10f; 
+        enragedTime = 10f;
         isCoolDown = false;
     }
     private void MoveToPlayer()
@@ -87,13 +86,13 @@ public class BossController : MonoBehaviour
     }
     private void LookAtPlayer()
     {
-        if(transform.position.x > playerPos.position.x && isFlipped)
+        if (transform.position.x > playerPos.position.x && isFlipped)
         {
             transform.localScale = new Vector3(-1, 1, 1);
             //transform.Rotate(0f, 180f, 0f);
             isFlipped = false;
         }
-        else if(transform.position.x < playerPos.position.x && !isFlipped)
+        else if (transform.position.x < playerPos.position.x && !isFlipped)
         {
             transform.localScale = new Vector3(1, 1, 1);
             //transform.Rotate(0f, 180f, 0f);
@@ -141,9 +140,9 @@ public class BossController : MonoBehaviour
     }
     IEnumerator LoadAnimPhase2()
     {
-        animator.SetBool("enraged",true);
+        animator.SetBool("enraged", true);
         yield return new WaitForSeconds(5f);
-        animator.SetBool("enraged",false);
+        animator.SetBool("enraged", false);
         StartCoroutine(BossBehaviour());
         immortalTime = false;
         yield return null;
@@ -152,13 +151,13 @@ public class BossController : MonoBehaviour
     {
         while (true)
         {
-            if(enragedTime > 0)
+            if (enragedTime > 0)
             {
                 bossAttackDame = tempBossAttackDame * 3;
                 bossDefend = tempBossDefend / 3;
                 enragedTime -= 1;
             }
-            else if(enragedTime <= 0 && !isCoolDown)
+            else if (enragedTime <= 0 && !isCoolDown)
             {
                 isCoolDown = true;
                 bossAttackDame = tempBossAttackDame;
@@ -176,11 +175,11 @@ public class BossController : MonoBehaviour
     }
     private void Attack()
     {
-        if(Vector2.Distance(playerPos.position,rigidbody2D.position) <= atkRange)
+        if (Vector2.Distance(playerPos.position, rigidbody2D.position) <= atkRange)
         {
             //attack
             Debug.Log("Boss normal attack");
-            animator.SetTrigger("isAttack"); 
+            animator.SetTrigger("isAttack");
             Collider2D[] hitEmenys = Physics2D.OverlapBoxAll(attackPostition.position, attackRange, enemyLayers);
             foreach (Collider2D enemy in hitEmenys)
             {
