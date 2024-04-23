@@ -2,14 +2,13 @@
 using UnityEngine.EventSystems;
 using TMPro;
 using UnityEngine.UI;
-using Unity.VisualScripting;
-using static Cinemachine.DocumentationSortingAttribute;
 using System.Collections.Generic;
 using System.Linq;
-using static UnityEditor.Progress;
 
 public class InventoryManager : MonoBehaviour
 {
+
+    UseItem useItems;
     public static InventoryManager instance;
 
     public Item[] startItem;
@@ -33,6 +32,7 @@ public class InventoryManager : MonoBehaviour
     [HideInInspector] public string description;
     [HideInInspector] public bool useItem;
 
+
     public Image images;
     public TextMeshProUGUI itemNameTxt;
     public TextMeshProUGUI levelTxt;
@@ -45,6 +45,7 @@ public class InventoryManager : MonoBehaviour
         //{
         //    AddItem(item, item.countItem);
         //}
+        useItems = FindAnyObjectByType<UseItem>();
         descriptionObj.SetActive(false);
         useItemObj.SetActive(false);
 
@@ -192,6 +193,7 @@ public class InventoryManager : MonoBehaviour
             if (itemInSlot.thisUseItem == true)
             {
                 // sử dụng vật phẩm
+                Use(itemInSlot);
                 itemInSlot.count--;
                 if (itemInSlot.count <= 0)
                 {
@@ -236,5 +238,26 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
+    public void Use(InventoryItem inventoryItem )
+    {
+        switch(inventoryItem.itemName)
+        {
+            case "HP":
+                useItems.HP(inventoryItem.value);
+                break;
+
+            case "MP":
+                useItems.MP(inventoryItem.value);
+                break;
+
+            case "ATK":
+                useItems.ATK(inventoryItem.value, inventoryItem.timer );
+                break;
+
+            case "DEF":
+                useItems.DEF(inventoryItem.value, inventoryItem.timer);
+                break;
+        }
+    }
    
 }
