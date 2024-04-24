@@ -9,14 +9,20 @@ public class Tele : MonoBehaviour
     public GameObject telePort;
 
     public Button jungleButton, desertButton, dungeonButton;
+    public Button jungleBoss, desertBoss, dungeonBoss;
+
     public string jungleExit, desertExit, dungeonExit;
     public string jungleName, desertName, dungeonName;
+
+    public string bossJungleExit, bossDesertExit, bossDungeonExit;
+    public string bossJungleName, bossDesertName, bossDungeonName;
 
     void Start()
     {
         teleName.SetActive(false);
         telePort.SetActive(false);
 
+        //Map
         jungleButton.onClick.AddListener(() =>
         {
             LoadScene(jungleExit, jungleName);
@@ -31,6 +37,22 @@ public class Tele : MonoBehaviour
         {
             LoadScene(dungeonExit, dungeonName);
         });
+
+        //Boss
+        jungleBoss.onClick.AddListener(() =>
+        {
+            LoadScene(bossJungleExit, bossJungleName);
+        });
+
+        desertBoss.onClick.AddListener(() =>
+        {
+            LoadScene(bossDesertExit, bossDesertName);
+        });
+
+        dungeonBoss.onClick.AddListener(() =>
+        {
+            LoadScene(bossDungeonExit, bossDungeonName);
+        });
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -41,6 +63,11 @@ public class Tele : MonoBehaviour
         }
     }
 
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+            telePort.SetActive(false);
+
+    }
 
     public void LoadScene(string exitName, string sceneToLoad)
     {

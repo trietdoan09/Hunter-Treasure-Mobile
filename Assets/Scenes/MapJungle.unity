@@ -657,9 +657,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8094433362494259205, guid: 97649065a95bc7d49b431ec45b1c415e, type: 3}
+      propertyPath: m_text
+      value: "V\xE0o hang BOSS ?"
+      objectReference: {fileID: 0}
     - target: {fileID: 9176954046987417109, guid: 97649065a95bc7d49b431ec45b1c415e, type: 3}
       propertyPath: exitName
-      value: ExitBossJungle
+      value: BossJungle
       objectReference: {fileID: 0}
     - target: {fileID: 9176954046987417109, guid: 97649065a95bc7d49b431ec45b1c415e, type: 3}
       propertyPath: sceneToLoad
@@ -672,8 +676,29 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 9186776568206409572, guid: 97649065a95bc7d49b431ec45b1c415e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 224806114}
   m_SourcePrefab: {fileID: 100100000, guid: 97649065a95bc7d49b431ec45b1c415e, type: 3}
+--- !u!1 &224806113 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9186776568206409572, guid: 97649065a95bc7d49b431ec45b1c415e, type: 3}
+  m_PrefabInstance: {fileID: 224806112}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &224806114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 224806113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93a0ecd87a2434542968bd959a9a5cbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lastExitName: ExitBossJungle
 --- !u!1001 &272017531
 PrefabInstance:
   m_ObjectHideFlags: 0

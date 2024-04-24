@@ -22,6 +22,8 @@ public class InventoryItem : MonoBehaviour
     [HideInInspector] public string types;
     [HideInInspector] public string description;
     [HideInInspector] public bool useItem;
+    [HideInInspector] public int value;
+    [HideInInspector] public int timer;
 
 
     public bool thisUseItem;
@@ -45,6 +47,9 @@ public class InventoryItem : MonoBehaviour
         useItem = newItem.useItem;
 
         count = newItem.quantity;
+        value = newItem.value;
+        timer = newItem.timer;
+        
 
 
         ReFreshCount();

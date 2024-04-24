@@ -22,6 +22,8 @@ public class Item : ScriptableObject
     public bool useItem;
     public bool stackable;
 
+    public int timer;
+
     [Header("Shop")]
     public int productprice;
 
