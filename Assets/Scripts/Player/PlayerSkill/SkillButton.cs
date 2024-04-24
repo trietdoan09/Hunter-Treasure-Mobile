@@ -34,7 +34,7 @@ public class SkillButton : MonoBehaviour, IPointerClickHandler
     // Update is called once per frame
     void Update()
     {
-        ChangeSkill();
+        ChangeSkill(); 
     }
     private void ChangeSkill()
     {
@@ -45,5 +45,14 @@ public class SkillButton : MonoBehaviour, IPointerClickHandler
             openSkill.buttonHoldSkillId[buttonId] = holdSkillId;
             isValid = true;
         }
+    }
+    public void GameLoaded()
+    {
+        holdSkillId = openSkill.buttonHoldSkillId[buttonId];
+        if (holdSkillId >= 4)
+        {
+            image.sprite = openSkill.images[holdSkillId - 4].sprite;
+        }
+        isValid = true;
     }
 }
