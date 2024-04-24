@@ -82,4 +82,23 @@ public class SkillTree : MonoBehaviour
             skill.UpdateUI();
         }
     }
+    public void Save()
+    {
+        SaveSystem.SaveSkill(this);
+        Debug.Log("Game Skill Tree");
+    }
+    public void Load()
+    {
+        PlayerData data = SaveSystem.LoadSkill();
+        skillLevels = data.skillLevels;
+        skillCaps = data.skillCaps;
+        skillNames = data.skillNames;
+        skillDescriptions = data.skillDescriptions;
+        skillCooldown = data.skillCooldown;
+        isActiveSkill = data.isActiveSkill;
+        skillDamage = data.skillDamage;
+        manaDecrease = data.manaDecrease;
+        tempDameInscrease = data.tempDameInscrease;
+        Debug.Log("Load skill complete");
+    }
 }

@@ -39,6 +39,8 @@ public class OpenSkillAndInfomationPlayer : MonoBehaviour
     public List<Image> images;
     [SerializeField] private List<Image> border;
     public int[] buttonHoldSkillId;
+    public SkillButton skillButton;
+    [SerializeField] private TextMeshProUGUI playerSkillPoint;
 
     private GameObject playerManager;
 
@@ -144,6 +146,7 @@ public class OpenSkillAndInfomationPlayer : MonoBehaviour
         textDEF.text = $"DEF: " + playerManager.GetComponent<PlayerManager>().playerDefendPoint.ToString();
         textLevel.text = $"Level: " + playerManager.GetComponent<PlayerManager>().levelPlayer.ToString();
         textCurrentStatusPoint.text = $"Diem hien co: " + playerManager.GetComponent<PlayerManager>().playerStatusPoint.ToString();
+        playerSkillPoint.text = $"Diem hien co: " + playerManager.GetComponent<PlayerManager>().playerSkillPoint.ToString();
     }
     public void PlayerSkillClick()
     {
@@ -209,5 +212,21 @@ public class OpenSkillAndInfomationPlayer : MonoBehaviour
             titleText[i].text = $"{skillTree.skillNames[i + 4]} \n {skillTree.skillLevels[i + 4]} / {skillTree.skillCaps[i + 4]} ";
             images[i].sprite = skillTree.sprites[i + 4];
         }
+    }
+    public void Save()
+    {
+        SaveSystem.SavePlayerUseSkill(this);
+        Debug.Log("Game User use skill");
+    }
+    public void Load()
+    {
+        PlayerData data = SaveSystem.LoadPlayerUseSkill();
+        buttonHoldSkillId = data.buttonHoldSkillId;
+
+        foreach (var button in buttonHolder.GetComponentsInChildren<SkillButton>())
+        {
+            button.GameLoaded();
+        }
+        Debug.Log("Load user use skill complete");
     }
 }

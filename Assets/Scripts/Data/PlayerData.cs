@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class PlayerData
@@ -36,5 +37,31 @@ public class PlayerData
         levelPlayer = playerManager.levelPlayer;
         currentExp = playerManager.currentExp;
         maxExp = playerManager.maxExp;
+    }
+    public int[] skillLevels; // tổng số skill có thể kích hoạt
+    public int[] skillCaps; // max level mỗi skill
+    public string[] skillNames; //tên skill
+    public string[] skillDescriptions; // mô tả skill
+    public int[] skillCooldown; // thoi gian hoi chieu
+    public bool[] isActiveSkill; // skill active hay passive
+    public int[] skillDamage;
+    public int[] manaDecrease;
+    public int[] tempDameInscrease;
+    public PlayerData(SkillTree skillTree)
+    {
+        skillLevels = skillTree.skillLevels;
+        skillCaps = skillTree.skillCaps;
+        skillNames = skillTree.skillNames;
+        skillDescriptions = skillTree.skillDescriptions;
+        skillCooldown = skillTree.skillCooldown;
+        isActiveSkill = skillTree.isActiveSkill;
+        skillDamage = skillTree.skillDamage;
+        manaDecrease = skillTree.manaDecrease;
+        tempDameInscrease = skillTree.tempDameInscrease;
+    }
+    public int[] buttonHoldSkillId;
+    public PlayerData(OpenSkillAndInfomationPlayer openSkill)
+    {
+        buttonHoldSkillId = openSkill.buttonHoldSkillId;
     }
 }
