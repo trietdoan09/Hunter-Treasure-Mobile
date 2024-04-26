@@ -16714,6 +16714,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerInfomation
       objectReference: {fileID: 0}
+    - target: {fileID: 1814979720458597450, guid: f9b8bbb637280484ab95c840fca11aa8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3725425887639605928, guid: f9b8bbb637280484ab95c840fca11aa8, type: 3}
       propertyPath: m_fontSize
       value: 72
@@ -16776,7 +16780,7 @@ PrefabInstance:
       objectReference: {fileID: 1972820430}
     - target: {fileID: 7216645843501788501, guid: f9b8bbb637280484ab95c840fca11aa8, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7398175185069716748, guid: f9b8bbb637280484ab95c840fca11aa8, type: 3}
       propertyPath: m_Pivot.x
