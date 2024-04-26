@@ -147,8 +147,18 @@ public class PlayerManager : MonoBehaviour
         playerCurrentHealPoint -= damagaTaken > 0 ? damagaTaken : 0;
         if(playerCurrentHealPoint < 0)
         {
-            //player died
+            animator.SetTrigger("isDead");
+            
+            
         }
+    }
+    public void RePlay()
+    {
+
+        float tempHeal = (float)playerMaxHealPoint * 0.3f;
+        float tempMana = (float)playerMaxManaPoint * 0.3f;
+        playerCurrentHealPoint = (int)tempHeal;
+        playerCurrentManaPoint = (int)tempMana;
     }
 
     public void PlayerTakeExp(int expReceive)

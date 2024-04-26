@@ -176,6 +176,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7919461353731627267, guid: d9e9f0ab0743d0a4e8565fe69b912764, type: 3}
+      propertyPath: hpBar
+      value: 
+      objectReference: {fileID: 331109424}
+    - target: {fileID: 7919461353731627267, guid: d9e9f0ab0743d0a4e8565fe69b912764, type: 3}
       propertyPath: skills.Array.size
       value: 3
       objectReference: {fileID: 0}

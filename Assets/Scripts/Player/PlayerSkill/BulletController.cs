@@ -42,7 +42,7 @@ public class BulletController : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy") && !isExplore)
+        if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Boss") && !isExplore )
         {
             isExplore = true;
             var spawnExplore = Instantiate(explore);
@@ -59,9 +59,13 @@ public class BulletController : MonoBehaviour
                     enemy.GetComponent<EnemyHealth>().EnemyTakeDamage(dameBullet);
 
                 }
-                else
+                if(enemy.gameObject.tag == "Boss")
                 {
                     Debug.Log("We hit" + enemy.gameObject.layer);
+                    int playerDame = playerManager.playerAttackPoint;
+                    int skillDame = skillTree.skillDamage[idSkill];
+                    int dameBullet = playerDame * skillDame;
+                    enemy.GetComponent<BossController>().BossTakeDame(dameBullet);
                 }
             }
             Destroy(spawnExplore, 0.5f);

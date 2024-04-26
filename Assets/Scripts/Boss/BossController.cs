@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BossController : MonoBehaviour
 {
@@ -38,6 +39,7 @@ public class BossController : MonoBehaviour
     [SerializeField] private Vector2 attackRange;
     [SerializeField] private LayerMask enemyLayers;
     bool isCoolDown;
+    [SerializeField] private Slider hpBar;
     // Start is called before the first frame update
     void Start()
     {
@@ -50,6 +52,7 @@ public class BossController : MonoBehaviour
         boxCollider2D = GetComponent<BoxCollider2D>();
         animator = GetComponent<Animator>();
         StartCoroutine(BossBehaviour());
+        StartCoroutine(SliderHpBar());
     }
 
     // Update is called once per frame
@@ -99,6 +102,15 @@ public class BossController : MonoBehaviour
             isFlipped = true;
         }
     }
+    IEnumerator SliderHpBar()
+    {
+        while (true)
+        {
+            hpBar.maxValue = bossMaxHealthPoint;
+            hpBar.value = bossCurrentHealthPoint;
+            yield return new WaitForSeconds(0.001f);
+        }
+    }
     public void BossTakeDame(int damage)
     {
         if (!immortalTime)
@@ -125,6 +137,8 @@ public class BossController : MonoBehaviour
                 {
                     //dead
                     isDead = true;
+                    bossCurrentHealthPoint = 0;
+                    hpBar.value = 0;
                     StopAllCoroutines();
                     boxCollider2D.enabled = false;
                     rigidbody2D.gravityScale = 0;
@@ -141,6 +155,7 @@ public class BossController : MonoBehaviour
     IEnumerator LoadAnimPhase2()
     {
         animator.SetBool("enraged", true);
+        StartCoroutine(SliderHpBar());
         yield return new WaitForSeconds(5f);
         animator.SetBool("enraged", false);
         StartCoroutine(BossBehaviour());
