@@ -62,11 +62,12 @@ public class Tele : MonoBehaviour
             teleName.SetActive(true);
         }
     }
-
-    private void OnCollisionExit2D(Collision2D collision)
+   
+    private void OnTriggerExit2D(Collider2D collision)
     {
-            telePort.SetActive(false);
+        teleName.SetActive(false);
 
+        telePort.SetActive(false);
     }
 
     public void LoadScene(string exitName, string sceneToLoad)

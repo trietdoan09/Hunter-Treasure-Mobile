@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99b2ca41274be97418a6247dd9059886, type: 3}
   m_Name: MP
   m_EditorClassIdentifier: 
-  image: {fileID: 21300000, guid: 2223f345b5165de478007057287611f9, type: 3}
+  image: {fileID: 21300000, guid: dc079ad0b0f3c7c4a94ff470c281d7e1, type: 3}
   id: 0
   itemName: MP
   level: 1
@@ -21,5 +21,6 @@ MonoBehaviour:
   quantity: 6
   useItem: 1
   stackable: 1
-  productprice: 1000
-  value: 10
+  timer: 0
+  productprice: 200
+  value: 20

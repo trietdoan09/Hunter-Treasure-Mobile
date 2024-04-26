@@ -9,18 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99b2ca41274be97418a6247dd9059886, type: 3}
-  m_Name: HP
+  m_Script: {fileID: 11500000, guid: 02dbc4bff5edd85409c1ed6454fec39a, type: 3}
+  m_Name: MP
   m_EditorClassIdentifier: 
-  image: {fileID: 21300000, guid: d37161e80810a8b4b9de3806c45f81ad, type: 3}
+  image: {fileID: 21300000, guid: dc079ad0b0f3c7c4a94ff470c281d7e1, type: 3}
   id: 0
-  itemName: HP
+  itemName: MP
   level: 1
-  types: HP
-  description: "S\u1EED d\u1EE5ng h\u1ED3i ph\u1EE5c 20% Hp"
-  quantity: 17
-  useItem: 1
-  stackable: 1
-  timer: 0
+  types: MP
+  description: "S\u1EED d\u1EE5ng h\u1ED3i ph\u1EE5c 20% MP"
+  quantity: 1
   productprice: 200
   value: 20
