@@ -71,7 +71,69 @@ public static class SaveSystem
         }
     }
     #endregion
+    public static void SaveSkill(SkillTree skillTree)
+    {
+        BinaryFormatter formatter = new BinaryFormatter();
 
+        string path = Application.persistentDataPath + "/SaveSkill.data";
+        FileStream stream = new FileStream(path, FileMode.Create);
+
+        PlayerData data = new PlayerData(skillTree);
+
+        formatter.Serialize(stream, data);
+        stream.Close();
+    }
+    public static PlayerData LoadSkill()
+    {
+        string path = Application.persistentDataPath + "/SaveSkill.data";
+        if (File.Exists(path))
+        {
+            BinaryFormatter formatter = new BinaryFormatter();
+            FileStream stream = new FileStream(path, FileMode.Open);
+
+            PlayerData saveData = formatter.Deserialize(stream) as PlayerData;
+            stream.Close();
+
+            return saveData;
+        }
+        else
+        {
+            Debug.LogError("Save file not found in " + path);
+            return null;
+        }
+    }
+
+    public static void SavePlayerUseSkill(OpenSkillAndInfomationPlayer openSkill)
+    {
+        BinaryFormatter formatter = new BinaryFormatter();
+
+        string path = Application.persistentDataPath + "/SavePlayerUseSkill.data";
+        FileStream stream = new FileStream(path, FileMode.Create);
+
+        PlayerData data = new PlayerData(openSkill);
+
+        formatter.Serialize(stream, data);
+        stream.Close();
+    }
+    public static PlayerData LoadPlayerUseSkill()
+    {
+        string path = Application.persistentDataPath + "/SavePlayerUseSkill.data";
+        if (File.Exists(path))
+        {
+            BinaryFormatter formatter = new BinaryFormatter();
+            FileStream stream = new FileStream(path, FileMode.Open);
+
+            PlayerData saveData = formatter.Deserialize(stream) as PlayerData;
+            stream.Close();
+
+            return saveData;
+        }
+        else
+        {
+            Debug.LogError("Save file not found in " + path);
+            return null;
+        }
+    }
     #region Save UI
     public static void SaveInventory(InventoryManager inventoryManager)
     {

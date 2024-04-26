@@ -10,7 +10,7 @@ public class PlayerUseSkill : MonoBehaviour, IPointerClickHandler
     public int skillid;
     OpenSkillAndInfomationPlayer openSkill;
     CombatSystem combatSystem;
-    [SerializeField] private Image image;
+    public Image image;
 
     public void OnPointerClick(PointerEventData eventData)
     {
@@ -36,5 +36,4 @@ public class PlayerUseSkill : MonoBehaviour, IPointerClickHandler
             image.sprite = openSkill.images[skillid - 4].sprite;
         }
     }
-    
 }
