@@ -6,13 +6,16 @@ using UnityEngine.UI;
 
 public class ShopManager : MonoBehaviour
 {
-    public Item item;
     InventoryManager inventoryManager;
+    Shop shop;
+
+    public GameObject[] itemShopPrefab;
+    public Transform shopContent;
 
     [Header("Shop")]
-     int productprice;
+    public int productprice;
      int totalPrice;
-    public TextMeshProUGUI productpriceText;
+    
 
     public Image imageShop;
 
@@ -38,27 +41,38 @@ public class ShopManager : MonoBehaviour
     public TextMeshProUGUI typesTxt;
     public TextMeshProUGUI descriptionTxt;
 
+    private void Awake()
+    {
+        foreach(var item in itemShopPrefab)
+        {
+            Instantiate(item,shopContent);
+        }
+
+    }
     private void Start()
     {
         inventoryManager = FindAnyObjectByType<InventoryManager>();
-
-        productprice = item.productprice;
-        productpriceText.text = productprice.ToString();
+        shop = FindAnyObjectByType<Shop>();
 
     }
 
-    public void Notification()
+    public void Notification(ItemShop item)
     {
-        SetQuantity();
+        shop.Click();
 
-        if (inventoryManager.gold >= productprice)
+        SetQuantity(item);
+
+        if (inventoryManager.gold >= item.productprice)
         {
+            quantity = item.quantity;
+            productprice = item.productprice;
+            //totalPrice = item.productprice * quantity;
 
             notification.SetActive(true);
             description.SetActive(false);
             imageShop.sprite = item.image;
 
-            var quantityMaxs = inventoryManager.gold / productprice;
+            var quantityMaxs = inventoryManager.gold / item.productprice;
             if (quantityMaxs <= quantityMax)
             {
                 quantitySlider.maxValue = quantityMaxs;
@@ -71,13 +85,13 @@ public class ShopManager : MonoBehaviour
 
         else
         {
-            //Instantiate(notGoldTxt,transform);
-            notGoldTxt.SetActive(true);
+            Instantiate(notGoldTxt, transform);
+            //notGoldTxt.SetActive(true);
         }
 
     }
 
-    public void Description()
+    public void Description(ItemShop item)
     {
         description.SetActive(true);
 
@@ -96,11 +110,11 @@ public class ShopManager : MonoBehaviour
         totalPrice = quantity * productprice;
         totalPriceText.text = totalPrice.ToString();
     }
-    public void SetQuantity()
+    public void SetQuantity(ItemShop itemShop)
     {
         quantitySlider.value = 1;
         quantity = Mathf.FloorToInt(quantitySlider.value);
-        totalPrice = quantity * productprice;
+        totalPrice = quantity * itemShop.productprice;
 
         quantityText.text = quantitySlider.value.ToString();
         totalPriceText.text = totalPrice.ToString();
@@ -109,21 +123,41 @@ public class ShopManager : MonoBehaviour
     public void Buy()
     {
         
-        InventoryManager inventoryManager = FindAnyObjectByType<InventoryManager>();
-        inventoryManager.AddItem(item, quantity);
-        inventoryManager.SpawnItem();
 
-        inventoryManager.gold = inventoryManager.gold - totalPrice;
-        inventoryManager.GoldText(inventoryManager.gold);
+        for(int i = 0; i < shopContent.childCount; i++)
+        {
+            var shopItem = shopContent.GetChild(i);
+            Shop shop = shopItem.GetComponent<Shop>();
 
-        NPCShop nPCShop = FindAnyObjectByType<NPCShop>();
-        nPCShop.GoldText(inventoryManager.gold);
+            if(shop.check == true)
+            {
+                InventoryManager inventoryManager = FindAnyObjectByType<InventoryManager>();
+                inventoryManager.AddItem(shop.item, quantity);
+                inventoryManager.SpawnItem();
 
-        notification.SetActive(false);
+                inventoryManager.gold = inventoryManager.gold - totalPrice;
+                inventoryManager.GoldText(inventoryManager.gold);
+
+                NPCShop nPCShop = FindAnyObjectByType<NPCShop>();
+                nPCShop.GoldText(inventoryManager.gold);
+
+                notification.SetActive(false);
+            }
+        }
     }
 
-    public void SetActive()
+    public void Check()
     {
-        gameObject.SetActive(false);
+        Debug.Log("Check");
+        for (int i = 0;i < shopContent.childCount;i++)
+        {
+            var shopItem = shopContent.GetChild(i);
+            Shop shop = shopItem.GetComponent<Shop>();
+
+            Debug.Log("Check_ for");
+
+            shop.check = false;
+        }
     }
+
 }

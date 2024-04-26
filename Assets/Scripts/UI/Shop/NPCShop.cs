@@ -12,6 +12,8 @@ public class NPCShop : MonoBehaviour
     void Start()
     {
         inventoryManager = FindAnyObjectByType<InventoryManager>();
+        shop.SetActive(false);
+
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

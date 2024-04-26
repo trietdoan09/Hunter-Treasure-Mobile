@@ -9,14 +9,15 @@ public class LoadScenManager : MonoBehaviour
     public string sceneToLoad;
     public string exitName;
 
-    private void Start()
-    {
-        notificationLoadscene.SetActive(false);
-
-    }
+ 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         notificationLoadscene.SetActive(true);
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        notificationLoadscene.SetActive(false);
     }
 
     public void LoadScene()
