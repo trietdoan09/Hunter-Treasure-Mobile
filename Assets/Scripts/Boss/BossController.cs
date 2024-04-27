@@ -40,6 +40,7 @@ public class BossController : MonoBehaviour
     [SerializeField] private LayerMask enemyLayers;
     bool isCoolDown;
     [SerializeField] private Slider hpBar;
+    [SerializeField] private GameObject dropItem;
     // Start is called before the first frame update
     void Start()
     {
@@ -61,6 +62,10 @@ public class BossController : MonoBehaviour
         if (!isDead)
         {
             MoveToPlayer();
+        }
+        if (playerManager.isDead)
+        {
+            StopAllCoroutines();
         }
     }
     private void SetupBossStatus()
