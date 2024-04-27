@@ -98,7 +98,7 @@ public class OpenSkillAndInfomationPlayer : MonoBehaviour
         {
             sliderHP.maxValue = playerManager.GetComponent<PlayerManager>().playerMaxHealPoint;
             sliderUiHP.maxValue = playerManager.GetComponent<PlayerManager>().playerMaxHealPoint;
-            yield return new WaitForSeconds(0.01f);
+            yield return new WaitForSeconds(0.001f);
             if(sliderHP.value != playerManager.GetComponent<PlayerManager>().playerCurrentHealPoint)
             {
                 sliderHP.value += (sliderHP.value - playerManager.GetComponent<PlayerManager>().playerCurrentHealPoint) < 0 ? 1 : -1;
@@ -113,7 +113,7 @@ public class OpenSkillAndInfomationPlayer : MonoBehaviour
         {
             sliderMP.maxValue = playerManager.GetComponent<PlayerManager>().playerMaxManaPoint;
             sliderUiMP.maxValue = playerManager.GetComponent<PlayerManager>().playerMaxManaPoint;
-            yield return new WaitForSeconds(0.01f);
+            yield return new WaitForSeconds(0.001f);
             if(sliderMP.value != playerManager.GetComponent<PlayerManager>().playerCurrentManaPoint)
             {
                 sliderMP.value += (sliderMP.value - playerManager.GetComponent<PlayerManager>().playerCurrentManaPoint) < 0 ? 1 : -1;

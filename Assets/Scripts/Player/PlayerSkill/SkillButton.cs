@@ -49,7 +49,7 @@ public class SkillButton : MonoBehaviour, IPointerClickHandler
     public void GameLoaded()
     {
         holdSkillId = openSkill.buttonHoldSkillId[buttonId];
-        if (holdSkillId >= 4)
+        if (holdSkillId >= 4 && holdSkillId !=0)
         {
             image.sprite = openSkill.images[holdSkillId - 4].sprite;
         }

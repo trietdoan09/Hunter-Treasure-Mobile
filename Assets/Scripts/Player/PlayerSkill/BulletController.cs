@@ -14,6 +14,7 @@ public class BulletController : MonoBehaviour
     [SerializeField] private Vector2 attackRange;
     [SerializeField] private LayerMask enemyLayers;
     [SerializeField] private int idSkill;
+    private int bulletDirection;
     private bool isExplore;
     // Start is called before the first frame update
     void Start()
@@ -22,6 +23,7 @@ public class BulletController : MonoBehaviour
         playerMovement = FindObjectOfType<PlayerMovement>();
         combatSystem = FindObjectOfType<CombatSystem>();
         playerManager = FindObjectOfType<PlayerManager>();
+        bulletDirection = playerMovement.playerDirection;
         //StartCoroutine(DestroyBullet());
     }
 
@@ -33,16 +35,16 @@ public class BulletController : MonoBehaviour
     }
     private void BulletMove()
     {
-        transform.position += new Vector3(7 * Time.deltaTime * playerMovement.playerDirection, 0, 0);
+        transform.position += new Vector3(7 * Time.deltaTime * bulletDirection, 0, 0);
     }
     IEnumerator DestroyBullet()
     {
         yield return new WaitForSeconds(1.5f);
         //Destroy(gameObject);
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy") && !isExplore)
+        if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Boss") && !isExplore)
         {
             isExplore = true;
             var spawnExplore = Instantiate(explore);
@@ -59,9 +61,13 @@ public class BulletController : MonoBehaviour
                     enemy.GetComponent<EnemyHealth>().EnemyTakeDamage(dameBullet);
 
                 }
-                else
+                if (enemy.gameObject.tag == "Boss")
                 {
                     Debug.Log("We hit" + enemy.gameObject.layer);
+                    int playerDame = playerManager.playerAttackPoint;
+                    int skillDame = skillTree.skillDamage[idSkill];
+                    int dameBullet = playerDame * skillDame;
+                    enemy.GetComponent<BossController>().BossTakeDame(dameBullet);
                 }
             }
             Destroy(spawnExplore, 0.5f);
@@ -69,6 +75,7 @@ public class BulletController : MonoBehaviour
             Destroy(gameObject, 0.5f);
         }
     }
+
     private void OnDrawGizmos()
     {
         if (attackPostition == null)

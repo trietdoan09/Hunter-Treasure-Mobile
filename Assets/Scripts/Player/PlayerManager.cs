@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Animations;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
@@ -26,6 +25,9 @@ public class PlayerManager : MonoBehaviour
     public int levelPlayer; // cấp độ nhân vật
     public float currentExp; // kinh nghiệm hiện tại của nhân vật
     public float maxExp; //kinh nghiệm tối đa cần để tăng cấp
+    [Header("Show dead ui")]
+    [SerializeField] private GameObject deadUI;
+    public bool isDead;
 
 
     // Start is called before the first frame update
@@ -147,8 +149,26 @@ public class PlayerManager : MonoBehaviour
         playerCurrentHealPoint -= damagaTaken > 0 ? damagaTaken : 0;
         if(playerCurrentHealPoint < 0)
         {
-            //player died
+            StartCoroutine(StopTheWorld());
+            isDead = true;
+            animator.SetBool("isDead", isDead);
+            deadUI.SetActive(true);
         }
+    }
+    IEnumerator StopTheWorld()
+    {
+        yield return new WaitForSeconds(1f);
+        Time.timeScale = 0;
+    }
+    public void RePlay()
+    {
+        isDead = false;
+        deadUI.SetActive(false);
+        animator.SetBool("isDead", isDead);
+        float tempHeal = (float)playerMaxHealPoint * 0.3f;
+        float tempMana = (float)playerMaxManaPoint * 0.3f;
+        playerCurrentHealPoint = (int)tempHeal;
+        playerCurrentManaPoint = (int)tempMana;
     }
 
     public void PlayerTakeExp(int expReceive)

@@ -3241,7 +3241,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &430223352
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3256,6 +3256,7 @@ RectTransform:
   m_Children:
   - {fileID: 1923114250}
   - {fileID: 1337718548}
+  - {fileID: 523668130}
   m_Father: {fileID: 1972820429}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -3313,7 +3314,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56ea085c6343f0f408d14a2d03ed9d02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  notificationLoadscene: {fileID: 0}
+  notificationLoadscene: {fileID: 523668129}
   sceneToLoad: MapVillage
   exitName: PlayerRivive
 --- !u!114 &430223356
@@ -3827,6 +3828,41 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!1 &523668129
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 523668130}
+  m_Layer: 5
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &523668130
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 523668129}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 430223352}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &530416166
 GameObject:
   m_ObjectHideFlags: 0
@@ -11324,6 +11360,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 7084381151649010470}
+        m_TargetAssemblyTypeName: PlayerManager, Assembly-CSharp
+        m_MethodName: RePlay
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1370718884
 GameObject:
   m_ObjectHideFlags: 0
@@ -16992,7 +17040,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 7
+  m_GravityScale: 10
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -17092,6 +17140,8 @@ MonoBehaviour:
   levelPlayer: 0
   currentExp: 0
   maxExp: 0
+  deadUI: {fileID: 430223351}
+  isDead: 0
 --- !u!4 &7124015324608604991
 Transform:
   m_ObjectHideFlags: 0
@@ -17230,7 +17280,7 @@ PrefabInstance:
       objectReference: {fileID: 1972820430}
     - target: {fileID: 7216645843501788501, guid: f9b8bbb637280484ab95c840fca11aa8, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7398175185069716748, guid: f9b8bbb637280484ab95c840fca11aa8, type: 3}
       propertyPath: m_Pivot.x
