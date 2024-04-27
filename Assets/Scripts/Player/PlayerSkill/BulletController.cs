@@ -40,9 +40,9 @@ public class BulletController : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
         //Destroy(gameObject);
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Boss") && !isExplore )
+        if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Boss") && !isExplore)
         {
             isExplore = true;
             var spawnExplore = Instantiate(explore);
@@ -59,7 +59,7 @@ public class BulletController : MonoBehaviour
                     enemy.GetComponent<EnemyHealth>().EnemyTakeDamage(dameBullet);
 
                 }
-                if(enemy.gameObject.tag == "Boss")
+                if (enemy.gameObject.tag == "Boss")
                 {
                     Debug.Log("We hit" + enemy.gameObject.layer);
                     int playerDame = playerManager.playerAttackPoint;
@@ -73,6 +73,7 @@ public class BulletController : MonoBehaviour
             Destroy(gameObject, 0.5f);
         }
     }
+
     private void OnDrawGizmos()
     {
         if (attackPostition == null)
