@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
+using static UnityEditor.Progress;
 
 public class InventoryManager : MonoBehaviour
 {
@@ -138,8 +139,7 @@ public class InventoryManager : MonoBehaviour
         if (check)
         {
             item.quantity += count;
-            Debug.Log(item.quantity + " da co");
-
+            SetTextHPMP(item);
             if (item.quantity > maxStackedItems)
             {
                 var totalCount = item.quantity - maxStackedItems;
@@ -147,8 +147,7 @@ public class InventoryManager : MonoBehaviour
 
                 inventoryItems.Add(item);
                 item.quantity = totalCount;
-
-                Debug.Log(item.quantity + " count nhieu");
+                SetTextHPMP(item);
 
             }
 
@@ -157,8 +156,8 @@ public class InventoryManager : MonoBehaviour
         {
             inventoryItems.Add(item);
             item.quantity = count;
-            Debug.Log(item.quantity + " k co");
 
+            SetTextHPMP(item);
         }
 
     }
@@ -208,6 +207,8 @@ public class InventoryManager : MonoBehaviour
                     if(itemInSlot.itemName == item.name)
                     {
                         item.quantity--;
+                        SetTextHPMP(item);
+
                         if (item.quantity <= 0)
                         {
                             inventoryItems.Remove(item);
@@ -218,6 +219,7 @@ public class InventoryManager : MonoBehaviour
                 }
 
                 itemInSlot.count--;
+
                 if (itemInSlot.count <= 0)
                 {
                     Destroy(itemInSlot.gameObject);
@@ -299,6 +301,19 @@ public class InventoryManager : MonoBehaviour
             {
                 Destroy(items);
             }
+        }
+    }
+
+    public void SetTextHPMP(Item item)
+    {
+        UseHPMP useHPMP = FindAnyObjectByType<UseHPMP>();
+        if (item.itemName == "HP")
+        {
+            useHPMP.HPTxt.text = item.quantity.ToString();
+        }
+        if (item.itemName == "MP")
+        {
+            useHPMP.MPTxt.text = item.quantity.ToString();
         }
     }
 }

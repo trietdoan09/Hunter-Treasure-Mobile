@@ -12,19 +12,18 @@ public class UseHPMP : MonoBehaviour
     public TextMeshProUGUI MPTxt;
 
     public GameObject panel;
-    public Transform panelPos;
 
     void Start()
     {
         inventoryManager = FindAnyObjectByType<InventoryManager>();
         useItem = FindAnyObjectByType<UseItem>();
 
+        HPTxt.text = 0.ToString();
+        MPTxt.text = 0.ToString();
+
         for (int i = 0; i < inventoryManager.inventoryItems.Count; i++)
         {
             var item = inventoryManager.inventoryItems[i];
-
-            HPTxt.text = 0.ToString();
-            MPTxt.text = 0.ToString();
 
             if("HP" == item.itemName)
             {
@@ -52,12 +51,14 @@ public class UseHPMP : MonoBehaviour
                     useItem.HP(item.value, item.quantity);
                     item.quantity--;
 
-                    //HPTxt.text = item.quantity.ToString();
+                    HPTxt.text = item.quantity.ToString();
                 }
 
                 if (item.quantity <= 0)
                 {
-                    Instantiate(panel, panelPos);
+                    Instantiate(panel);
+                    inventoryManager.inventoryItems.Remove(item);
+
                 }
             }
         }
@@ -74,13 +75,15 @@ public class UseHPMP : MonoBehaviour
                 {
                     useItem.MP(item.value, item.quantity);
                     item.quantity--;
-                    //MPTxt.text = item.quantity.ToString();
+                    MPTxt.text = item.quantity.ToString();
 
                 }
 
-                if (item.quantity <= 0)
+                if (item.quantity < 0)
                 {
-                    Instantiate(panel, panelPos);
+                    Instantiate(panel);
+                    inventoryManager.inventoryItems.Remove(item);
+
                 }
             }
         }
