@@ -109572,6 +109572,7 @@ MonoBehaviour:
   - {fileID: 1762191805007838259, guid: 2e6d5b57874bfcf4fab70b098bfb5b33, type: 3}
   - {fileID: 7697002336473455374, guid: c189dc79165818f499f111bd35e97748, type: 3}
   - {fileID: 1080654328014397969, guid: fc1c62886fb5cf74eaa850542ab57343, type: 3}
+  - {fileID: 1080654328014397969, guid: 8807ffca658128c49a62184c56fcd1a8, type: 3}
   shopContent: {fileID: 1468754122}
   productprice: 0
   imageShop: {fileID: 6650592443699810032}

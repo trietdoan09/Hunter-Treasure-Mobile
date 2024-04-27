@@ -4,12 +4,15 @@ using TMPro;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 
 public class InventoryManager : MonoBehaviour
 {
 
     UseItem useItems;
     public static InventoryManager instance;
+
+    public GameObject inventory;
 
     public Item[] startItem;
 
@@ -23,6 +26,10 @@ public class InventoryManager : MonoBehaviour
 
     public int gold;
     public TextMeshProUGUI goldText;
+
+    [Header("TelePort")]
+    public string exitName;
+    public string sceneToLoad;
 
     [Header("Description")]
 
@@ -192,8 +199,24 @@ public class InventoryManager : MonoBehaviour
 
             if (itemInSlot.thisUseItem == true)
             {
+                
                 // sử dụng vật phẩm
                 Use(itemInSlot);
+                for (int j = 0; j < inventoryItems.Count; j++)
+                {
+                    var item = inventoryItems[j];
+                    if(itemInSlot.itemName == item.name)
+                    {
+                        item.quantity--;
+                        if (item.quantity <= 0)
+                        {
+                            inventoryItems.Remove(item);
+                        }
+                    }
+
+
+                }
+
                 itemInSlot.count--;
                 if (itemInSlot.count <= 0)
                 {
@@ -238,16 +261,17 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
+
     public void Use(InventoryItem inventoryItem )
     {
         switch(inventoryItem.itemName)
         {
             case "HP":
-                useItems.HP(inventoryItem.value);
+                useItems.HP(inventoryItem.value, inventoryItem.count);
                 break;
 
             case "MP":
-                useItems.MP(inventoryItem.value);
+                useItems.MP(inventoryItem.value, inventoryItem.count);
                 break;
 
             case "ATK":
@@ -257,7 +281,24 @@ public class InventoryManager : MonoBehaviour
             case "DEF":
                 useItems.DEF(inventoryItem.value, inventoryItem.timer);
                 break;
+            case "TelePort":
+                useItems.UseTelePort(exitName , sceneToLoad);
+                inventory.SetActive(false);
+                break;
         }
     }
    
+    public void SetItem()
+    {
+        for (int j = 0; j < inventoryItems.Count; j++)
+        {
+            var item = inventoryItems[j];
+            InventoryItem items = item.GetComponent<InventoryItem>();
+            items.count--;
+            if (items.count <= 0)
+            {
+                Destroy(items);
+            }
+        }
+    }
 }

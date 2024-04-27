@@ -58,8 +58,6 @@ public class ShopManager : MonoBehaviour
 
     public void Notification(ItemShop item)
     {
-        shop.Click();
-
         SetQuantity(item);
 
         if (inventoryManager.gold >= item.productprice)
@@ -148,13 +146,10 @@ public class ShopManager : MonoBehaviour
 
     public void Check()
     {
-        Debug.Log("Check");
         for (int i = 0;i < shopContent.childCount;i++)
         {
             var shopItem = shopContent.GetChild(i);
             Shop shop = shopItem.GetComponent<Shop>();
-
-            Debug.Log("Check_ for");
 
             shop.check = false;
         }
