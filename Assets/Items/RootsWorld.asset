@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99b2ca41274be97418a6247dd9059886, type: 3}
+  m_Name: RootsWorld
+  m_EditorClassIdentifier: 
+  image: {fileID: 21300000, guid: a83bf8a0459fefa44b0c2cc2b16a6018, type: 3}
+  id: 0
+  itemName: RootsWorld
+  level: 1
+  types: ingredient
+  description: "C\xE0nh c\u1EE7a c\xE2y th\u1EBF gi\u1EDBi. S\u1EED d\u1EE5ng \u0111\u1EC3
+    n\xE2ng c\u1EA5p th\u1EBF gi\u1EDBi"
+  quantity: 1
+  useItem: 0
+  stackable: 1
+  timer: 0
+  productprice: 0
+  value: 0
