@@ -14,6 +14,7 @@ public class BulletController : MonoBehaviour
     [SerializeField] private Vector2 attackRange;
     [SerializeField] private LayerMask enemyLayers;
     [SerializeField] private int idSkill;
+    private int bulletDirection;
     private bool isExplore;
     // Start is called before the first frame update
     void Start()
@@ -22,6 +23,7 @@ public class BulletController : MonoBehaviour
         playerMovement = FindObjectOfType<PlayerMovement>();
         combatSystem = FindObjectOfType<CombatSystem>();
         playerManager = FindObjectOfType<PlayerManager>();
+        bulletDirection = playerMovement.playerDirection;
         //StartCoroutine(DestroyBullet());
     }
 
@@ -33,7 +35,7 @@ public class BulletController : MonoBehaviour
     }
     private void BulletMove()
     {
-        transform.position += new Vector3(7 * Time.deltaTime * playerMovement.playerDirection, 0, 0);
+        transform.position += new Vector3(7 * Time.deltaTime * bulletDirection, 0, 0);
     }
     IEnumerator DestroyBullet()
     {
