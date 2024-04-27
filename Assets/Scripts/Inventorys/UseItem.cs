@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Threading;
 using System.Timers;
-using Unity.VisualScripting;
 using UnityEngine;
+using TMPro;
 
 public class UseItem : MonoBehaviour
 {
@@ -28,7 +27,7 @@ public class UseItem : MonoBehaviour
         UseATK();
         UseDEF();
     }
-    public void HP(int value)
+    public void HP(int value, int count)
     {
 
         var total = value * playerManager.playerMaxHealPoint;
@@ -37,15 +36,20 @@ public class UseItem : MonoBehaviour
         playerManager.playerCurrentHealPoint = playerManager.playerCurrentHealPoint + healadd > playerManager.playerMaxHealPoint 
             ? playerManager.playerMaxHealPoint : playerManager.playerCurrentHealPoint + healadd;
 
+        UseHPMP useHPMP = FindAnyObjectByType<UseHPMP>();
+        useHPMP.HPTxt.text = count.ToString();
     }
 
-    public void MP(int value)
+    public void MP(int value, int count)
     {
         var total = value * playerManager.playerMaxHealPoint;
         int mpadd = Mathf.FloorToInt(total / 100);
 
         playerManager.playerCurrentManaPoint = playerManager.playerCurrentManaPoint + mpadd > playerManager.playerMaxManaPoint
             ? playerManager.playerMaxManaPoint : playerManager.playerCurrentManaPoint + mpadd;
+
+        UseHPMP useHPMP = FindAnyObjectByType<UseHPMP>();
+        useHPMP.MPTxt.text = count.ToString();
     }
 
     public void ATK(int value, float timer)
@@ -114,5 +118,12 @@ public class UseItem : MonoBehaviour
 
             }
         }
+    }
+
+    public void UseTelePort(string exitName, string sceneToLoad)
+    {
+        PlayerPrefs.SetString("LastExitName", exitName);
+
+        MapManager.Instance.Loader(sceneToLoad);
     }
 }

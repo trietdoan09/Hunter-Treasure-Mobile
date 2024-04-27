@@ -58,7 +58,7 @@ public class InventoryItem : MonoBehaviour
     public void ReFreshCount()
     {
         countText.text = count.ToString();
-        bool textActive = count > 1;
+        bool textActive = count > 0;
         countText.gameObject.SetActive(textActive);
     }
 
