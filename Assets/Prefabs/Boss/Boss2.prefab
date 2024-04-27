@@ -198,6 +198,8 @@ MonoBehaviour:
   enemyLayers:
     serializedVersion: 2
     m_Bits: 0
+  hpBar: {fileID: 0}
+  dropItem: {fileID: 4100494683021271479, guid: 69bdbf58783a829409615d3abebbc468, type: 3}
 --- !u!95 &3691730127098498578
 Animator:
   serializedVersion: 5

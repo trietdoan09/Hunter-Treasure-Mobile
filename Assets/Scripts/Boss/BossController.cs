@@ -148,6 +148,8 @@ public class BossController : MonoBehaviour
                     boxCollider2D.enabled = false;
                     rigidbody2D.gravityScale = 0;
                     animator.SetTrigger("isDead");
+                    var _itemdrop = Instantiate(dropItem);
+                    _itemdrop.transform.position = transform.position + new Vector3(0, -1, 0);
                 }
             }
             else

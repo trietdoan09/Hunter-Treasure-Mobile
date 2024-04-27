@@ -219,6 +219,8 @@ MonoBehaviour:
   enemyLayers:
     serializedVersion: 2
     m_Bits: 0
+  hpBar: {fileID: 0}
+  dropItem: {fileID: 4100494683021271479, guid: 1b0711fe6979532468d9c2de3c000733, type: 3}
 --- !u!1 &8069047709891538385
 GameObject:
   m_ObjectHideFlags: 0
