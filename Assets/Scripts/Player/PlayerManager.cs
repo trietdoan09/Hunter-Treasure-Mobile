@@ -150,11 +150,16 @@ public class PlayerManager : MonoBehaviour
         playerCurrentHealPoint -= damagaTaken > 0 ? damagaTaken : 0;
         if(playerCurrentHealPoint < 0)
         {
+            StartCoroutine(StopTheWorld());
             isDead = true;
             animator.SetBool("isDead", isDead);
             deadUI.SetActive(true);
-            Time.timeScale = 0;
         }
+    }
+    IEnumerator StopTheWorld()
+    {
+        yield return new WaitForSeconds(1f);
+        Time.timeScale = 0;
     }
     public void RePlay()
     {
