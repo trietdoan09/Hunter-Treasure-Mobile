@@ -57,10 +57,8 @@ public class Tele : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("Player"))
-        {
-            teleName.SetActive(true);
-        }
+        teleName.SetActive(true);
+
     }
    
     private void OnTriggerExit2D(Collider2D collision)
@@ -72,6 +70,8 @@ public class Tele : MonoBehaviour
 
     public void LoadScene(string exitName, string sceneToLoad)
     {
+        telePort.SetActive(false);
+
         PlayerPrefs.SetString("LastExitName", exitName);
 
         MapManager.Instance.Loader(sceneToLoad);

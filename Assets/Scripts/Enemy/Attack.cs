@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class Attack : MonoBehaviour
 {
-    private void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            EnemyHealth enemyHealth = GetComponentInParent<EnemyHealth>();
-            enemyHealth.health -= 50;
+    //private void Update()
+    //{
+    //    if (Input.GetMouseButtonDown(0))
+    //    {
+    //        EnemyHealth enemyHealth = GetComponentInParent<EnemyHealth>();
+    //        enemyHealth.health -= 50;
 
-        }
-    }
+    //    }
+    //}
 
     public void DamagePlayer()
     {
