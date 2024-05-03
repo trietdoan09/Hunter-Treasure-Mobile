@@ -65,6 +65,8 @@ public class MapManager : MonoBehaviour
 
     public void DeplayLoader()
     {
+        Time.timeScale = 1;
+
         loader.SetActive(false);
 
     }

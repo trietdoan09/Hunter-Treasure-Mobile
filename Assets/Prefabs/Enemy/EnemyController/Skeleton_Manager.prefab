@@ -1018,6 +1018,8 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
+  damageObj: {fileID: 7763708599692587135, guid: b75b983c4a711c944b8a730a9b4c3fb9, type: 3}
+  damageTxt: {fileID: 7940458155591808743, guid: b75b983c4a711c944b8a730a9b4c3fb9, type: 3}
 --- !u!114 &3590479094348856827
 MonoBehaviour:
   m_ObjectHideFlags: 0

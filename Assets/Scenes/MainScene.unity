@@ -17234,6 +17234,7 @@ MonoBehaviour:
   maxExp: 0
   deadUI: {fileID: 430223351}
   isDead: 0
+  damagaTaken: 0
 --- !u!4 &7124015324608604991
 Transform:
   m_ObjectHideFlags: 0

@@ -28,7 +28,7 @@ public class PlayerManager : MonoBehaviour
     [Header("Show dead ui")]
     [SerializeField] private GameObject deadUI;
     public bool isDead;
-
+    public int damagaTaken;
 
     // Start is called before the first frame update
     private void Awake()
@@ -145,7 +145,7 @@ public class PlayerManager : MonoBehaviour
 
     public void PlayerTakeDame(int damage)
     {
-        int damagaTaken = damage - playerDefendPoint;
+         damagaTaken = damage - playerDefendPoint;
         playerCurrentHealPoint -= damagaTaken > 0 ? damagaTaken : 0;
         if(playerCurrentHealPoint < 0)
         {

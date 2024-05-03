@@ -708,10 +708,10 @@ GameObject:
   - component: {fileID: 112836166826664288}
   - component: {fileID: 4267061755539322670}
   - component: {fileID: 755459660370497664}
+  - component: {fileID: 2138442689657302979}
   - component: {fileID: 8936432495587013800}
   - component: {fileID: 4603304370140053187}
   - component: {fileID: 4026035247709533725}
-  - component: {fileID: 2138442689657302979}
   m_Layer: 7
   m_Name: EnemyController
   m_TagString: Untagged
@@ -807,6 +807,26 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &2138442689657302979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6985157804486188035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d2008b6b71d3954a99ff0b830c40ba0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 11400000, guid: 6e2fdc77281ab7a4bb67ec4f6a6fc262, type: 2}
+  enemyName: 
+  enemyLevel: 0
+  enemySpeed: 0
+  enemyMaxHealth: 0
+  enemyDamage: 0
+  enemyDef: 0
+  enemyLevelTxt: {fileID: 7569273351378532033}
 --- !u!114 &8936432495587013800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -853,6 +873,8 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
+  damageObj: {fileID: 7763708599692587135, guid: b75b983c4a711c944b8a730a9b4c3fb9, type: 3}
+  damageTxt: {fileID: 7940458155591808743, guid: b75b983c4a711c944b8a730a9b4c3fb9, type: 3}
 --- !u!114 &4026035247709533725
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -868,26 +890,6 @@ MonoBehaviour:
   speed: 1.5
   range: 1.2
   idleDuration: 5
---- !u!114 &2138442689657302979
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6985157804486188035}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d2008b6b71d3954a99ff0b830c40ba0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemy: {fileID: 11400000, guid: 6e2fdc77281ab7a4bb67ec4f6a6fc262, type: 2}
-  enemyName: 
-  enemyLevel: 0
-  enemySpeed: 0
-  enemyMaxHealth: 0
-  enemyDamage: 0
-  enemyDef: 0
-  enemyLevelTxt: {fileID: 7569273351378532033}
 --- !u!1 &7489570164502872060
 GameObject:
   m_ObjectHideFlags: 0

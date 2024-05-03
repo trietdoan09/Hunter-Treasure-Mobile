@@ -84,6 +84,7 @@ public class ShopManager : MonoBehaviour
         else
         {
             Instantiate(notGoldTxt, transform);
+
             //notGoldTxt.SetActive(true);
         }
 
