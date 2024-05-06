@@ -10,6 +10,7 @@ TagManager:
   - EnemyRange
   - Boss
   - Ground
+  - Gold
   layers:
   - Default
   - TransparentFX
@@ -21,7 +22,7 @@ TagManager:
   - Enemy
   - Ground
   - MiniMap
-  - 
+  - Gold
   - 
   - 
   - 
@@ -52,4 +53,7 @@ TagManager:
     locked: 0
   - name: Enemy
     uniqueID: 1227964615
+    locked: 0
+  - name: Item
+    uniqueID: 4126834257
     locked: 0

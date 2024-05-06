@@ -846,9 +846,7 @@ MonoBehaviour:
   dead: 0
   health: 0
   theDrop:
-  - {fileID: 4591433483361982668, guid: e289eb6a7a16c3b428903a19c6a3038b, type: 3}
-  - {fileID: 4100494683021271479, guid: 1f1af7580f108564998e12c60d70c569, type: 3}
-  - {fileID: 4591433483361982668, guid: e289eb6a7a16c3b428903a19c6a3038b, type: 3}
+  - {fileID: 2885007467960531052, guid: 41c4a6c7d3bc0554b91e4782e92ed285, type: 3}
   level: 0
   giveExp: 0
 --- !u!114 &4603304370140053187
