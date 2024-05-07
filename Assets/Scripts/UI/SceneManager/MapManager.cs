@@ -8,6 +8,8 @@ using UnityEngine.UI;
 
 public class MapManager : MonoBehaviour
 {
+    AudioManager audioManager;
+
     public static MapManager Instance;
     public GameObject loader;
     public Image progressBar;
@@ -16,7 +18,9 @@ public class MapManager : MonoBehaviour
 
     private void Awake()
     {
-        if(Instance == null)
+        audioManager = FindAnyObjectByType<AudioManager>();
+
+        if (Instance == null)
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
@@ -34,6 +38,9 @@ public class MapManager : MonoBehaviour
 
     public async void Loader(string sceneName)
     {
+        audioManager.musicSource.Stop();
+        audioManager.PlayMusic("LoadScene");
+
         target = 0;
         progressBar.fillAmount = 0;
 

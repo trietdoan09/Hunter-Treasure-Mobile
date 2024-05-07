@@ -23,7 +23,7 @@ public class NotificationContent : MonoBehaviour
         imageItem.sprite = item.items.image;
         itemName.text = item.items.name + "  x " + count;
 
-        Destroy(gameObject, 2);
+        Destroy(gameObject, 3);
     }
 
 }

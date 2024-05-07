@@ -16,11 +16,12 @@ public class AudioManager : MonoBehaviour
     }
     private void Start()
     {
-        PlayMusic("Theme");
+        //PlayMusic("Theme");
     }
 
     public void PlayMusic(string name)
     {
+
         Sound sound = Array.Find(musicSound, x => x.name == name);
 
         if (sound == null)
@@ -37,6 +38,7 @@ public class AudioManager : MonoBehaviour
 
     public void PlaySFX(string name)
     {
+
         Sound sound = Array.Find(sfxSound, x => x.name == name);
 
         if (sound == null)

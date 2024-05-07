@@ -9637,8 +9637,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   musicSound:
-  - name: Theme
+  - name: Village
     clip: {fileID: 8300000, guid: 7564093039b2a554db28596b155dd017, type: 3}
+  - name: Dungeon
+    clip: {fileID: 8300000, guid: 0e71feae57cab8d4d93346a0898302d6, type: 3}
+  - name: Jungle
+    clip: {fileID: 8300000, guid: d1e23c09a97653744b580638d53ea594, type: 3}
+  - name: Desert
+    clip: {fileID: 8300000, guid: 46e90c10338917547b9942807893ce55, type: 3}
+  - name: LoadScene
+    clip: {fileID: 8300000, guid: 35a8953e5b79a6246949aba05d35a4ee, type: 3}
   sfxSound:
   - name: Click
     clip: {fileID: 8300000, guid: faee885aeb551c04aa524e9e8dc8b36b, type: 3}
@@ -9646,6 +9654,16 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: a5404456dfdf66741afaada68791a925, type: 3}
   - name: EnemyAttack
     clip: {fileID: 8300000, guid: 410dbddc4bd75d548adbd2db434c3f11, type: 3}
+  - name: PlayerAttack
+    clip: {fileID: 8300000, guid: 72da49e053818e347930e7824712d546, type: 3}
+  - name: PlayerJump
+    clip: {fileID: 8300000, guid: 94d1655f24644b147b22506d5af9b4ea, type: 3}
+  - name: PlayerSkill1
+    clip: {fileID: 8300000, guid: 6191904e46f20b24fbf78f161ee2e9a8, type: 3}
+  - name: PlayerSkill2
+    clip: {fileID: 8300000, guid: 681de2f78ddfe204c85e4909f4c22a97, type: 3}
+  - name: PlayerSkill3
+    clip: {fileID: 8300000, guid: 20819c621c8f9ce4da4e463c866ed888, type: 3}
   musicSource: {fileID: 96673134}
   sfxSource: {fileID: 1149221368}
 --- !u!114 &1216979389
@@ -10090,6 +10108,7 @@ MonoBehaviour:
   notificationItemObj: {fileID: 6433572046690438839, guid: 1e266eea418d48344ad3f1735118f32b, type: 3}
   notificationPos: {fileID: 1345659061}
   items: {fileID: 0}
+  golds: 0
 --- !u!1 &1238772727
 GameObject:
   m_ObjectHideFlags: 0
