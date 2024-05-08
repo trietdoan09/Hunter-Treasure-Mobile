@@ -14,6 +14,6 @@ public class PlayerRivive : MonoBehaviour
    public void OffRivive()
     {
         riviveObj.SetActive(false);
-        Time.timeScale = 1;
+        //Time.timeScale = 1;
     }
 }

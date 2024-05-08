@@ -9,6 +9,7 @@ public class EnemyController : MonoBehaviour
     public Enemy enemy;
 
     WorldLevel worldLevel;
+    SkillEnemyRange skillEnemyRange;
 
     public string enemyName;
     public int enemyLevel;
@@ -22,8 +23,9 @@ public class EnemyController : MonoBehaviour
     public void Awake()
     {
         worldLevel = FindAnyObjectByType<WorldLevel>();
+        skillEnemyRange = FindAnyObjectByType<SkillEnemyRange>();
 
-        ResetEnemy();
+        InitialiseEnemy();
     }
     public void InitialiseEnemy()
     {
@@ -41,6 +43,7 @@ public class EnemyController : MonoBehaviour
         enemyDamage = enemyDamage * enemyLevel;
 
         enemyDef = enemyDef * enemyLevel;
+
     }
 
     public void ResetEnemy()

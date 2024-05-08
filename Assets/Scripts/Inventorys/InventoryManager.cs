@@ -62,6 +62,7 @@ public class InventoryManager : MonoBehaviour
     {
         instance = this;
     }
+
     public void GoldText(int gold)
     {
         goldText.text = gold.ToString();

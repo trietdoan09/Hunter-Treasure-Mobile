@@ -135,7 +135,6 @@ GameObject:
   - component: {fileID: 981328210059434286}
   - component: {fileID: 5792051994237711792}
   - component: {fileID: 2001605711379020661}
-  - component: {fileID: 5455017655959010086}
   m_Layer: 7
   m_Name: EnemyController
   m_TagString: Untagged
@@ -250,9 +249,7 @@ MonoBehaviour:
   dead: 0
   health: 0
   theDrop:
-  - {fileID: 4591433483361982668, guid: e289eb6a7a16c3b428903a19c6a3038b, type: 3}
-  - {fileID: 4100494683021271479, guid: 1f1af7580f108564998e12c60d70c569, type: 3}
-  - {fileID: 4591433483361982668, guid: e289eb6a7a16c3b428903a19c6a3038b, type: 3}
+  - {fileID: 2885007467960531052, guid: 41c4a6c7d3bc0554b91e4782e92ed285, type: 3}
   level: 0
   giveExp: 0
 --- !u!114 &5792051994237711792
@@ -277,6 +274,8 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
+  damageObj: {fileID: 7763708599692587135, guid: b75b983c4a711c944b8a730a9b4c3fb9, type: 3}
+  damageTxt: {fileID: 7940458155591808743, guid: b75b983c4a711c944b8a730a9b4c3fb9, type: 3}
 --- !u!114 &2001605711379020661
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -292,26 +291,6 @@ MonoBehaviour:
   speed: 1.5
   range: 1.2
   idleDuration: 5
---- !u!114 &5455017655959010086
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 812377871193758091}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d2008b6b71d3954a99ff0b830c40ba0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemy: {fileID: 11400000, guid: 91cdac1f2a6f88844a1381862cc9bf5e, type: 2}
-  enemyName: 
-  enemyLevel: 0
-  enemySpeed: 0
-  enemyMaxHealth: 0
-  enemyDamage: 0
-  enemyDef: 0
-  enemyLevelTxt: {fileID: 61421314702081470}
 --- !u!1 &1979430836342487458
 GameObject:
   m_ObjectHideFlags: 0
@@ -324,6 +303,7 @@ GameObject:
   - component: {fileID: 1399272558974318044}
   - component: {fileID: 4871034773871540058}
   - component: {fileID: 7180453458698658461}
+  - component: {fileID: 2224235354825565191}
   m_Layer: 7
   m_Name: Big_Knight_Manager
   m_TagString: Untagged
@@ -424,6 +404,26 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
+--- !u!114 &2224235354825565191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1979430836342487458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d2008b6b71d3954a99ff0b830c40ba0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 11400000, guid: 91cdac1f2a6f88844a1381862cc9bf5e, type: 2}
+  enemyName: 
+  enemyLevel: 0
+  enemySpeed: 0
+  enemyMaxHealth: 0
+  enemyDamage: 0
+  enemyDef: 0
+  enemyLevelTxt: {fileID: 61421314702081470}
 --- !u!1 &3668169138327512944
 GameObject:
   m_ObjectHideFlags: 0
