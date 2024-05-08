@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
@@ -21,6 +22,11 @@ public class EnemyAttack : MonoBehaviour
     [SerializeField] LayerMask playerLayer;
     float cooldownTimer = Mathf.Infinity;
 
+    [Header("Txt dame ")]
+    [SerializeField] GameObject damageObj;
+    [SerializeField] TextMeshPro damageTxt;
+
+
     Animator anim;
     //[Header("Attack Sound")]
     //[SerializeField] private AudioClip attackSound;
@@ -34,9 +40,14 @@ public class EnemyAttack : MonoBehaviour
         anim = GetComponentInChildren<Animator>();
         playerManager = FindAnyObjectByType<PlayerManager>();
         enemyController = FindAnyObjectByType<EnemyController>();
-        damage = enemyController.enemyDamage;
+
     }
 
+    private void Start()
+    {
+        damage = enemyController.enemyDamage;
+
+    }
     private void Update()
     {
         cooldownTimer += Time.deltaTime;
@@ -73,8 +84,12 @@ public class EnemyAttack : MonoBehaviour
         if (PlayerInSight())
 
         {
-            playerManager.PlayerTakeDame(damage);
+            playerManager.PlayerTakeDame(enemyController.enemyDamage);
             AudioManager.instance.PlaySFX("EnemyAttack");
+
+            damageTxt.text = "-" + playerManager.damagaTaken.ToString();
+
+            Instantiate(damageObj,playerManager.transform);
         }
     }
 

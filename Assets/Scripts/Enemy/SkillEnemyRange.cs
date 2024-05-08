@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class SkillEnemyRange : MonoBehaviour
@@ -9,14 +10,21 @@ public class SkillEnemyRange : MonoBehaviour
 
     Animator animator;
     BoxCollider2D boxCollider;
+    PlayerManager playerManager;
+    EnemyController enemyController;
 
     Transform playerMovement;
+
+    [Header("Txt dame ")]
+    [SerializeField] GameObject damageObj;
+    [SerializeField] TextMeshPro damageTxt;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
         boxCollider = GetComponent<BoxCollider2D>();
-
+        playerManager = FindAnyObjectByType<PlayerManager>();
+        enemyController = FindAnyObjectByType<EnemyController>();
     }
 
     private void Update()
@@ -41,6 +49,12 @@ public class SkillEnemyRange : MonoBehaviour
 
             boxCollider.enabled = false;
             animator.SetTrigger("Explosion");
+           var damages = damage * enemyController.enemyLevel;
+
+            playerManager.PlayerTakeDame(damages);
+            damageTxt.text = "-" + playerManager.damagaTaken.ToString();
+
+            Instantiate(damageObj, playerManager.transform);
         }
     }
 

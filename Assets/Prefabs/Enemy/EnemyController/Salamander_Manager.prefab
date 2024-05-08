@@ -651,10 +651,10 @@ GameObject:
   - component: {fileID: 4800235744463912809}
   - component: {fileID: 3449551832904517553}
   - component: {fileID: 4522778501437267859}
+  - component: {fileID: 7334856984507318152}
   - component: {fileID: 4779260239540924393}
   - component: {fileID: 6755223692112683403}
   - component: {fileID: 1880459261523811441}
-  - component: {fileID: 7334856984507318152}
   m_Layer: 7
   m_Name: EnemyController
   m_TagString: Untagged
@@ -750,6 +750,26 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &7334856984507318152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8442302708094461744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d2008b6b71d3954a99ff0b830c40ba0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 11400000, guid: ecb85700125e8a248ba4a57bbcda6c0e, type: 2}
+  enemyName: 
+  enemyLevel: 0
+  enemySpeed: 0
+  enemyMaxHealth: 0
+  enemyDamage: 0
+  enemyDef: 0
+  enemyLevelTxt: {fileID: 4858988376344806578}
 --- !u!114 &4779260239540924393
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -769,9 +789,7 @@ MonoBehaviour:
   dead: 0
   health: 0
   theDrop:
-  - {fileID: 4591433483361982668, guid: e289eb6a7a16c3b428903a19c6a3038b, type: 3}
-  - {fileID: 4100494683021271479, guid: 1f1af7580f108564998e12c60d70c569, type: 3}
-  - {fileID: 4591433483361982668, guid: e289eb6a7a16c3b428903a19c6a3038b, type: 3}
+  - {fileID: 2885007467960531052, guid: 41c4a6c7d3bc0554b91e4782e92ed285, type: 3}
   level: 0
   giveExp: 0
 --- !u!114 &6755223692112683403
@@ -796,6 +814,8 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
+  damageObj: {fileID: 7763708599692587135, guid: b75b983c4a711c944b8a730a9b4c3fb9, type: 3}
+  damageTxt: {fileID: 7940458155591808743, guid: b75b983c4a711c944b8a730a9b4c3fb9, type: 3}
 --- !u!114 &1880459261523811441
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -811,26 +831,6 @@ MonoBehaviour:
   speed: 1.5
   range: 1.2
   idleDuration: 5
---- !u!114 &7334856984507318152
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8442302708094461744}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d2008b6b71d3954a99ff0b830c40ba0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemy: {fileID: 11400000, guid: ecb85700125e8a248ba4a57bbcda6c0e, type: 2}
-  enemyName: 
-  enemyLevel: 0
-  enemySpeed: 0
-  enemyMaxHealth: 0
-  enemyDamage: 0
-  enemyDef: 0
-  enemyLevelTxt: {fileID: 4858988376344806578}
 --- !u!1 &8720721460986724965
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
 
 public class ShopManager : MonoBehaviour
 {
@@ -84,6 +86,7 @@ public class ShopManager : MonoBehaviour
         else
         {
             Instantiate(notGoldTxt, transform);
+
             //notGoldTxt.SetActive(true);
         }
 
@@ -138,6 +141,10 @@ public class ShopManager : MonoBehaviour
 
                 NPCShop nPCShop = FindAnyObjectByType<NPCShop>();
                 nPCShop.GoldText(inventoryManager.gold);
+
+                NotificationItem notificationItem = FindAnyObjectByType<NotificationItem>();
+                notificationItem.NotificationItems(shop.item, quantity);
+
 
                 notification.SetActive(false);
             }
