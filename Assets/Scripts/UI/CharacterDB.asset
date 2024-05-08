@@ -67,7 +67,7 @@ MonoBehaviour:
     gender: 1
     characterClass: 3
     sprite: {fileID: -366793392, guid: 3726722dee7787946a43c8a10e4ff431, type: 3}
-    activeStatus: 0
+    activeStatus: 1
     animatorController: {fileID: 9100000, guid: 548d4b80c9083384bad6120ec456e4b8, type: 2}
   - id: 8
     name: Brand

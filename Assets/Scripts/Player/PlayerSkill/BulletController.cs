@@ -52,7 +52,7 @@ public class BulletController : MonoBehaviour
             Collider2D[] hitEmenys = Physics2D.OverlapBoxAll(attackPostition.position, attackRange, enemyLayers);
             foreach (Collider2D enemy in hitEmenys)
             {
-                if (enemy.gameObject.layer == 7)
+                if (enemy.gameObject.tag == "Enemy")
                 {
                     Debug.Log("We hit" + enemy.gameObject.layer);
                     int playerDame = playerManager.playerAttackPoint;

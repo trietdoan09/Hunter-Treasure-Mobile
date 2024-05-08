@@ -5,7 +5,6 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
-using static UnityEditor.Progress;
 
 public class InventoryManager : MonoBehaviour
 {

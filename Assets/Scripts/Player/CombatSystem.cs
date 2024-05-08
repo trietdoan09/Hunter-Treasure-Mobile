@@ -60,7 +60,7 @@ public class CombatSystem : MonoBehaviour
             Collider2D[] hitEmenys = Physics2D.OverlapBoxAll(attackPostition.position,attackRange,enemyLayers);
             foreach(Collider2D enemy in hitEmenys)
             {
-                if(enemy.gameObject.tag == "Enemy")
+                if(enemy.gameObject.layer == 7)
                 {
                     Debug.Log("We hit" + enemy.gameObject.tag);
                     StartCoroutine(DelayAnimAttack(enemy));
@@ -76,7 +76,7 @@ public class CombatSystem : MonoBehaviour
     private IEnumerator DelayAnimAttack(Collider2D enemy)
     {
         yield return new WaitForSeconds(0.5f);
-        if(enemy.gameObject.tag == "Enemy")
+        if(enemy.gameObject.layer == 7)
         {
             enemy.GetComponent<EnemyHealth>().EnemyTakeDamage(playerManager.playerAttackPoint);
         }
